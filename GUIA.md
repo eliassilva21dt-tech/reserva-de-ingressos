@@ -1,7 +1,7 @@
 # Guia de uso completo
 
 Como ligar, usar, observar, testar e desligar o sistema de reserva de ingressos.
-Para o porquê das decisões, veja [`PROJETO.md`](PROJETO.md) e [`docs/decisoes.md`](docs/decisoes.md).
+Para entender **como o projeto foi construído e como o código funciona**, leia [`docs/EXPLICACAO.md`](docs/EXPLICACAO.md). Para o porquê das decisões, veja [`PROJETO.md`](PROJETO.md) e [`docs/decisoes.md`](docs/decisoes.md).
 
 ---
 

@@ -54,4 +54,4 @@ docker compose down -v     # apaga também o banco
 ```
 
 ## Estrutura
-Ver seção 8 do [`PROJETO.md`](PROJETO.md). Decisões técnicas: [`docs/decisoes.md`](docs/decisoes.md). Rascunho do relatório: [`docs/relatorio.md`](docs/relatorio.md).
+Para entender o projeto inteiro, do conceito ao código, comece por [`docs/EXPLICACAO.md`](docs/EXPLICACAO.md). Ver também a seção 8 do [`PROJETO.md`](PROJETO.md). Decisões técnicas: [`docs/decisoes.md`](docs/decisoes.md). Rascunho do relatório: [`docs/relatorio.md`](docs/relatorio.md).
