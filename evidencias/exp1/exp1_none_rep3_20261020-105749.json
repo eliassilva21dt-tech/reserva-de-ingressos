@@ -1,0 +1,28 @@
+{
+  "experimento": "exp1_concorrencia",
+  "modo": "none",
+  "repeticao": 3,
+  "timestamp": "2026-10-20T10:57:49",
+  "requisicoes": 100,
+  "assento_id": 10,
+  "aceitas_201": 22,
+  "conflito_409": 78,
+  "erros": 0,
+  "codigos": {
+    "201": 22,
+    "409": 78
+  },
+  "lat_media_ms": 333.7,
+  "lat_p95_ms": 587.6,
+  "duracao_s": 0.645,
+  "overbooking": [
+    {
+      "assento_id": 10,
+      "reservas_ativas": 22
+    }
+  ],
+  "houve_overbooking": true,
+  "reservas_por_status": {
+    "PENDENTE": 22
+  }
+}

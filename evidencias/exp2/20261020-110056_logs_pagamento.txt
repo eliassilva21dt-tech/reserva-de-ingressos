@@ -1,0 +1,293 @@
+pagamento-1  | 2026-10-20 14:53:00,322 INFO [138c7131f764] pagamento: Connection to amqp://guest:******@rabbitmq:5672/ closed. Reconnecting after 5 seconds.
+pagamento-1  | 2026-10-20 14:53:00,322 WARNING [138c7131f764] pagamento: rabbitmq indisponível ([Errno 111] Connect call failed ('172.18.0.2', 5672)); nova tentativa em 1s
+pagamento-1  | 2026-10-20 14:53:01,325 INFO [138c7131f764] pagamento: Connection to amqp://guest:******@rabbitmq:5672/ closed. Reconnecting after 5 seconds.
+pagamento-1  | 2026-10-20 14:53:01,326 WARNING [138c7131f764] pagamento: rabbitmq indisponível ([Errno 111] Connect call failed ('172.18.0.2', 5672)); nova tentativa em 2s
+pagamento-1  | 2026-10-20 14:53:03,330 INFO [138c7131f764] pagamento: Connection to amqp://guest:******@rabbitmq:5672/ closed. Reconnecting after 5 seconds.
+pagamento-1  | 2026-10-20 14:53:03,330 WARNING [138c7131f764] pagamento: rabbitmq indisponível ([Errno 111] Connect call failed ('172.18.0.2', 5672)); nova tentativa em 3s
+pagamento-1  | 2026-10-20 14:53:06,335 INFO [138c7131f764] pagamento: Connection to amqp://guest:******@rabbitmq:5672/ closed. Reconnecting after 5 seconds.
+pagamento-1  | 2026-10-20 14:53:06,336 WARNING [138c7131f764] pagamento: rabbitmq indisponível ([Errno 111] Connect call failed ('172.18.0.2', 5672)); nova tentativa em 4s
+pagamento-1  | 2026-10-20 14:53:10,360 INFO [138c7131f764] pagamento: aguardando mensagens em reservas.pagamento
+pagamento-1  | 2026-10-20 14:54:07,666 INFO [138c7131f764] pagamento: aguardando mensagens em reservas.pagamento
+pagamento-1  | 2026-10-20 14:54:17,010 INFO [138c7131f764] pagamento: Connection to amqp://guest:******@rabbitmq:5672/ closed. Reconnecting after 5 seconds.
+pagamento-1  | Traceback (most recent call last):
+pagamento-1  |   File "/usr/local/lib/python3.12/asyncio/runners.py", line 118, in run
+pagamento-1  |     return self._loop.run_until_complete(task)
+pagamento-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pagamento-1  |   File "/usr/local/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+pagamento-1  |     return future.result()
+pagamento-1  |            ^^^^^^^^^^^^^^^
+pagamento-1  |   File "/srv/app/main.py", line 104, in main
+pagamento-1  |     await asyncio.Future()  # roda para sempre
+pagamento-1  |     ^^^^^^^^^^^^^^^^^^^^^^
+pagamento-1  | asyncio.exceptions.CancelledError
+pagamento-1  | 
+pagamento-1  | During handling of the above exception, another exception occurred:
+pagamento-1  | 
+pagamento-1  | Traceback (most recent call last):
+pagamento-1  |   File "<frozen runpy>", line 198, in _run_module_as_main
+pagamento-1  |   File "<frozen runpy>", line 88, in _run_code
+pagamento-1  |   File "/srv/app/main.py", line 108, in <module>
+pagamento-1  |     asyncio.run(main())
+pagamento-1  |   File "/usr/local/lib/python3.12/asyncio/runners.py", line 195, in run
+pagamento-1  |     return runner.run(main)
+pagamento-1  |            ^^^^^^^^^^^^^^^^
+pagamento-1  |   File "/usr/local/lib/python3.12/asyncio/runners.py", line 123, in run
+pagamento-1  |     raise KeyboardInterrupt()
+pagamento-1  | KeyboardInterrupt
+pagamento-1  | 2026-10-20 14:54:18,230 INFO [138c7131f764] pagamento: aguardando mensagens em reservas.pagamento
+pagamento-1  | 2026-10-20 14:55:09,878 INFO [138c7131f764] pagamento: processando reserva=1 assento=3
+pagamento-1  | 2026-10-20 14:55:12,098 INFO [138c7131f764] pagamento: pagamento confirmada reserva=1 assento=3
+pagamento-1  | 2026-10-20 14:55:28,068 INFO [138c7131f764] pagamento: aguardando mensagens em reservas.pagamento
+pagamento-1  | 2026-10-20 14:55:28,068 INFO [138c7131f764] pagamento: processando reserva=1 assento=1
+pagamento-1  | 2026-10-20 14:55:30,368 INFO [138c7131f764] pagamento: pagamento confirmada reserva=1 assento=1
+pagamento-1  | 2026-10-20 14:55:30,370 INFO [138c7131f764] pagamento: processando reserva=2 assento=2
+pagamento-1  | 2026-10-20 14:55:33,366 INFO [138c7131f764] pagamento: pagamento confirmada reserva=2 assento=2
+pagamento-1  | 2026-10-20 14:55:33,368 INFO [138c7131f764] pagamento: processando reserva=3 assento=3
+pagamento-1  | 2026-10-20 14:55:34,705 INFO [138c7131f764] pagamento: pagamento confirmada reserva=3 assento=3
+pagamento-1  | 2026-10-20 14:55:34,706 INFO [138c7131f764] pagamento: processando reserva=4 assento=4
+pagamento-1  | 2026-10-20 14:55:36,817 INFO [138c7131f764] pagamento: pagamento confirmada reserva=4 assento=4
+pagamento-1  | 2026-10-20 14:55:36,819 INFO [138c7131f764] pagamento: processando reserva=5 assento=5
+pagamento-1  | 2026-10-20 14:55:39,453 INFO [138c7131f764] pagamento: pagamento confirmada reserva=5 assento=5
+pagamento-1  | 2026-10-20 14:55:39,454 INFO [138c7131f764] pagamento: processando reserva=6 assento=6
+pagamento-1  | 2026-10-20 14:55:41,411 INFO [138c7131f764] pagamento: pagamento confirmada reserva=6 assento=6
+pagamento-1  | 2026-10-20 14:55:41,413 INFO [138c7131f764] pagamento: processando reserva=7 assento=7
+pagamento-1  | 2026-10-20 14:55:42,852 INFO [138c7131f764] pagamento: pagamento confirmada reserva=7 assento=7
+pagamento-1  | 2026-10-20 14:55:42,854 INFO [138c7131f764] pagamento: processando reserva=8 assento=8
+pagamento-1  | 2026-10-20 14:55:44,673 INFO [138c7131f764] pagamento: pagamento confirmada reserva=8 assento=8
+pagamento-1  | 2026-10-20 14:55:44,675 INFO [138c7131f764] pagamento: processando reserva=9 assento=9
+pagamento-1  | 2026-10-20 14:55:46,010 INFO [138c7131f764] pagamento: pagamento confirmada reserva=9 assento=9
+pagamento-1  | 2026-10-20 14:55:46,012 INFO [138c7131f764] pagamento: processando reserva=10 assento=10
+pagamento-1  | 2026-10-20 14:55:47,423 INFO [138c7131f764] pagamento: pagamento confirmada reserva=10 assento=10
+pagamento-1  | 2026-10-20 14:55:47,425 INFO [138c7131f764] pagamento: processando reserva=11 assento=11
+pagamento-1  | 2026-10-20 14:55:48,640 INFO [138c7131f764] pagamento: pagamento confirmada reserva=11 assento=11
+pagamento-1  | 2026-10-20 14:55:48,641 INFO [138c7131f764] pagamento: processando reserva=12 assento=12
+pagamento-1  | 2026-10-20 14:55:50,921 INFO [138c7131f764] pagamento: pagamento confirmada reserva=12 assento=12
+pagamento-1  | 2026-10-20 14:55:50,923 INFO [138c7131f764] pagamento: processando reserva=13 assento=13
+pagamento-1  | 2026-10-20 14:55:52,237 INFO [138c7131f764] pagamento: pagamento confirmada reserva=13 assento=13
+pagamento-1  | 2026-10-20 14:55:52,239 INFO [138c7131f764] pagamento: processando reserva=14 assento=14
+pagamento-1  | 2026-10-20 14:55:54,717 INFO [138c7131f764] pagamento: pagamento confirmada reserva=14 assento=14
+pagamento-1  | 2026-10-20 14:55:54,718 INFO [138c7131f764] pagamento: processando reserva=15 assento=15
+pagamento-1  | 2026-10-20 14:55:55,920 INFO [138c7131f764] pagamento: pagamento confirmada reserva=15 assento=15
+pagamento-1  | 2026-10-20 14:55:55,921 INFO [138c7131f764] pagamento: processando reserva=16 assento=16
+pagamento-1  | 2026-10-20 14:55:57,202 INFO [138c7131f764] pagamento: pagamento confirmada reserva=16 assento=16
+pagamento-1  | 2026-10-20 14:55:57,204 INFO [138c7131f764] pagamento: processando reserva=17 assento=17
+pagamento-1  | 2026-10-20 14:55:59,094 INFO [138c7131f764] pagamento: pagamento confirmada reserva=17 assento=17
+pagamento-1  | 2026-10-20 14:55:59,096 INFO [138c7131f764] pagamento: processando reserva=18 assento=18
+pagamento-1  | 2026-10-20 14:56:02,076 INFO [138c7131f764] pagamento: pagamento confirmada reserva=18 assento=18
+pagamento-1  | 2026-10-20 14:56:02,078 INFO [138c7131f764] pagamento: processando reserva=19 assento=19
+pagamento-1  | 2026-10-20 14:56:04,756 INFO [138c7131f764] pagamento: pagamento confirmada reserva=19 assento=19
+pagamento-1  | 2026-10-20 14:56:04,758 INFO [138c7131f764] pagamento: processando reserva=20 assento=20
+pagamento-1  | 2026-10-20 14:56:07,063 INFO [138c7131f764] pagamento: pagamento confirmada reserva=20 assento=20
+pagamento-1  | 2026-10-20 14:56:20,193 INFO [138c7131f764] pagamento: processando reserva=1 assento=1
+pagamento-1  | 2026-10-20 14:56:22,500 INFO [138c7131f764] pagamento: pagamento confirmada reserva=1 assento=1
+pagamento-1  | 2026-10-20 14:56:22,502 INFO [138c7131f764] pagamento: processando reserva=2 assento=2
+pagamento-1  | 2026-10-20 14:56:25,415 INFO [138c7131f764] pagamento: pagamento confirmada reserva=2 assento=2
+pagamento-1  | 2026-10-20 14:56:25,416 INFO [138c7131f764] pagamento: processando reserva=3 assento=3
+pagamento-1  | 2026-10-20 14:56:37,755 INFO [138c7131f764] pagamento: aguardando mensagens em reservas.pagamento
+pagamento-1  | 2026-10-20 14:56:37,756 INFO [138c7131f764] pagamento: processando reserva=3 assento=3 (REENTREGA)
+pagamento-1  | 2026-10-20 14:56:39,664 INFO [138c7131f764] pagamento: pagamento confirmada reserva=3 assento=3
+pagamento-1  | 2026-10-20 14:56:39,666 INFO [138c7131f764] pagamento: processando reserva=4 assento=4
+pagamento-1  | 2026-10-20 14:56:42,080 INFO [138c7131f764] pagamento: pagamento confirmada reserva=4 assento=4
+pagamento-1  | 2026-10-20 14:56:42,082 INFO [138c7131f764] pagamento: processando reserva=5 assento=5
+pagamento-1  | 2026-10-20 14:56:43,658 INFO [138c7131f764] pagamento: pagamento confirmada reserva=5 assento=5
+pagamento-1  | 2026-10-20 14:56:43,660 INFO [138c7131f764] pagamento: processando reserva=6 assento=6
+pagamento-1  | 2026-10-20 14:56:44,852 INFO [138c7131f764] pagamento: pagamento confirmada reserva=6 assento=6
+pagamento-1  | 2026-10-20 14:56:44,854 INFO [138c7131f764] pagamento: processando reserva=7 assento=7
+pagamento-1  | 2026-10-20 14:56:46,202 INFO [138c7131f764] pagamento: pagamento confirmada reserva=7 assento=7
+pagamento-1  | 2026-10-20 14:56:46,204 INFO [138c7131f764] pagamento: processando reserva=8 assento=8
+pagamento-1  | 2026-10-20 14:56:47,521 INFO [138c7131f764] pagamento: pagamento confirmada reserva=8 assento=8
+pagamento-1  | 2026-10-20 14:56:47,523 INFO [138c7131f764] pagamento: processando reserva=9 assento=9
+pagamento-1  | 2026-10-20 14:56:49,302 INFO [138c7131f764] pagamento: pagamento recusada reserva=9 assento=9
+pagamento-1  | 2026-10-20 14:56:49,307 INFO [138c7131f764] pagamento: lock liberado assento=9
+pagamento-1  | 2026-10-20 14:56:49,308 INFO [138c7131f764] pagamento: processando reserva=10 assento=10
+pagamento-1  | 2026-10-20 14:56:52,088 INFO [138c7131f764] pagamento: pagamento confirmada reserva=10 assento=10
+pagamento-1  | 2026-10-20 14:56:52,090 INFO [138c7131f764] pagamento: processando reserva=11 assento=11
+pagamento-1  | 2026-10-20 14:56:53,428 INFO [138c7131f764] pagamento: pagamento confirmada reserva=11 assento=11
+pagamento-1  | 2026-10-20 14:56:53,430 INFO [138c7131f764] pagamento: processando reserva=12 assento=12
+pagamento-1  | 2026-10-20 14:56:54,711 INFO [138c7131f764] pagamento: pagamento confirmada reserva=12 assento=12
+pagamento-1  | 2026-10-20 14:56:54,714 INFO [138c7131f764] pagamento: processando reserva=13 assento=13
+pagamento-1  | 2026-10-20 14:56:57,501 INFO [138c7131f764] pagamento: pagamento recusada reserva=13 assento=13
+pagamento-1  | 2026-10-20 14:56:57,502 INFO [138c7131f764] pagamento: lock liberado assento=13
+pagamento-1  | 2026-10-20 14:56:57,504 INFO [138c7131f764] pagamento: processando reserva=14 assento=14
+pagamento-1  | 2026-10-20 14:56:59,620 INFO [138c7131f764] pagamento: pagamento confirmada reserva=14 assento=14
+pagamento-1  | 2026-10-20 14:56:59,622 INFO [138c7131f764] pagamento: processando reserva=15 assento=15
+pagamento-1  | 2026-10-20 14:57:02,600 INFO [138c7131f764] pagamento: pagamento confirmada reserva=15 assento=15
+pagamento-1  | 2026-10-20 14:57:02,601 INFO [138c7131f764] pagamento: processando reserva=16 assento=16
+pagamento-1  | 2026-10-20 14:57:05,124 INFO [138c7131f764] pagamento: pagamento confirmada reserva=16 assento=16
+pagamento-1  | 2026-10-20 14:57:05,126 INFO [138c7131f764] pagamento: processando reserva=17 assento=17
+pagamento-1  | 2026-10-20 14:57:06,846 INFO [138c7131f764] pagamento: pagamento confirmada reserva=17 assento=17
+pagamento-1  | 2026-10-20 14:57:06,849 INFO [138c7131f764] pagamento: processando reserva=18 assento=18
+pagamento-1  | 2026-10-20 14:57:08,418 INFO [138c7131f764] pagamento: pagamento confirmada reserva=18 assento=18
+pagamento-1  | 2026-10-20 14:57:08,420 INFO [138c7131f764] pagamento: processando reserva=19 assento=19
+pagamento-1  | 2026-10-20 14:57:11,285 INFO [138c7131f764] pagamento: pagamento confirmada reserva=19 assento=19
+pagamento-1  | 2026-10-20 14:57:11,287 INFO [138c7131f764] pagamento: processando reserva=20 assento=20
+pagamento-1  | 2026-10-20 14:57:13,360 INFO [138c7131f764] pagamento: pagamento confirmada reserva=20 assento=20
+pagamento-1  | 2026-10-20 14:57:43,404 INFO [138c7131f764] pagamento: processando reserva=1 assento=10
+pagamento-1  | 2026-10-20 14:57:45,029 INFO [138c7131f764] pagamento: pagamento confirmada reserva=1 assento=10
+pagamento-1  | 2026-10-20 14:57:45,030 INFO [138c7131f764] pagamento: processando reserva=2 assento=10
+pagamento-1  | 2026-10-20 14:57:48,000 INFO [138c7131f764] pagamento: pagamento confirmada reserva=2 assento=10
+pagamento-1  | 2026-10-20 14:57:48,003 INFO [138c7131f764] pagamento: processando reserva=1 assento=10
+pagamento-1  | 2026-10-20 14:57:49,471 INFO [138c7131f764] pagamento: pagamento confirmada reserva=1 assento=10
+pagamento-1  | 2026-10-20 14:57:49,476 INFO [138c7131f764] pagamento: processando reserva=1 assento=10
+pagamento-1  | 2026-10-20 14:57:50,888 INFO [138c7131f764] pagamento: reserva=1 já processada ou inexistente; ignorando (idempotência)
+pagamento-1  | 2026-10-20 14:57:50,890 INFO [138c7131f764] pagamento: processando reserva=2 assento=10
+pagamento-1  | 2026-10-20 14:57:52,968 INFO [138c7131f764] pagamento: pagamento confirmada reserva=2 assento=10
+pagamento-1  | 2026-10-20 14:57:52,969 INFO [138c7131f764] pagamento: processando reserva=3 assento=10
+pagamento-1  | 2026-10-20 14:57:54,224 INFO [138c7131f764] pagamento: pagamento confirmada reserva=3 assento=10
+pagamento-1  | 2026-10-20 14:57:54,225 INFO [138c7131f764] pagamento: processando reserva=4 assento=10
+pagamento-1  | 2026-10-20 14:57:56,364 INFO [138c7131f764] pagamento: pagamento recusada reserva=4 assento=10
+pagamento-1  | 2026-10-20 14:57:56,365 INFO [138c7131f764] pagamento: lock liberado assento=10
+pagamento-1  | 2026-10-20 14:57:56,367 INFO [138c7131f764] pagamento: processando reserva=6 assento=10
+pagamento-1  | 2026-10-20 14:57:58,350 INFO [138c7131f764] pagamento: pagamento recusada reserva=6 assento=10
+pagamento-1  | 2026-10-20 14:57:58,351 INFO [138c7131f764] pagamento: lock liberado assento=10
+pagamento-1  | 2026-10-20 14:57:58,353 INFO [138c7131f764] pagamento: processando reserva=5 assento=10
+pagamento-1  | 2026-10-20 14:58:01,316 INFO [138c7131f764] pagamento: reserva=5 já processada ou inexistente; ignorando (idempotência)
+pagamento-1  | 2026-10-20 14:58:01,317 INFO [138c7131f764] pagamento: processando reserva=1 assento=10
+pagamento-1  | 2026-10-20 14:58:02,418 INFO [138c7131f764] pagamento: reserva=1 já processada ou inexistente; ignorando (idempotência)
+pagamento-1  | 2026-10-20 14:58:02,722 INFO [138c7131f764] pagamento: processando reserva=1 assento=10
+pagamento-1  | 2026-10-20 14:58:04,987 INFO [138c7131f764] pagamento: reserva=1 já processada ou inexistente; ignorando (idempotência)
+pagamento-1  | 2026-10-20 14:58:05,560 INFO [138c7131f764] pagamento: processando reserva=1 assento=10
+pagamento-1  | 2026-10-20 14:58:07,677 INFO [138c7131f764] pagamento: pagamento confirmada reserva=1 assento=10
+pagamento-1  | 2026-10-20 14:58:16,141 INFO [138c7131f764] pagamento: processando reserva=1 assento=10
+pagamento-1  | 2026-10-20 14:58:18,010 INFO [138c7131f764] pagamento: reserva=1 já processada ou inexistente; ignorando (idempotência)
+pagamento-1  | 2026-10-20 14:58:18,663 INFO [138c7131f764] pagamento: processando reserva=1 assento=10
+pagamento-1  | 2026-10-20 14:58:21,301 INFO [138c7131f764] pagamento: reserva=1 já processada ou inexistente; ignorando (idempotência)
+pagamento-1  | 2026-10-20 14:58:21,312 INFO [138c7131f764] pagamento: processando reserva=1 assento=10
+pagamento-1  | 2026-10-20 14:58:24,283 INFO [138c7131f764] pagamento: pagamento confirmada reserva=1 assento=10
+pagamento-1  | 2026-10-20 14:58:46,516 INFO [138c7131f764] pagamento: processando reserva=1 assento=1
+pagamento-1  | 2026-10-20 14:58:49,197 INFO [138c7131f764] pagamento: pagamento confirmada reserva=1 assento=1
+pagamento-1  | 2026-10-20 14:58:49,203 INFO [138c7131f764] pagamento: processando reserva=2 assento=2
+pagamento-1  | 2026-10-20 14:58:50,346 INFO [138c7131f764] pagamento: pagamento confirmada reserva=2 assento=2
+pagamento-1  | 2026-10-20 14:58:50,348 INFO [138c7131f764] pagamento: processando reserva=3 assento=5
+pagamento-1  | 2026-10-20 14:58:52,136 INFO [138c7131f764] pagamento: pagamento confirmada reserva=3 assento=5
+pagamento-1  | 2026-10-20 14:58:52,139 INFO [138c7131f764] pagamento: processando reserva=2 assento=1
+pagamento-1  | 2026-10-20 14:58:54,431 INFO [138c7131f764] pagamento: pagamento confirmada reserva=2 assento=1
+pagamento-1  | 2026-10-20 14:58:54,434 INFO [138c7131f764] pagamento: processando reserva=3 assento=5
+pagamento-1  | 2026-10-20 14:58:55,965 INFO [138c7131f764] pagamento: reserva=3 já processada ou inexistente; ignorando (idempotência)
+pagamento-1  | 2026-10-20 14:58:56,095 INFO [138c7131f764] pagamento: processando reserva=1 assento=2
+pagamento-1  | 2026-10-20 14:58:58,899 INFO [138c7131f764] pagamento: pagamento confirmada reserva=1 assento=2
+pagamento-1  | 2026-10-20 14:58:58,906 INFO [138c7131f764] pagamento: processando reserva=1 assento=1
+pagamento-1  | 2026-10-20 14:59:01,610 INFO [138c7131f764] pagamento: reserva=1 já processada ou inexistente; ignorando (idempotência)
+pagamento-1  | 2026-10-20 14:59:01,612 INFO [138c7131f764] pagamento: processando reserva=2 assento=5
+pagamento-1  | 2026-10-20 14:59:03,894 INFO [138c7131f764] pagamento: pagamento confirmada reserva=2 assento=5
+pagamento-1  | 2026-10-20 14:59:03,896 INFO [138c7131f764] pagamento: processando reserva=3 assento=2
+pagamento-1  | 2026-10-20 14:59:05,202 INFO [138c7131f764] pagamento: pagamento confirmada reserva=3 assento=2
+pagamento-1  | 2026-10-20 14:59:05,203 INFO [138c7131f764] pagamento: processando reserva=4 assento=13
+pagamento-1  | 2026-10-20 14:59:07,577 INFO [138c7131f764] pagamento: pagamento recusada reserva=4 assento=13
+pagamento-1  | 2026-10-20 14:59:07,578 INFO [138c7131f764] pagamento: lock liberado assento=13
+pagamento-1  | 2026-10-20 14:59:07,580 INFO [138c7131f764] pagamento: processando reserva=6 assento=4
+pagamento-1  | 2026-10-20 14:59:09,753 INFO [138c7131f764] pagamento: pagamento confirmada reserva=6 assento=4
+pagamento-1  | 2026-10-20 14:59:09,755 INFO [138c7131f764] pagamento: processando reserva=5 assento=8
+pagamento-1  | 2026-10-20 14:59:12,460 INFO [138c7131f764] pagamento: pagamento confirmada reserva=5 assento=8
+pagamento-1  | 2026-10-20 14:59:12,462 INFO [138c7131f764] pagamento: processando reserva=7 assento=7
+pagamento-1  | 2026-10-20 14:59:15,334 INFO [138c7131f764] pagamento: pagamento confirmada reserva=7 assento=7
+pagamento-1  | 2026-10-20 14:59:15,336 INFO [138c7131f764] pagamento: processando reserva=8 assento=18
+pagamento-1  | 2026-10-20 14:59:18,014 INFO [138c7131f764] pagamento: reserva=8 já processada ou inexistente; ignorando (idempotência)
+pagamento-1  | 2026-10-20 14:59:18,031 INFO [138c7131f764] pagamento: processando reserva=1 assento=2
+pagamento-1  | 2026-10-20 14:59:20,873 INFO [138c7131f764] pagamento: pagamento confirmada reserva=1 assento=2
+pagamento-1  | 2026-10-20 14:59:20,878 INFO [138c7131f764] pagamento: processando reserva=2 assento=5
+pagamento-1  | 2026-10-20 14:59:22,139 INFO [138c7131f764] pagamento: pagamento confirmada reserva=2 assento=5
+pagamento-1  | 2026-10-20 14:59:22,141 INFO [138c7131f764] pagamento: processando reserva=4 assento=8
+pagamento-1  | 2026-10-20 14:59:25,071 INFO [138c7131f764] pagamento: reserva=4 já processada ou inexistente; ignorando (idempotência)
+pagamento-1  | 2026-10-20 14:59:25,072 INFO [138c7131f764] pagamento: processando reserva=3 assento=1
+pagamento-1  | 2026-10-20 14:59:27,757 INFO [138c7131f764] pagamento: pagamento recusada reserva=3 assento=1
+pagamento-1  | 2026-10-20 14:59:27,758 INFO [138c7131f764] pagamento: lock liberado assento=1
+pagamento-1  | 2026-10-20 14:59:27,762 INFO [138c7131f764] pagamento: processando reserva=2 assento=1
+pagamento-1  | 2026-10-20 14:59:29,956 INFO [138c7131f764] pagamento: pagamento confirmada reserva=2 assento=1
+pagamento-1  | 2026-10-20 14:59:29,958 INFO [138c7131f764] pagamento: processando reserva=1 assento=2
+pagamento-1  | 2026-10-20 14:59:31,117 INFO [138c7131f764] pagamento: pagamento recusada reserva=1 assento=2
+pagamento-1  | 2026-10-20 14:59:31,118 INFO [138c7131f764] pagamento: lock liberado assento=2
+pagamento-1  | 2026-10-20 14:59:31,120 INFO [138c7131f764] pagamento: processando reserva=3 assento=5
+pagamento-1  | 2026-10-20 14:59:33,946 INFO [138c7131f764] pagamento: pagamento confirmada reserva=3 assento=5
+pagamento-1  | 2026-10-20 14:59:33,968 INFO [138c7131f764] pagamento: processando reserva=1 assento=1
+pagamento-1  | 2026-10-20 14:59:35,377 INFO [138c7131f764] pagamento: pagamento confirmada reserva=1 assento=1
+pagamento-1  | 2026-10-20 14:59:35,379 INFO [138c7131f764] pagamento: processando reserva=2 assento=2
+pagamento-1  | 2026-10-20 14:59:36,527 INFO [138c7131f764] pagamento: pagamento confirmada reserva=2 assento=2
+pagamento-1  | 2026-10-20 14:59:36,529 INFO [138c7131f764] pagamento: processando reserva=3 assento=37
+pagamento-1  | 2026-10-20 14:59:38,924 INFO [138c7131f764] pagamento: reserva=3 já processada ou inexistente; ignorando (idempotência)
+pagamento-1  | 2026-10-20 14:59:38,926 INFO [138c7131f764] pagamento: processando reserva=6 assento=8
+pagamento-1  | 2026-10-20 14:59:41,893 INFO [138c7131f764] pagamento: pagamento confirmada reserva=6 assento=8
+pagamento-1  | 2026-10-20 14:59:41,894 INFO [138c7131f764] pagamento: processando reserva=5 assento=5
+pagamento-1  | 2026-10-20 14:59:43,243 INFO [138c7131f764] pagamento: pagamento confirmada reserva=5 assento=5
+pagamento-1  | 2026-10-20 14:59:43,245 INFO [138c7131f764] pagamento: processando reserva=4 assento=4
+pagamento-1  | 2026-10-20 14:59:46,079 INFO [138c7131f764] pagamento: pagamento confirmada reserva=4 assento=4
+pagamento-1  | 2026-10-20 14:59:46,082 INFO [138c7131f764] pagamento: processando reserva=7 assento=13
+pagamento-1  | 2026-10-20 14:59:47,347 INFO [138c7131f764] pagamento: pagamento confirmada reserva=7 assento=13
+pagamento-1  | 2026-10-20 14:59:47,348 INFO [138c7131f764] pagamento: processando reserva=8 assento=7
+pagamento-1  | 2026-10-20 14:59:49,118 INFO [138c7131f764] pagamento: pagamento confirmada reserva=8 assento=7
+pagamento-1  | 2026-10-20 14:59:49,120 INFO [138c7131f764] pagamento: processando reserva=10 assento=11
+pagamento-1  | 2026-10-20 14:59:51,807 INFO [138c7131f764] pagamento: pagamento confirmada reserva=10 assento=11
+pagamento-1  | 2026-10-20 14:59:51,808 INFO [138c7131f764] pagamento: processando reserva=11 assento=3
+pagamento-1  | 2026-10-20 14:59:53,894 INFO [138c7131f764] pagamento: reserva=11 já processada ou inexistente; ignorando (idempotência)
+pagamento-1  | 2026-10-20 14:59:53,895 INFO [138c7131f764] pagamento: processando reserva=9 assento=18
+pagamento-1  | 2026-10-20 14:59:55,227 INFO [138c7131f764] pagamento: pagamento confirmada reserva=9 assento=18
+pagamento-1  | 2026-10-20 14:59:55,231 INFO [138c7131f764] pagamento: processando reserva=1 assento=1
+pagamento-1  | 2026-10-20 14:59:56,776 INFO [138c7131f764] pagamento: pagamento confirmada reserva=1 assento=1
+pagamento-1  | 2026-10-20 14:59:56,781 INFO [138c7131f764] pagamento: processando reserva=2 assento=2
+pagamento-1  | 2026-10-20 14:59:59,181 INFO [138c7131f764] pagamento: pagamento confirmada reserva=2 assento=2
+pagamento-1  | 2026-10-20 14:59:59,182 INFO [138c7131f764] pagamento: processando reserva=3 assento=5
+pagamento-1  | 2026-10-20 15:00:00,600 INFO [138c7131f764] pagamento: pagamento confirmada reserva=3 assento=5
+pagamento-1  | 2026-10-20 15:00:00,601 INFO [138c7131f764] pagamento: processando reserva=5 assento=18
+pagamento-1  | 2026-10-20 15:00:02,483 INFO [138c7131f764] pagamento: pagamento confirmada reserva=5 assento=18
+pagamento-1  | 2026-10-20 15:00:02,488 INFO [138c7131f764] pagamento: processando reserva=2 assento=1
+pagamento-1  | 2026-10-20 15:00:04,324 INFO [138c7131f764] pagamento: pagamento recusada reserva=2 assento=1
+pagamento-1  | 2026-10-20 15:00:04,325 INFO [138c7131f764] pagamento: lock liberado assento=1
+pagamento-1  | 2026-10-20 15:00:04,326 INFO [138c7131f764] pagamento: processando reserva=3 assento=5
+pagamento-1  | 2026-10-20 15:00:06,492 INFO [138c7131f764] pagamento: pagamento confirmada reserva=3 assento=5
+pagamento-1  | 2026-10-20 15:00:06,494 INFO [138c7131f764] pagamento: processando reserva=1 assento=2
+pagamento-1  | 2026-10-20 15:00:07,765 INFO [138c7131f764] pagamento: pagamento confirmada reserva=1 assento=2
+pagamento-1  | 2026-10-20 15:00:07,767 INFO [138c7131f764] pagamento: processando reserva=4 assento=13
+pagamento-1  | 2026-10-20 15:00:09,174 INFO [138c7131f764] pagamento: pagamento confirmada reserva=4 assento=13
+pagamento-1  | 2026-10-20 15:00:09,176 INFO [138c7131f764] pagamento: processando reserva=1 assento=1
+pagamento-1  | 2026-10-20 15:00:10,335 INFO [138c7131f764] pagamento: pagamento confirmada reserva=1 assento=1
+pagamento-1  | 2026-10-20 15:00:10,337 INFO [138c7131f764] pagamento: processando reserva=2 assento=2
+pagamento-1  | 2026-10-20 15:00:13,270 INFO [138c7131f764] pagamento: pagamento confirmada reserva=2 assento=2
+pagamento-1  | 2026-10-20 15:00:13,274 INFO [138c7131f764] pagamento: processando reserva=3 assento=8
+pagamento-1  | 2026-10-20 15:00:15,351 INFO [138c7131f764] pagamento: pagamento confirmada reserva=3 assento=8
+pagamento-1  | 2026-10-20 15:00:15,353 INFO [138c7131f764] pagamento: processando reserva=6 assento=18
+pagamento-1  | 2026-10-20 15:00:18,209 INFO [138c7131f764] pagamento: pagamento confirmada reserva=6 assento=18
+pagamento-1  | 2026-10-20 15:00:18,211 INFO [138c7131f764] pagamento: processando reserva=4 assento=5
+pagamento-1  | 2026-10-20 15:00:19,238 INFO [138c7131f764] pagamento: reserva=4 já processada ou inexistente; ignorando (idempotência)
+pagamento-1  | 2026-10-20 15:00:19,240 INFO [138c7131f764] pagamento: processando reserva=5 assento=4
+pagamento-1  | 2026-10-20 15:00:21,179 INFO [138c7131f764] pagamento: pagamento confirmada reserva=5 assento=4
+pagamento-1  | 2026-10-20 15:00:21,181 INFO [138c7131f764] pagamento: processando reserva=13 assento=19
+pagamento-1  | 2026-10-20 15:00:22,522 INFO [138c7131f764] pagamento: pagamento confirmada reserva=13 assento=19
+pagamento-1  | 2026-10-20 15:00:22,524 INFO [138c7131f764] pagamento: processando reserva=8 assento=13
+pagamento-1  | 2026-10-20 15:00:25,172 INFO [138c7131f764] pagamento: pagamento recusada reserva=8 assento=13
+pagamento-1  | 2026-10-20 15:00:25,173 INFO [138c7131f764] pagamento: lock liberado assento=13
+pagamento-1  | 2026-10-20 15:00:25,175 INFO [138c7131f764] pagamento: processando reserva=7 assento=11
+pagamento-1  | 2026-10-20 15:00:27,524 INFO [138c7131f764] pagamento: pagamento confirmada reserva=7 assento=11
+pagamento-1  | 2026-10-20 15:00:27,525 INFO [138c7131f764] pagamento: processando reserva=10 assento=7
+pagamento-1  | 2026-10-20 15:00:29,486 INFO [138c7131f764] pagamento: pagamento recusada reserva=10 assento=7
+pagamento-1  | 2026-10-20 15:00:29,487 INFO [138c7131f764] pagamento: lock liberado assento=7
+pagamento-1  | 2026-10-20 15:00:29,489 INFO [138c7131f764] pagamento: processando reserva=11 assento=3
+pagamento-1  | 2026-10-20 15:00:32,475 INFO [138c7131f764] pagamento: pagamento confirmada reserva=11 assento=3
+pagamento-1  | 2026-10-20 15:00:32,477 INFO [138c7131f764] pagamento: processando reserva=14 assento=17
+pagamento-1  | 2026-10-20 15:00:34,515 INFO [138c7131f764] pagamento: pagamento confirmada reserva=14 assento=17
+pagamento-1  | 2026-10-20 15:00:34,517 INFO [138c7131f764] pagamento: processando reserva=9 assento=25
+pagamento-1  | 2026-10-20 15:00:37,131 INFO [138c7131f764] pagamento: pagamento recusada reserva=9 assento=25
+pagamento-1  | 2026-10-20 15:00:37,132 INFO [138c7131f764] pagamento: lock liberado assento=25
+pagamento-1  | 2026-10-20 15:00:37,133 INFO [138c7131f764] pagamento: processando reserva=12 assento=32
+pagamento-1  | 2026-10-20 15:00:38,859 INFO [138c7131f764] pagamento: pagamento confirmada reserva=12 assento=32
+pagamento-1  | 2026-10-20 15:00:38,860 INFO [138c7131f764] pagamento: processando reserva=15 assento=24
+pagamento-1  | 2026-10-20 15:00:40,234 INFO [138c7131f764] pagamento: pagamento confirmada reserva=15 assento=24
+pagamento-1  | 2026-10-20 15:00:40,236 INFO [138c7131f764] pagamento: processando reserva=16 assento=31
+pagamento-1  | 2026-10-20 15:00:42,258 INFO [138c7131f764] pagamento: pagamento recusada reserva=16 assento=31
+pagamento-1  | 2026-10-20 15:00:42,259 INFO [138c7131f764] pagamento: lock liberado assento=31
+pagamento-1  | 2026-10-20 15:00:42,261 INFO [138c7131f764] pagamento: processando reserva=17 assento=37
+pagamento-1  | 2026-10-20 15:00:43,378 INFO [138c7131f764] pagamento: pagamento confirmada reserva=17 assento=37
+pagamento-1  | 2026-10-20 15:00:43,381 INFO [138c7131f764] pagamento: processando reserva=19 assento=30
+pagamento-1  | 2026-10-20 15:00:44,640 INFO [138c7131f764] pagamento: pagamento confirmada reserva=19 assento=30
+pagamento-1  | 2026-10-20 15:00:44,642 INFO [138c7131f764] pagamento: processando reserva=18 assento=14
+pagamento-1  | 2026-10-20 15:00:46,057 INFO [138c7131f764] pagamento: pagamento confirmada reserva=18 assento=14
+pagamento-1  | 2026-10-20 15:00:46,059 INFO [138c7131f764] pagamento: processando reserva=20 assento=9
+pagamento-1  | 2026-10-20 15:00:48,100 INFO [138c7131f764] pagamento: pagamento confirmada reserva=20 assento=9
+pagamento-1  | 2026-10-20 15:00:48,102 INFO [138c7131f764] pagamento: processando reserva=21 assento=26
+pagamento-1  | 2026-10-20 15:00:50,347 INFO [138c7131f764] pagamento: pagamento confirmada reserva=21 assento=26
+pagamento-1  | 2026-10-20 15:00:50,349 INFO [138c7131f764] pagamento: processando reserva=22 assento=12
+pagamento-1  | 2026-10-20 15:00:52,558 INFO [138c7131f764] pagamento: pagamento confirmada reserva=22 assento=12
+pagamento-1  | 2026-10-20 15:00:52,560 INFO [138c7131f764] pagamento: processando reserva=23 assento=16
+pagamento-1  | 2026-10-20 15:00:54,826 INFO [138c7131f764] pagamento: pagamento confirmada reserva=23 assento=16
+pagamento-1  | 2026-10-20 15:00:54,827 INFO [138c7131f764] pagamento: processando reserva=24 assento=38
+pagamento-1  | 2026-10-20 15:00:57,829 INFO [138c7131f764] pagamento: pagamento confirmada reserva=24 assento=38
+pagamento-1  | 2026-10-20 15:00:57,830 INFO [138c7131f764] pagamento: processando reserva=25 assento=33

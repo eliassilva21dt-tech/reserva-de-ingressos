@@ -1,0 +1,4 @@
+ assento_id | reservas_ativas 
+------------+-----------------
+(0 rows)
+

@@ -1,0 +1,600 @@
+api-1  | INFO:     172.19.0.4:36228 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:09,395 INFO [3f0f17b8b20d] api: reserva criada id=75 assento=70 cliente=cli69 modo=redis
+api-1  | INFO:     172.19.0.4:36232 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:09,430 INFO [3f0f17b8b20d] api: reserva criada id=78 assento=119 cliente=cli118 modo=redis
+api-2  | 2026-10-20 15:00:09,017 INFO [671adae33049] api: reserva criada id=36 assento=41 cliente=cli40 modo=redis
+api-2  | 2026-10-20 15:00:09,033 INFO [671adae33049] api: reserva criada id=39 assento=34 cliente=cli33 modo=redis
+api-2  | INFO:     172.19.0.4:46256 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | INFO:     172.19.0.4:36234 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:09,452 INFO [3f0f17b8b20d] api: reserva criada id=80 assento=120 cliente=cli119 modo=redis
+api-2  | 2026-10-20 15:00:09,034 INFO [671adae33049] api: reserva criada id=40 assento=49 cliente=cli48 modo=redis
+api-2  | INFO:     172.19.0.4:46266 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | INFO:     172.19.0.4:36236 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:09,481 INFO [3f0f17b8b20d] api: reserva criada id=83 assento=81 cliente=cli80 modo=redis
+api-2  | 2026-10-20 15:00:09,037 INFO [671adae33049] api: reserva criada id=41 assento=50 cliente=cli49 modo=redis
+api-2  | INFO:     172.19.0.4:46280 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:09,184 INFO [671adae33049] api: reserva criada id=55 assento=57 cliente=cli56 modo=redis
+api-1  | INFO:     172.19.0.4:36246 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:09,552 INFO [3f0f17b8b20d] api: reserva criada id=89 assento=113 cliente=cli112 modo=redis
+api-1  | INFO:     172.19.0.4:36260 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:09,583 INFO [3f0f17b8b20d] api: reserva criada id=91 assento=112 cliente=cli111 modo=redis
+api-2  | INFO:     172.19.0.4:46288 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:09,208 INFO [671adae33049] api: reserva criada id=58 assento=67 cliente=cli66 modo=redis
+api-2  | INFO:     172.19.0.4:46296 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:09,218 INFO [671adae33049] api: reserva criada id=60 assento=103 cliente=cli102 modo=redis
+api-2  | INFO:     172.19.0.4:46312 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:09,243 INFO [671adae33049] api: reserva criada id=61 assento=52 cliente=cli51 modo=redis
+api-2  | INFO:     172.19.0.4:46320 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:09,280 INFO [671adae33049] api: reserva criada id=64 assento=93 cliente=cli92 modo=redis
+api-2  | INFO:     172.19.0.4:46328 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:09,284 INFO [671adae33049] api: reserva criada id=65 assento=104 cliente=cli103 modo=redis
+api-2  | INFO:     172.19.0.4:46342 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:09,335 INFO [671adae33049] api: reserva criada id=70 assento=86 cliente=cli85 modo=redis
+api-1  | INFO:     172.19.0.4:36274 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:09,592 INFO [3f0f17b8b20d] api: reserva criada id=93 assento=88 cliente=cli87 modo=redis
+api-1  | INFO:     172.19.0.4:36280 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | INFO:     172.19.0.4:46348 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:09,368 INFO [671adae33049] api: reserva criada id=72 assento=78 cliente=cli77 modo=redis
+api-1  | 2026-10-20 15:00:09,607 INFO [3f0f17b8b20d] api: reserva criada id=95 assento=65 cliente=cli64 modo=redis
+api-1  | INFO:     172.19.0.4:36288 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:09,641 INFO [3f0f17b8b20d] api: reserva criada id=97 assento=130 cliente=cli129 modo=redis
+api-1  | INFO:     172.19.0.4:36294 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:09,646 INFO [3f0f17b8b20d] api: reserva criada id=98 assento=126 cliente=cli125 modo=redis
+api-1  | INFO:     172.19.0.4:36310 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:09,650 INFO [3f0f17b8b20d] api: reserva criada id=99 assento=56 cliente=cli55 modo=redis
+api-1  | INFO:     172.19.0.4:36312 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:09,654 INFO [3f0f17b8b20d] api: reserva criada id=100 assento=96 cliente=cli95 modo=redis
+api-1  | INFO:     172.19.0.4:36320 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:09,761 INFO [3f0f17b8b20d] api: reserva criada id=110 assento=129 cliente=cli128 modo=redis
+api-1  | INFO:     172.19.0.4:36336 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:09,762 INFO [3f0f17b8b20d] api: reserva criada id=111 assento=64 cliente=cli63 modo=redis
+api-2  | INFO:     172.19.0.4:46350 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:09,420 INFO [671adae33049] api: reserva criada id=77 assento=102 cliente=cli101 modo=redis
+api-2  | INFO:     172.19.0.4:46358 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:09,435 INFO [671adae33049] api: reserva criada id=79 assento=97 cliente=cli96 modo=redis
+api-1  | INFO:     172.19.0.4:36346 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:09,773 INFO [3f0f17b8b20d] api: reserva criada id=112 assento=148 cliente=cli147 modo=redis
+api-1  | INFO:     172.19.0.4:36358 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:09,792 INFO [3f0f17b8b20d] api: reserva criada id=113 assento=147 cliente=cli146 modo=redis
+api-1  | INFO:     172.19.0.4:36372 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:09,840 INFO [3f0f17b8b20d] api: reserva criada id=117 assento=121 cliente=cli120 modo=redis
+api-1  | INFO:     172.19.0.4:36374 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | INFO:     172.19.0.4:46366 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:09,476 INFO [671adae33049] api: reserva criada id=82 assento=54 cliente=cli53 modo=redis
+api-2  | INFO:     172.19.0.4:46380 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:09,516 INFO [671adae33049] api: reserva criada id=85 assento=91 cliente=cli90 modo=redis
+api-2  | INFO:     172.19.0.4:46388 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:09,541 INFO [671adae33049] api: reserva criada id=88 assento=117 cliente=cli116 modo=redis
+api-2  | INFO:     172.19.0.4:46398 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:09,603 INFO [671adae33049] api: reserva criada id=94 assento=125 cliente=cli124 modo=redis
+api-2  | INFO:     172.19.0.4:46406 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:09,623 INFO [671adae33049] api: reserva criada id=96 assento=72 cliente=cli71 modo=redis
+api-2  | INFO:     172.19.0.4:46410 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:09,684 INFO [671adae33049] api: reserva criada id=103 assento=135 cliente=cli134 modo=redis
+api-2  | INFO:     172.19.0.4:46412 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:09,690 INFO [671adae33049] api: reserva criada id=104 assento=131 cliente=cli130 modo=redis
+api-1  | 2026-10-20 15:00:09,863 INFO [3f0f17b8b20d] api: reserva criada id=119 assento=153 cliente=cli152 modo=redis
+api-1  | INFO:     172.19.0.4:36376 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:09,900 INFO [3f0f17b8b20d] api: reserva criada id=122 assento=111 cliente=cli110 modo=redis
+api-1  | INFO:     172.19.0.4:36384 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:09,904 INFO [3f0f17b8b20d] api: reserva criada id=123 assento=133 cliente=cli132 modo=redis
+api-1  | INFO:     172.19.0.4:36396 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | INFO:     172.19.0.4:46428 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:09,855 INFO [671adae33049] api: reserva criada id=118 assento=108 cliente=cli107 modo=redis
+api-2  | INFO:     172.19.0.4:46442 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:09,879 INFO [671adae33049] api: reserva criada id=120 assento=144 cliente=cli143 modo=redis
+api-2  | INFO:     172.19.0.4:46452 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:09,919 INFO [671adae33049] api: reserva criada id=125 assento=136 cliente=cli135 modo=redis
+api-2  | INFO:     172.19.0.4:46468 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:09,956 INFO [671adae33049] api: reserva criada id=128 assento=167 cliente=cli166 modo=redis
+api-2  | INFO:     172.19.0.4:46472 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,024 INFO [671adae33049] api: reserva criada id=135 assento=168 cliente=cli167 modo=redis
+api-2  | INFO:     172.19.0.4:46482 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,094 INFO [671adae33049] api: reserva criada id=141 assento=162 cliente=cli161 modo=redis
+api-2  | INFO:     172.19.0.4:46494 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,113 INFO [671adae33049] api: reserva criada id=142 assento=173 cliente=cli172 modo=redis
+api-2  | INFO:     172.19.0.4:46508 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,115 INFO [671adae33049] api: reserva criada id=143 assento=149 cliente=cli148 modo=redis
+api-2  | INFO:     172.19.0.4:46514 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:09,944 INFO [3f0f17b8b20d] api: reserva criada id=127 assento=101 cliente=cli100 modo=redis
+api-1  | INFO:     172.19.0.4:36402 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:09,959 INFO [3f0f17b8b20d] api: reserva criada id=129 assento=114 cliente=cli113 modo=redis
+api-1  | INFO:     172.19.0.4:36408 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:09,979 INFO [3f0f17b8b20d] api: reserva criada id=132 assento=85 cliente=cli84 modo=redis
+api-1  | INFO:     172.19.0.4:36422 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:10,028 INFO [3f0f17b8b20d] api: reserva criada id=136 assento=90 cliente=cli89 modo=redis
+api-1  | INFO:     172.19.0.4:36430 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:10,042 INFO [3f0f17b8b20d] api: reserva criada id=137 assento=175 cliente=cli174 modo=redis
+api-1  | INFO:     172.19.0.4:36434 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:10,052 INFO [3f0f17b8b20d] api: reserva criada id=138 assento=151 cliente=cli150 modo=redis
+api-2  | 2026-10-20 15:00:10,155 INFO [671adae33049] api: reserva criada id=147 assento=163 cliente=cli162 modo=redis
+api-1  | INFO:     172.19.0.4:36444 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | INFO:     172.19.0.4:46528 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,192 INFO [671adae33049] api: reserva criada id=150 assento=156 cliente=cli155 modo=redis
+api-2  | INFO:     172.19.0.4:46536 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,239 INFO [671adae33049] api: reserva criada id=154 assento=152 cliente=cli151 modo=redis
+api-1  | 2026-10-20 15:00:10,083 INFO [3f0f17b8b20d] api: reserva criada id=140 assento=116 cliente=cli115 modo=redis
+api-1  | INFO:     172.19.0.4:36452 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:10,122 INFO [3f0f17b8b20d] api: reserva criada id=144 assento=159 cliente=cli158 modo=redis
+api-1  | INFO:     172.19.0.4:36454 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:10,135 INFO [3f0f17b8b20d] api: reserva criada id=145 assento=176 cliente=cli175 modo=redis
+api-2  | INFO:     172.19.0.4:46538 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,266 INFO [671adae33049] api: reserva criada id=157 assento=158 cliente=cli157 modo=redis
+api-2  | INFO:     172.19.0.4:46544 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,419 INFO [671adae33049] api: reserva criada id=171 assento=198 cliente=cli197 modo=redis
+api-1  | INFO:     172.19.0.4:36468 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:10,143 INFO [3f0f17b8b20d] api: reserva criada id=146 assento=172 cliente=cli171 modo=redis
+api-1  | INFO:     172.19.0.4:36472 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:10,211 INFO [3f0f17b8b20d] api: reserva criada id=152 assento=191 cliente=cli190 modo=redis
+api-1  | INFO:     172.19.0.4:36486 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:10,224 INFO [3f0f17b8b20d] api: reserva criada id=153 assento=171 cliente=cli170 modo=redis
+api-1  | INFO:     172.19.0.4:36496 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:10,251 INFO [3f0f17b8b20d] api: reserva criada id=155 assento=134 cliente=cli133 modo=redis
+api-2  | INFO:     172.19.0.4:46554 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,467 INFO [671adae33049] api: reserva criada id=175 assento=187 cliente=cli186 modo=redis
+api-1  | INFO:     172.19.0.4:36498 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:10,263 INFO [3f0f17b8b20d] api: reserva criada id=156 assento=142 cliente=cli141 modo=redis
+api-1  | INFO:     172.19.0.4:36510 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:10,281 INFO [3f0f17b8b20d] api: reserva criada id=158 assento=127 cliente=cli126 modo=redis
+api-2  | INFO:     172.19.0.4:46560 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,476 INFO [671adae33049] api: reserva criada id=176 assento=154 cliente=cli153 modo=redis
+api-1  | INFO:     172.19.0.4:36516 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | INFO:     172.19.0.4:46562 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,490 INFO [671adae33049] api: reserva criada id=177 assento=189 cliente=cli188 modo=redis
+api-1  | 2026-10-20 15:00:10,318 INFO [3f0f17b8b20d] api: reserva criada id=161 assento=145 cliente=cli144 modo=redis
+api-1  | INFO:     172.19.0.4:36528 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:10,402 INFO [3f0f17b8b20d] api: reserva criada id=169 assento=181 cliente=cli180 modo=redis
+api-2  | INFO:     172.19.0.4:46576 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,504 INFO [671adae33049] api: reserva criada id=178 assento=188 cliente=cli187 modo=redis
+api-2  | INFO:     172.19.0.4:46590 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | INFO:     172.19.0.4:36534 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:10,463 INFO [3f0f17b8b20d] api: reserva criada id=174 assento=214 cliente=cli213 modo=redis
+api-2  | 2026-10-20 15:00:10,548 INFO [671adae33049] api: reserva criada id=182 assento=66 cliente=cli65 modo=redis
+api-2  | INFO:     172.19.0.4:46602 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,565 INFO [671adae33049] api: reserva criada id=184 assento=222 cliente=cli221 modo=redis
+api-1  | INFO:     172.19.0.4:36550 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:10,507 INFO [3f0f17b8b20d] api: reserva criada id=179 assento=193 cliente=cli192 modo=redis
+api-1  | INFO:     172.19.0.4:36564 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:10,523 INFO [3f0f17b8b20d] api: reserva criada id=180 assento=179 cliente=cli178 modo=redis
+api-2  | INFO:     172.19.0.4:46604 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,572 INFO [671adae33049] api: reserva criada id=185 assento=137 cliente=cli136 modo=redis
+api-2  | INFO:     172.19.0.4:46616 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,626 INFO [671adae33049] api: reserva criada id=190 assento=196 cliente=cli195 modo=redis
+api-2  | INFO:     172.19.0.4:46618 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | INFO:     172.19.0.4:36570 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:10,552 INFO [3f0f17b8b20d] api: reserva criada id=183 assento=183 cliente=cli182 modo=redis
+api-1  | INFO:     172.19.0.4:36578 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:10,575 INFO [3f0f17b8b20d] api: reserva criada id=186 assento=155 cliente=cli154 modo=redis
+api-1  | INFO:     172.19.0.4:36584 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,673 INFO [671adae33049] api: reserva criada id=193 assento=180 cliente=cli179 modo=redis
+api-2  | INFO:     172.19.0.4:46624 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,711 INFO [671adae33049] api: reserva criada id=197 assento=223 cliente=cli222 modo=redis
+api-1  | 2026-10-20 15:00:10,591 INFO [3f0f17b8b20d] api: reserva criada id=187 assento=122 cliente=cli121 modo=redis
+api-1  | INFO:     172.19.0.4:36594 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:10,614 INFO [3f0f17b8b20d] api: reserva criada id=188 assento=146 cliente=cli145 modo=redis
+api-1  | INFO:     172.19.0.4:36604 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:10,618 INFO [3f0f17b8b20d] api: reserva criada id=189 assento=208 cliente=cli207 modo=redis
+api-1  | INFO:     172.19.0.4:36608 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:10,668 INFO [3f0f17b8b20d] api: reserva criada id=192 assento=221 cliente=cli220 modo=redis
+api-1  | INFO:     172.19.0.4:36624 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:10,706 INFO [3f0f17b8b20d] api: reserva criada id=196 assento=227 cliente=cli226 modo=redis
+api-1  | INFO:     172.19.0.4:36628 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | INFO:     172.19.0.4:46632 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,730 INFO [671adae33049] api: reserva criada id=198 assento=186 cliente=cli185 modo=redis
+api-2  | INFO:     172.19.0.4:46646 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:10,849 INFO [3f0f17b8b20d] api: reserva criada id=208 assento=225 cliente=cli224 modo=redis
+api-1  | INFO:     172.19.0.4:36642 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,743 INFO [671adae33049] api: reserva criada id=199 assento=216 cliente=cli215 modo=redis
+api-2  | INFO:     172.19.0.4:46656 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,747 INFO [671adae33049] api: reserva criada id=200 assento=139 cliente=cli138 modo=redis
+api-2  | INFO:     172.19.0.4:46662 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,771 INFO [671adae33049] api: reserva criada id=202 assento=170 cliente=cli169 modo=redis
+api-1  | 2026-10-20 15:00:10,862 INFO [3f0f17b8b20d] api: reserva criada id=211 assento=230 cliente=cli229 modo=redis
+api-1  | INFO:     172.19.0.4:36650 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:10,884 INFO [3f0f17b8b20d] api: reserva criada id=212 assento=251 cliente=cli250 modo=redis
+api-2  | INFO:     172.19.0.4:46670 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,812 INFO [671adae33049] api: reserva criada id=205 assento=202 cliente=cli201 modo=redis
+api-1  | INFO:     172.19.0.4:36664 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:10,952 INFO [3f0f17b8b20d] api: reserva criada id=218 assento=207 cliente=cli206 modo=redis
+api-1  | INFO:     172.19.0.4:36680 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:11,156 INFO [3f0f17b8b20d] api: reserva criada id=238 assento=276 cliente=cli275 modo=redis
+api-1  | INFO:     172.19.0.4:36690 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:11,214 INFO [3f0f17b8b20d] api: reserva criada id=245 assento=265 cliente=cli264 modo=redis
+api-1  | INFO:     172.19.0.4:36702 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:11,236 INFO [3f0f17b8b20d] api: reserva criada id=246 assento=277 cliente=cli276 modo=redis
+api-1  | INFO:     172.19.0.4:36712 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:11,252 INFO [3f0f17b8b20d] api: reserva criada id=247 assento=220 cliente=cli219 modo=redis
+api-1  | INFO:     172.19.0.4:36728 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:11,312 INFO [3f0f17b8b20d] api: reserva criada id=252 assento=243 cliente=cli242 modo=redis
+api-2  | INFO:     172.19.0.4:46676 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,830 INFO [671adae33049] api: reserva criada id=206 assento=212 cliente=cli211 modo=redis
+api-2  | INFO:     172.19.0.4:46688 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | INFO:     172.19.0.4:36738 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:11,315 INFO [3f0f17b8b20d] api: reserva criada id=253 assento=184 cliente=cli183 modo=redis
+api-1  | INFO:     172.19.0.4:36750 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:11,362 INFO [3f0f17b8b20d] api: reserva criada id=258 assento=286 cliente=cli285 modo=redis
+api-1  | INFO:     172.19.0.4:36758 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:11,375 INFO [3f0f17b8b20d] api: reserva criada id=259 assento=256 cliente=cli255 modo=redis
+api-1  | INFO:     172.19.0.4:36766 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,839 INFO [671adae33049] api: reserva criada id=207 assento=182 cliente=cli181 modo=redis
+api-2  | INFO:     172.19.0.4:46690 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,856 INFO [671adae33049] api: reserva criada id=210 assento=229 cliente=cli228 modo=redis
+api-2  | INFO:     172.19.0.4:46696 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,887 INFO [671adae33049] api: reserva criada id=213 assento=197 cliente=cli196 modo=redis
+api-1  | 2026-10-20 15:00:11,419 INFO [3f0f17b8b20d] api: reserva criada id=262 assento=261 cliente=cli260 modo=redis
+api-1  | INFO:     172.19.0.4:36782 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | INFO:     172.19.0.4:46702 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,909 INFO [671adae33049] api: reserva criada id=215 assento=140 cliente=cli139 modo=redis
+api-2  | INFO:     172.19.0.4:46706 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,927 INFO [671adae33049] api: reserva criada id=216 assento=247 cliente=cli246 modo=redis
+api-2  | INFO:     172.19.0.4:46720 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,967 INFO [671adae33049] api: reserva criada id=219 assento=128 cliente=cli127 modo=redis
+api-2  | INFO:     172.19.0.4:46728 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,975 INFO [671adae33049] api: reserva criada id=221 assento=252 cliente=cli251 modo=redis
+api-2  | INFO:     172.19.0.4:46740 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,978 INFO [671adae33049] api: reserva criada id=220 assento=245 cliente=cli244 modo=redis
+api-1  | 2026-10-20 15:00:11,430 INFO [3f0f17b8b20d] api: reserva criada id=263 assento=291 cliente=cli290 modo=redis
+api-1  | INFO:     172.19.0.4:36798 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:11,448 INFO [3f0f17b8b20d] api: reserva criada id=265 assento=304 cliente=cli303 modo=redis
+api-1  | INFO:     172.19.0.4:36800 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:11,582 INFO [3f0f17b8b20d] api: reserva criada id=275 assento=315 cliente=cli314 modo=redis
+api-1  | INFO:     172.19.0.4:36816 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:11,585 INFO [3f0f17b8b20d] api: reserva criada id=276 assento=278 cliente=cli277 modo=redis
+api-1  | INFO:     172.19.0.4:36818 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | INFO:     172.19.0.4:46730 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:10,989 INFO [671adae33049] api: reserva criada id=223 assento=206 cliente=cli205 modo=redis
+api-2  | INFO:     172.19.0.4:46746 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:11,011 INFO [671adae33049] api: reserva criada id=224 assento=236 cliente=cli235 modo=redis
+api-2  | INFO:     172.19.0.4:46750 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:11,038 INFO [671adae33049] api: reserva criada id=227 assento=194 cliente=cli193 modo=redis
+api-2  | INFO:     172.19.0.4:46762 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:11,049 INFO [671adae33049] api: reserva criada id=228 assento=228 cliente=cli227 modo=redis
+api-2  | INFO:     172.19.0.4:46774 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:11,074 INFO [671adae33049] api: reserva criada id=230 assento=259 cliente=cli258 modo=redis
+api-2  | INFO:     172.19.0.4:46788 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:11,082 INFO [671adae33049] api: reserva criada id=231 assento=262 cliente=cli261 modo=redis
+api-2  | INFO:     172.19.0.4:46792 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:11,088 INFO [671adae33049] api: reserva criada id=232 assento=209 cliente=cli208 modo=redis
+api-2  | INFO:     172.19.0.4:46804 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:11,127 INFO [671adae33049] api: reserva criada id=235 assento=275 cliente=cli274 modo=redis
+api-2  | INFO:     172.19.0.4:46822 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:11,159 INFO [671adae33049] api: reserva criada id=239 assento=89 cliente=cli88 modo=redis
+api-2  | INFO:     172.19.0.4:46830 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:11,186 INFO [671adae33049] api: reserva criada id=242 assento=269 cliente=cli268 modo=redis
+api-2  | INFO:     172.19.0.4:46840 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:11,191 INFO [671adae33049] api: reserva criada id=243 assento=273 cliente=cli272 modo=redis
+api-2  | INFO:     172.19.0.4:46844 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:11,598 INFO [3f0f17b8b20d] api: reserva criada id=278 assento=292 cliente=cli291 modo=redis
+api-1  | INFO:     172.19.0.4:36832 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:11,210 INFO [671adae33049] api: reserva criada id=244 assento=282 cliente=cli281 modo=redis
+api-2  | INFO:     172.19.0.4:46848 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:11,288 INFO [671adae33049] api: reserva criada id=250 assento=284 cliente=cli283 modo=redis
+api-2  | INFO:     172.19.0.4:46858 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:11,673 INFO [3f0f17b8b20d] api: reserva criada id=283 assento=218 cliente=cli217 modo=redis
+api-1  | INFO:     172.19.0.4:36834 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:11,295 INFO [671adae33049] api: reserva criada id=251 assento=272 cliente=cli271 modo=redis
+api-1  | 2026-10-20 15:00:11,684 INFO [3f0f17b8b20d] api: reserva criada id=284 assento=248 cliente=cli247 modo=redis
+api-1  | INFO:     172.19.0.4:36836 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | INFO:     172.19.0.4:46866 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:11,347 INFO [671adae33049] api: reserva criada id=257 assento=263 cliente=cli262 modo=redis
+api-2  | INFO:     172.19.0.4:46868 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:11,387 INFO [671adae33049] api: reserva criada id=260 assento=260 cliente=cli259 modo=redis
+api-2  | INFO:     172.19.0.4:46870 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:11,399 INFO [671adae33049] api: reserva criada id=261 assento=249 cliente=cli248 modo=redis
+api-2  | INFO:     172.19.0.4:46884 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:11,463 INFO [671adae33049] api: reserva criada id=267 assento=287 cliente=cli286 modo=redis
+api-2  | INFO:     172.19.0.4:46894 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:11,486 INFO [671adae33049] api: reserva criada id=268 assento=308 cliente=cli307 modo=redis
+api-2  | INFO:     172.19.0.4:46902 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:11,500 INFO [671adae33049] api: reserva criada id=269 assento=205 cliente=cli204 modo=redis
+api-2  | INFO:     172.19.0.4:46910 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:11,518 INFO [671adae33049] api: reserva criada id=270 assento=305 cliente=cli304 modo=redis
+api-2  | INFO:     172.19.0.4:46918 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:11,552 INFO [671adae33049] api: reserva criada id=272 assento=312 cliente=cli311 modo=redis
+api-1  | 2026-10-20 15:00:11,735 INFO [3f0f17b8b20d] api: reserva criada id=288 assento=253 cliente=cli252 modo=redis
+api-1  | INFO:     172.19.0.4:36840 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:11,748 INFO [3f0f17b8b20d] api: reserva criada id=289 assento=293 cliente=cli292 modo=redis
+api-1  | INFO:     172.19.0.4:36856 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:11,756 INFO [3f0f17b8b20d] api: reserva criada id=290 assento=266 cliente=cli265 modo=redis
+api-1  | INFO:     172.19.0.4:36868 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:11,788 INFO [3f0f17b8b20d] api: reserva criada id=292 assento=306 cliente=cli305 modo=redis
+api-1  | INFO:     172.19.0.4:36878 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:11,791 INFO [3f0f17b8b20d] api: reserva criada id=293 assento=327 cliente=cli326 modo=redis
+api-1  | INFO:     172.19.0.4:36890 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:11,850 INFO [3f0f17b8b20d] api: reserva criada id=298 assento=299 cliente=cli298 modo=redis
+api-1  | INFO:     172.19.0.4:36904 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:11,880 INFO [3f0f17b8b20d] api: reserva criada id=300 assento=311 cliente=cli310 modo=redis
+api-1  | INFO:     172.19.0.4:36912 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:11,906 INFO [3f0f17b8b20d] api: reserva criada id=302 assento=295 cliente=cli294 modo=redis
+api-1  | INFO:     172.19.0.4:36916 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:11,920 INFO [3f0f17b8b20d] api: reserva criada id=304 assento=317 cliente=cli316 modo=redis
+api-1  | INFO:     172.19.0.4:36918 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:11,956 INFO [3f0f17b8b20d] api: reserva criada id=307 assento=320 cliente=cli319 modo=redis
+api-1  | INFO:     172.19.0.4:36920 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:12,012 INFO [3f0f17b8b20d] api: reserva criada id=310 assento=329 cliente=cli328 modo=redis
+api-1  | INFO:     172.19.0.4:36936 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:12,016 INFO [3f0f17b8b20d] api: reserva criada id=311 assento=349 cliente=cli348 modo=redis
+api-1  | INFO:     172.19.0.4:36950 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:12,024 INFO [3f0f17b8b20d] api: reserva criada id=312 assento=210 cliente=cli209 modo=redis
+api-1  | INFO:     172.19.0.4:36952 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:12,051 INFO [3f0f17b8b20d] api: reserva criada id=315 assento=323 cliente=cli322 modo=redis
+api-1  | INFO:     172.19.0.4:36958 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:12,121 INFO [3f0f17b8b20d] api: reserva criada id=321 assento=356 cliente=cli355 modo=redis
+api-1  | INFO:     172.19.0.4:36966 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:12,147 INFO [3f0f17b8b20d] api: reserva criada id=324 assento=313 cliente=cli312 modo=redis
+api-2  | INFO:     172.19.0.4:46926 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | INFO:     172.19.0.4:36980 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:11,560 INFO [671adae33049] api: reserva criada id=273 assento=300 cliente=cli299 modo=redis
+api-2  | INFO:     172.19.0.4:46938 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:11,564 INFO [671adae33049] api: reserva criada id=274 assento=250 cliente=cli249 modo=redis
+api-2  | INFO:     172.19.0.4:46940 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:12,171 INFO [3f0f17b8b20d] api: reserva criada id=326 assento=310 cliente=cli309 modo=redis
+api-1  | INFO:     172.19.0.4:36984 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:12,224 INFO [3f0f17b8b20d] api: reserva criada id=330 assento=200 cliente=cli199 modo=redis
+api-2  | 2026-10-20 15:00:11,621 INFO [671adae33049] api: reserva criada id=280 assento=309 cliente=cli308 modo=redis
+api-2  | INFO:     172.19.0.4:46958 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:11,703 INFO [671adae33049] api: reserva criada id=285 assento=257 cliente=cli256 modo=redis
+api-2  | INFO:     172.19.0.4:46968 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:11,812 INFO [671adae33049] api: reserva criada id=295 assento=285 cliente=cli284 modo=redis
+api-2  | INFO:     172.19.0.4:46970 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:11,840 INFO [671adae33049] api: reserva criada id=297 assento=264 cliente=cli263 modo=redis
+api-2  | INFO:     172.19.0.4:46980 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:11,866 INFO [671adae33049] api: reserva criada id=299 assento=319 cliente=cli318 modo=redis
+api-2  | INFO:     172.19.0.4:46988 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | INFO:     172.19.0.4:49716 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:12,241 INFO [3f0f17b8b20d] api: reserva criada id=332 assento=215 cliente=cli214 modo=redis
+api-1  | INFO:     172.19.0.4:49724 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:12,250 INFO [3f0f17b8b20d] api: reserva criada id=333 assento=373 cliente=cli372 modo=redis
+api-1  | INFO:     172.19.0.4:49736 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:12,265 INFO [3f0f17b8b20d] api: reserva criada id=334 assento=297 cliente=cli296 modo=redis
+api-1  | INFO:     172.19.0.4:49742 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:11,884 INFO [671adae33049] api: reserva criada id=301 assento=332 cliente=cli331 modo=redis
+api-2  | INFO:     172.19.0.4:46998 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:12,272 INFO [3f0f17b8b20d] api: reserva criada id=335 assento=368 cliente=cli367 modo=redis
+api-1  | INFO:     172.19.0.4:49752 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:12,287 INFO [3f0f17b8b20d] api: reserva criada id=336 assento=288 cliente=cli287 modo=redis
+api-1  | INFO:     172.19.0.4:49758 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:12,306 INFO [3f0f17b8b20d] api: reserva criada id=339 assento=362 cliente=cli361 modo=redis
+api-2  | 2026-10-20 15:00:11,917 INFO [671adae33049] api: reserva criada id=303 assento=235 cliente=cli234 modo=redis
+api-1  | INFO:     172.19.0.4:49764 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:12,339 INFO [3f0f17b8b20d] api: reserva criada id=341 assento=302 cliente=cli301 modo=redis
+api-1  | INFO:     172.19.0.4:49780 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | INFO:     172.19.0.4:47010 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:11,941 INFO [671adae33049] api: reserva criada id=305 assento=280 cliente=cli279 modo=redis
+api-2  | INFO:     172.19.0.4:47022 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:12,028 INFO [671adae33049] api: reserva criada id=313 assento=226 cliente=cli225 modo=redis
+api-2  | INFO:     172.19.0.4:47036 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:12,063 INFO [671adae33049] api: reserva criada id=316 assento=344 cliente=cli343 modo=redis
+api-2  | INFO:     172.19.0.4:47050 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:12,391 INFO [3f0f17b8b20d] api: reserva criada id=345 assento=325 cliente=cli324 modo=redis
+api-1  | INFO:     172.19.0.4:49790 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:12,103 INFO [671adae33049] api: reserva criada id=319 assento=358 cliente=cli357 modo=redis
+api-1  | 2026-10-20 15:00:12,412 INFO [3f0f17b8b20d] api: reserva criada id=348 assento=389 cliente=cli388 modo=redis
+api-2  | INFO:     172.19.0.4:47066 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:12,111 INFO [671adae33049] api: reserva criada id=320 assento=350 cliente=cli349 modo=redis
+api-2  | INFO:     172.19.0.4:47072 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:12,151 INFO [671adae33049] api: reserva criada id=325 assento=337 cliente=cli336 modo=redis
+api-2  | INFO:     172.19.0.4:47076 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:12,175 INFO [671adae33049] api: reserva criada id=327 assento=345 cliente=cli344 modo=redis
+api-1  | INFO:     172.19.0.4:49798 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:12,560 INFO [3f0f17b8b20d] api: reserva criada id=361 assento=396 cliente=cli395 modo=redis
+api-1  | INFO:     172.19.0.4:49808 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:12,700 INFO [3f0f17b8b20d] api: reserva criada id=373 assento=281 cliente=cli280 modo=redis
+api-1  | INFO:     172.19.0.4:49822 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:12,714 INFO [3f0f17b8b20d] api: reserva criada id=375 assento=330 cliente=cli329 modo=redis
+api-2  | INFO:     172.19.0.4:47078 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:12,292 INFO [671adae33049] api: reserva criada id=337 assento=354 cliente=cli353 modo=redis
+api-1  | INFO:     172.19.0.4:49836 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:12,755 INFO [3f0f17b8b20d] api: reserva criada id=378 assento=402 cliente=cli401 modo=redis
+api-1  | INFO:     172.19.0.4:49840 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | INFO:     172.19.0.4:47246 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:12,303 INFO [671adae33049] api: reserva criada id=338 assento=379 cliente=cli378 modo=redis
+api-1  | 2026-10-20 15:00:12,796 INFO [3f0f17b8b20d] api: reserva criada id=381 assento=416 cliente=cli415 modo=redis
+api-1  | INFO:     172.19.0.4:49842 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:12,875 INFO [3f0f17b8b20d] api: reserva criada id=387 assento=428 cliente=cli427 modo=redis
+api-1  | INFO:     172.19.0.4:49848 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | INFO:     172.19.0.4:47250 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:12,356 INFO [671adae33049] api: reserva criada id=343 assento=321 cliente=cli320 modo=redis
+api-2  | INFO:     172.19.0.4:47264 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:12,371 INFO [671adae33049] api: reserva criada id=344 assento=267 cliente=cli266 modo=redis
+api-2  | INFO:     172.19.0.4:47270 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:12,394 INFO [671adae33049] api: reserva criada id=346 assento=316 cliente=cli315 modo=redis
+api-1  | 2026-10-20 15:00:12,888 INFO [3f0f17b8b20d] api: reserva criada id=388 assento=409 cliente=cli408 modo=redis
+api-1  | INFO:     172.19.0.4:49860 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:12,899 INFO [3f0f17b8b20d] api: reserva criada id=389 assento=398 cliente=cli397 modo=redis
+api-1  | INFO:     172.19.0.4:49866 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:12,943 INFO [3f0f17b8b20d] api: reserva criada id=394 assento=357 cliente=cli356 modo=redis
+api-1  | INFO:     172.19.0.4:49882 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:12,963 INFO [3f0f17b8b20d] api: reserva criada id=395 assento=434 cliente=cli433 modo=redis
+api-1  | INFO:     172.19.0.4:49896 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:12,965 INFO [3f0f17b8b20d] api: reserva criada id=396 assento=431 cliente=cli430 modo=redis
+api-1  | INFO:     172.19.0.4:49906 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:12,992 INFO [3f0f17b8b20d] api: reserva criada id=398 assento=412 cliente=cli411 modo=redis
+api-2  | INFO:     172.19.0.4:47278 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:12,404 INFO [671adae33049] api: reserva criada id=347 assento=386 cliente=cli385 modo=redis
+api-2  | INFO:     172.19.0.4:47292 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | INFO:     172.19.0.4:49908 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:13,036 INFO [3f0f17b8b20d] api: reserva criada id=403 assento=441 cliente=cli440 modo=redis
+api-1  | INFO:     172.19.0.4:49916 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:13,061 INFO [3f0f17b8b20d] api: reserva criada id=404 assento=424 cliente=cli423 modo=redis
+api-1  | INFO:     172.19.0.4:49918 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:12,436 INFO [671adae33049] api: reserva criada id=350 assento=340 cliente=cli339 modo=redis
+api-2  | INFO:     172.19.0.4:47308 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:12,458 INFO [671adae33049] api: reserva criada id=351 assento=369 cliente=cli368 modo=redis
+api-2  | INFO:     172.19.0.4:47310 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:12,471 INFO [671adae33049] api: reserva criada id=353 assento=336 cliente=cli335 modo=redis
+api-1  | 2026-10-20 15:00:13,095 INFO [3f0f17b8b20d] api: reserva criada id=408 assento=447 cliente=cli446 modo=redis
+api-1  | INFO:     172.19.0.4:49928 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:13,112 INFO [3f0f17b8b20d] api: reserva criada id=410 assento=426 cliente=cli425 modo=redis
+api-1  | INFO:     172.19.0.4:49932 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:13,147 INFO [3f0f17b8b20d] api: reserva criada id=412 assento=419 cliente=cli418 modo=redis
+api-1  | INFO:     172.19.0.4:49940 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:13,150 INFO [3f0f17b8b20d] api: reserva criada id=413 assento=429 cliente=cli428 modo=redis
+api-1  | INFO:     172.19.0.4:49942 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | INFO:     172.19.0.4:47314 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:12,475 INFO [671adae33049] api: reserva criada id=354 assento=328 cliente=cli327 modo=redis
+api-2  | INFO:     172.19.0.4:47330 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:12,533 INFO [671adae33049] api: reserva criada id=358 assento=388 cliente=cli387 modo=redis
+api-2  | INFO:     172.19.0.4:47342 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:12,551 INFO [671adae33049] api: reserva criada id=360 assento=394 cliente=cli393 modo=redis
+api-2  | INFO:     172.19.0.4:47350 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:12,576 INFO [671adae33049] api: reserva criada id=362 assento=387 cliente=cli386 modo=redis
+api-2  | INFO:     172.19.0.4:47352 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:12,628 INFO [671adae33049] api: reserva criada id=366 assento=360 cliente=cli359 modo=redis
+api-1  | 2026-10-20 15:00:13,163 INFO [3f0f17b8b20d] api: reserva criada id=414 assento=423 cliente=cli422 modo=redis
+api-1  | INFO:     172.19.0.4:49950 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:13,179 INFO [3f0f17b8b20d] api: reserva criada id=416 assento=401 cliente=cli400 modo=redis
+api-1  | INFO:     172.19.0.4:49964 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:13,184 INFO [3f0f17b8b20d] api: reserva criada id=417 assento=436 cliente=cli435 modo=redis
+api-1  | INFO:     172.19.0.4:49978 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:13,209 INFO [3f0f17b8b20d] api: reserva criada id=418 assento=377 cliente=cli376 modo=redis
+api-2  | INFO:     172.19.0.4:47366 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:12,676 INFO [671adae33049] api: reserva criada id=371 assento=380 cliente=cli379 modo=redis
+api-1  | INFO:     172.19.0.4:49986 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | INFO:     172.19.0.4:47368 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:12,741 INFO [671adae33049] api: reserva criada id=377 assento=374 cliente=cli373 modo=redis
+api-1  | 2026-10-20 15:00:13,392 INFO [3f0f17b8b20d] api: reserva criada id=426 assento=467 cliente=cli466 modo=redis
+api-2  | INFO:     172.19.0.4:47380 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | INFO:     172.19.0.4:49998 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:13,408 INFO [3f0f17b8b20d] api: reserva criada id=428 assento=442 cliente=cli441 modo=redis
+api-1  | INFO:     172.19.0.4:50008 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:13,437 INFO [3f0f17b8b20d] api: reserva criada id=429 assento=411 cliente=cli410 modo=redis
+api-2  | INFO:     172.19.0.4:47382 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:12,823 INFO [671adae33049] api: reserva criada id=383 assento=425 cliente=cli424 modo=redis
+api-2  | INFO:     172.19.0.4:47394 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:12,838 INFO [671adae33049] api: reserva criada id=384 assento=378 cliente=cli377 modo=redis
+api-1  | INFO:     172.19.0.4:50014 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:13,481 INFO [3f0f17b8b20d] api: reserva criada id=431 assento=415 cliente=cli414 modo=redis
+api-1  | INFO:     172.19.0.4:50026 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:13,508 INFO [3f0f17b8b20d] api: reserva criada id=435 assento=470 cliente=cli469 modo=redis
+api-1  | INFO:     172.19.0.4:50030 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:13,539 INFO [3f0f17b8b20d] api: reserva criada id=438 assento=444 cliente=cli443 modo=redis
+api-1  | INFO:     172.19.0.4:50038 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:13,551 INFO [3f0f17b8b20d] api: reserva criada id=439 assento=458 cliente=cli457 modo=redis
+api-2  | 2026-10-20 15:00:12,858 INFO [671adae33049] api: reserva criada id=385 assento=410 cliente=cli409 modo=redis
+api-2  | INFO:     172.19.0.4:47410 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | INFO:     172.19.0.4:50042 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:13,567 INFO [3f0f17b8b20d] api: reserva criada id=440 assento=406 cliente=cli405 modo=redis
+api-1  | INFO:     172.19.0.4:50044 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:12,906 INFO [671adae33049] api: reserva criada id=390 assento=417 cliente=cli416 modo=redis
+api-1  | 2026-10-20 15:00:13,570 INFO [3f0f17b8b20d] api: reserva criada id=441 assento=479 cliente=cli478 modo=redis
+api-1  | INFO:     172.19.0.4:50050 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:13,604 INFO [3f0f17b8b20d] api: reserva criada id=443 assento=455 cliente=cli454 modo=redis
+api-1  | INFO:     172.19.0.4:50058 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | INFO:     172.19.0.4:47424 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:13,626 INFO [3f0f17b8b20d] api: reserva criada id=445 assento=485 cliente=cli484 modo=redis
+api-2  | 2026-10-20 15:00:13,065 INFO [671adae33049] api: reserva criada id=405 assento=385 cliente=cli384 modo=redis
+api-2  | INFO:     172.19.0.4:47440 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:13,080 INFO [671adae33049] api: reserva criada id=406 assento=446 cliente=cli445 modo=redis
+api-1  | INFO:     172.19.0.4:50070 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:13,697 INFO [3f0f17b8b20d] api: reserva criada id=450 assento=460 cliente=cli459 modo=redis
+api-1  | INFO:     172.19.0.4:50086 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:13,759 INFO [3f0f17b8b20d] api: reserva criada id=454 assento=462 cliente=cli461 modo=redis
+api-1  | INFO:     172.19.0.4:50092 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:13,808 INFO [3f0f17b8b20d] api: reserva criada id=459 assento=496 cliente=cli495 modo=redis
+api-1  | INFO:     172.19.0.4:50096 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | INFO:     172.19.0.4:47452 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:13,104 INFO [671adae33049] api: reserva criada id=409 assento=443 cliente=cli442 modo=redis
+api-2  | INFO:     172.19.0.4:47458 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:13,120 INFO [671adae33049] api: reserva criada id=411 assento=445 cliente=cli444 modo=redis
+api-2  | INFO:     172.19.0.4:47474 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:13,246 INFO [671adae33049] api: reserva criada id=420 assento=459 cliente=cli458 modo=redis
+api-2  | INFO:     172.19.0.4:47486 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:13,281 INFO [671adae33049] api: reserva criada id=421 assento=450 cliente=cli449 modo=redis
+api-2  | INFO:     172.19.0.4:47500 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:13,294 INFO [671adae33049] api: reserva criada id=422 assento=334 cliente=cli333 modo=redis
+api-2  | INFO:     172.19.0.4:47510 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:13,325 INFO [671adae33049] api: reserva criada id=424 assento=463 cliente=cli462 modo=redis
+api-2  | INFO:     172.19.0.4:47522 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:13,816 INFO [3f0f17b8b20d] api: reserva criada id=460 assento=448 cliente=cli447 modo=redis
+api-1  | INFO:     172.19.0.4:50108 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:13,336 INFO [671adae33049] api: reserva criada id=425 assento=456 cliente=cli455 modo=redis
+api-2  | INFO:     172.19.0.4:47524 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:13,826 INFO [3f0f17b8b20d] api: reserva criada id=461 assento=365 cliente=cli364 modo=redis
+api-1  | INFO:     172.19.0.4:50124 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:13,844 INFO [3f0f17b8b20d] api: reserva criada id=462 assento=383 cliente=cli382 modo=redis
+api-2  | 2026-10-20 15:00:13,395 INFO [671adae33049] api: reserva criada id=427 assento=451 cliente=cli450 modo=redis
+api-2  | INFO:     172.19.0.4:47528 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | INFO:     172.19.0.4:50126 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:13,875 INFO [3f0f17b8b20d] api: reserva criada id=465 assento=487 cliente=cli486 modo=redis
+api-1  | INFO:     172.19.0.4:50136 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:13,896 INFO [3f0f17b8b20d] api: reserva criada id=467 assento=484 cliente=cli483 modo=redis
+api-1  | INFO:     172.19.0.4:50142 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:13,966 INFO [3f0f17b8b20d] api: reserva criada id=473 assento=435 cliente=cli434 modo=redis
+api-1  | INFO:     172.19.0.4:50152 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:13,971 INFO [3f0f17b8b20d] api: reserva criada id=474 assento=468 cliente=cli467 modo=redis
+api-1  | INFO:     172.19.0.4:50164 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:14,038 INFO [3f0f17b8b20d] api: reserva criada id=481 assento=482 cliente=cli481 modo=redis
+api-1  | INFO:     172.19.0.4:50166 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:14,054 INFO [3f0f17b8b20d] api: reserva criada id=482 assento=392 cliente=cli391 modo=redis
+api-1  | INFO:     172.19.0.4:50176 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:14,077 INFO [3f0f17b8b20d] api: reserva criada id=486 assento=498 cliente=cli497 modo=redis
+api-1  | INFO:     172.19.0.4:50190 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:14,081 INFO [3f0f17b8b20d] api: reserva criada id=487 assento=464 cliente=cli463 modo=redis
+api-1  | INFO:     172.19.0.4:50192 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:14,112 INFO [3f0f17b8b20d] api: reserva criada id=492 assento=469 cliente=cli468 modo=redis
+api-2  | 2026-10-20 15:00:13,504 INFO [671adae33049] api: reserva criada id=434 assento=473 cliente=cli472 modo=redis
+api-2  | INFO:     172.19.0.4:47542 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | INFO:     172.19.0.4:50202 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:14,128 INFO [3f0f17b8b20d] api: reserva criada id=494 assento=258 cliente=cli257 modo=redis
+api-1  | INFO:     172.19.0.4:50206 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:13,609 INFO [671adae33049] api: reserva criada id=444 assento=382 cliente=cli381 modo=redis
+api-2  | INFO:     172.19.0.4:47558 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:13,641 INFO [671adae33049] api: reserva criada id=446 assento=476 cliente=cli475 modo=redis
+api-2  | INFO:     172.19.0.4:47566 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:14,132 INFO [3f0f17b8b20d] api: reserva criada id=495 assento=497 cliente=cli496 modo=redis
+api-1  | INFO:     172.19.0.4:50222 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | 2026-10-20 15:00:14,150 INFO [3f0f17b8b20d] api: reserva criada id=500 assento=477 cliente=cli476 modo=redis
+api-1  | INFO:     172.19.0.4:50238 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | INFO:     172.19.0.4:50254 - "GET /admin/stats HTTP/1.0" 200 OK
+api-1  | INFO:     127.0.0.1:58386 - "GET /health HTTP/1.1" 200 OK
+api-1  | INFO:     127.0.0.1:58412 - "GET /health HTTP/1.1" 200 OK
+api-1  | INFO:     127.0.0.1:60918 - "GET /health HTTP/1.1" 200 OK
+api-2  | 2026-10-20 15:00:13,668 INFO [671adae33049] api: reserva criada id=448 assento=440 cliente=cli439 modo=redis
+api-2  | INFO:     172.19.0.4:47572 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | INFO:     127.0.0.1:58380 - "GET /health HTTP/1.1" 200 OK
+api-2  | 2026-10-20 15:00:13,723 INFO [671adae33049] api: reserva criada id=452 assento=492 cliente=cli491 modo=redis
+api-2  | INFO:     172.19.0.4:47580 - "POST /reservas HTTP/1.0" 201 Created
+api-1  | INFO:     127.0.0.1:60932 - "GET /health HTTP/1.1" 200 OK
+api-1  | INFO:     127.0.0.1:54916 - "GET /health HTTP/1.1" 200 OK
+api-1  | INFO:     127.0.0.1:54946 - "GET /health HTTP/1.1" 200 OK
+api-1  | INFO:     127.0.0.1:41222 - "GET /health HTTP/1.1" 200 OK
+api-1  | INFO:     127.0.0.1:60520 - "GET /health HTTP/1.1" 200 OK
+api-2  | 2026-10-20 15:00:13,742 INFO [671adae33049] api: reserva criada id=453 assento=471 cliente=cli470 modo=redis
+api-2  | INFO:     172.19.0.4:47594 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:13,774 INFO [671adae33049] api: reserva criada id=456 assento=438 cliente=cli437 modo=redis
+api-2  | INFO:     172.19.0.4:47600 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:13,796 INFO [671adae33049] api: reserva criada id=458 assento=478 cliente=cli477 modo=redis
+api-2  | INFO:     172.19.0.4:47604 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:13,883 INFO [671adae33049] api: reserva criada id=466 assento=427 cliente=cli426 modo=redis
+api-2  | INFO:     172.19.0.4:47620 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:13,900 INFO [671adae33049] api: reserva criada id=468 assento=404 cliente=cli403 modo=redis
+api-2  | INFO:     172.19.0.4:47622 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:13,906 INFO [671adae33049] api: reserva criada id=469 assento=475 cliente=cli474 modo=redis
+api-2  | INFO:     172.19.0.4:47630 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:13,931 INFO [671adae33049] api: reserva criada id=471 assento=472 cliente=cli471 modo=redis
+api-2  | INFO:     172.19.0.4:47634 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:13,945 INFO [671adae33049] api: reserva criada id=472 assento=461 cliente=cli460 modo=redis
+api-2  | INFO:     172.19.0.4:47650 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:13,984 INFO [671adae33049] api: reserva criada id=475 assento=490 cliente=cli489 modo=redis
+api-2  | INFO:     172.19.0.4:47658 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:14,018 INFO [671adae33049] api: reserva criada id=478 assento=457 cliente=cli456 modo=redis
+api-2  | INFO:     172.19.0.4:47674 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:14,089 INFO [671adae33049] api: reserva criada id=488 assento=499 cliente=cli498 modo=redis
+api-2  | INFO:     172.19.0.4:47686 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:14,104 INFO [671adae33049] api: reserva criada id=491 assento=491 cliente=cli490 modo=redis
+api-2  | INFO:     172.19.0.4:47698 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:14,123 INFO [671adae33049] api: reserva criada id=493 assento=422 cliente=cli421 modo=redis
+api-2  | INFO:     172.19.0.4:47714 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | 2026-10-20 15:00:14,150 INFO [671adae33049] api: reserva criada id=499 assento=489 cliente=cli488 modo=redis
+api-2  | INFO:     172.19.0.4:47730 - "POST /reservas HTTP/1.0" 201 Created
+api-2  | INFO:     127.0.0.1:58398 - "GET /health HTTP/1.1" 200 OK
+api-2  | INFO:     127.0.0.1:60910 - "GET /health HTTP/1.1" 200 OK
+api-2  | INFO:     127.0.0.1:60926 - "GET /health HTTP/1.1" 200 OK
+api-2  | INFO:     127.0.0.1:54900 - "GET /health HTTP/1.1" 200 OK
+api-2  | INFO:     127.0.0.1:54938 - "GET /health HTTP/1.1" 200 OK
+api-2  | INFO:     172.19.0.4:52838 - "GET /health HTTP/1.0" 200 OK
+api-2  | INFO:     127.0.0.1:41218 - "GET /health HTTP/1.1" 200 OK
+api-2  | INFO:     127.0.0.1:41232 - "GET /health HTTP/1.1" 200 OK
+api-2  | INFO:     172.19.0.4:36780 - "GET /admin/stats HTTP/1.0" 200 OK
+api-2  | INFO:     127.0.0.1:60532 - "GET /health HTTP/1.1" 200 OK

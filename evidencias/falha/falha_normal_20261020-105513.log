@@ -1,0 +1,125 @@
+
+### 10:55:13 1. reset
+{"status":"ok","locks_removidos":1,"modo":"redis"}
+
+### 10:55:14 2. parando o pagamento-service
+ Container ingressos-pagamento-1 Stopping 
+ Container ingressos-pagamento-1 Stopped 
+
+### 10:55:18 3. criando 20 reservas (assentos 1..20)
+{"id":1,"assento_id":1,"cliente":"falha1","status":"PENDENTE","instancia":"6926298913d5"}
+{"id":2,"assento_id":2,"cliente":"falha2","status":"PENDENTE","instancia":"6926298913d5"}
+{"id":3,"assento_id":3,"cliente":"falha3","status":"PENDENTE","instancia":"a9fba93c3d77"}
+{"id":4,"assento_id":4,"cliente":"falha4","status":"PENDENTE","instancia":"a9fba93c3d77"}
+{"id":5,"assento_id":5,"cliente":"falha5","status":"PENDENTE","instancia":"a9fba93c3d77"}
+{"id":6,"assento_id":6,"cliente":"falha6","status":"PENDENTE","instancia":"6926298913d5"}
+{"id":7,"assento_id":7,"cliente":"falha7","status":"PENDENTE","instancia":"a9fba93c3d77"}
+{"id":8,"assento_id":8,"cliente":"falha8","status":"PENDENTE","instancia":"a9fba93c3d77"}
+{"id":9,"assento_id":9,"cliente":"falha9","status":"PENDENTE","instancia":"a9fba93c3d77"}
+{"id":10,"assento_id":10,"cliente":"falha10","status":"PENDENTE","instancia":"6926298913d5"}
+{"id":11,"assento_id":11,"cliente":"falha11","status":"PENDENTE","instancia":"a9fba93c3d77"}
+{"id":12,"assento_id":12,"cliente":"falha12","status":"PENDENTE","instancia":"a9fba93c3d77"}
+{"id":13,"assento_id":13,"cliente":"falha13","status":"PENDENTE","instancia":"a9fba93c3d77"}
+{"id":14,"assento_id":14,"cliente":"falha14","status":"PENDENTE","instancia":"a9fba93c3d77"}
+{"id":15,"assento_id":15,"cliente":"falha15","status":"PENDENTE","instancia":"a9fba93c3d77"}
+{"id":16,"assento_id":16,"cliente":"falha16","status":"PENDENTE","instancia":"a9fba93c3d77"}
+{"id":17,"assento_id":17,"cliente":"falha17","status":"PENDENTE","instancia":"6926298913d5"}
+{"id":18,"assento_id":18,"cliente":"falha18","status":"PENDENTE","instancia":"6926298913d5"}
+{"id":19,"assento_id":19,"cliente":"falha19","status":"PENDENTE","instancia":"a9fba93c3d77"}
+{"id":20,"assento_id":20,"cliente":"falha20","status":"PENDENTE","instancia":"a9fba93c3d77"}
+
+### 10:55:21 4. estado da fila (esperado: ~20 prontas, 0 unacked)
+name	messages_ready	messages_unacknowledged
+reservas.pagamento	20	0
+
+### 10:55:23 5. status das reservas (esperado: todas PENDENTE)
+     20 "status":"PENDENTE"
+
+### 10:55:25 6. subindo o pagamento-service
+ Container ingressos-rabbitmq-1 Waiting 
+ Container ingressos-db-1 Waiting 
+ Container ingressos-redis-1 Waiting 
+ Container ingressos-redis-1 Healthy 
+ Container ingressos-rabbitmq-1 Healthy 
+ Container ingressos-db-1 Healthy 
+ Container ingressos-pagamento-1 Starting 
+ Container ingressos-pagamento-1 Started 
+
+### 10:55:27 7. aguardando a fila esvaziar (timeout 300 s)
+10:55:29 prontas=19 unacked=1
+10:55:34 prontas=17 unacked=1
+10:55:38 prontas=15 unacked=1
+10:55:42 prontas=13 unacked=1
+10:55:47 prontas=10 unacked=1
+10:55:51 prontas=7 unacked=1
+10:55:55 prontas=5 unacked=1
+10:56:00 prontas=2 unacked=1
+10:56:04 prontas=1 unacked=1
+10:56:08 prontas=0 unacked=0
+
+### 10:56:08 8. status final das reservas (esperado: CONFIRMADA/RECUSADA, nenhuma perdida)
+     20 "status":"CONFIRMADA"
+
+### 10:56:10 9. logs do pagamento (note REENTREGA na variante 'durante')
+    ^^^^^^^^^^^^^^^^^^^^^^
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/srv/app/main.py", line 108, in <module>
+    asyncio.run(main())
+  File "/usr/local/lib/python3.12/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/asyncio/runners.py", line 123, in run
+    raise KeyboardInterrupt()
+KeyboardInterrupt
+2026-10-20 14:54:18,230 INFO [138c7131f764] pagamento: aguardando mensagens em reservas.pagamento
+2026-10-20 14:55:09,878 INFO [138c7131f764] pagamento: processando reserva=1 assento=3
+2026-10-20 14:55:12,098 INFO [138c7131f764] pagamento: pagamento confirmada reserva=1 assento=3
+2026-10-20 14:55:28,068 INFO [138c7131f764] pagamento: aguardando mensagens em reservas.pagamento
+2026-10-20 14:55:28,068 INFO [138c7131f764] pagamento: processando reserva=1 assento=1
+2026-10-20 14:55:30,368 INFO [138c7131f764] pagamento: pagamento confirmada reserva=1 assento=1
+2026-10-20 14:55:30,370 INFO [138c7131f764] pagamento: processando reserva=2 assento=2
+2026-10-20 14:55:33,366 INFO [138c7131f764] pagamento: pagamento confirmada reserva=2 assento=2
+2026-10-20 14:55:33,368 INFO [138c7131f764] pagamento: processando reserva=3 assento=3
+2026-10-20 14:55:34,705 INFO [138c7131f764] pagamento: pagamento confirmada reserva=3 assento=3
+2026-10-20 14:55:34,706 INFO [138c7131f764] pagamento: processando reserva=4 assento=4
+2026-10-20 14:55:36,817 INFO [138c7131f764] pagamento: pagamento confirmada reserva=4 assento=4
+2026-10-20 14:55:36,819 INFO [138c7131f764] pagamento: processando reserva=5 assento=5
+2026-10-20 14:55:39,453 INFO [138c7131f764] pagamento: pagamento confirmada reserva=5 assento=5
+2026-10-20 14:55:39,454 INFO [138c7131f764] pagamento: processando reserva=6 assento=6
+2026-10-20 14:55:41,411 INFO [138c7131f764] pagamento: pagamento confirmada reserva=6 assento=6
+2026-10-20 14:55:41,413 INFO [138c7131f764] pagamento: processando reserva=7 assento=7
+2026-10-20 14:55:42,852 INFO [138c7131f764] pagamento: pagamento confirmada reserva=7 assento=7
+2026-10-20 14:55:42,854 INFO [138c7131f764] pagamento: processando reserva=8 assento=8
+2026-10-20 14:55:44,673 INFO [138c7131f764] pagamento: pagamento confirmada reserva=8 assento=8
+2026-10-20 14:55:44,675 INFO [138c7131f764] pagamento: processando reserva=9 assento=9
+2026-10-20 14:55:46,010 INFO [138c7131f764] pagamento: pagamento confirmada reserva=9 assento=9
+2026-10-20 14:55:46,012 INFO [138c7131f764] pagamento: processando reserva=10 assento=10
+2026-10-20 14:55:47,423 INFO [138c7131f764] pagamento: pagamento confirmada reserva=10 assento=10
+2026-10-20 14:55:47,425 INFO [138c7131f764] pagamento: processando reserva=11 assento=11
+2026-10-20 14:55:48,640 INFO [138c7131f764] pagamento: pagamento confirmada reserva=11 assento=11
+2026-10-20 14:55:48,641 INFO [138c7131f764] pagamento: processando reserva=12 assento=12
+2026-10-20 14:55:50,921 INFO [138c7131f764] pagamento: pagamento confirmada reserva=12 assento=12
+2026-10-20 14:55:50,923 INFO [138c7131f764] pagamento: processando reserva=13 assento=13
+2026-10-20 14:55:52,237 INFO [138c7131f764] pagamento: pagamento confirmada reserva=13 assento=13
+2026-10-20 14:55:52,239 INFO [138c7131f764] pagamento: processando reserva=14 assento=14
+2026-10-20 14:55:54,717 INFO [138c7131f764] pagamento: pagamento confirmada reserva=14 assento=14
+2026-10-20 14:55:54,718 INFO [138c7131f764] pagamento: processando reserva=15 assento=15
+2026-10-20 14:55:55,920 INFO [138c7131f764] pagamento: pagamento confirmada reserva=15 assento=15
+2026-10-20 14:55:55,921 INFO [138c7131f764] pagamento: processando reserva=16 assento=16
+2026-10-20 14:55:57,202 INFO [138c7131f764] pagamento: pagamento confirmada reserva=16 assento=16
+2026-10-20 14:55:57,204 INFO [138c7131f764] pagamento: processando reserva=17 assento=17
+2026-10-20 14:55:59,094 INFO [138c7131f764] pagamento: pagamento confirmada reserva=17 assento=17
+2026-10-20 14:55:59,096 INFO [138c7131f764] pagamento: processando reserva=18 assento=18
+2026-10-20 14:56:02,076 INFO [138c7131f764] pagamento: pagamento confirmada reserva=18 assento=18
+2026-10-20 14:56:02,078 INFO [138c7131f764] pagamento: processando reserva=19 assento=19
+2026-10-20 14:56:04,756 INFO [138c7131f764] pagamento: pagamento confirmada reserva=19 assento=19
+2026-10-20 14:56:04,758 INFO [138c7131f764] pagamento: processando reserva=20 assento=20
+2026-10-20 14:56:07,063 INFO [138c7131f764] pagamento: pagamento confirmada reserva=20 assento=20
+
+log salvo em evidencias/falha/falha_normal_20261020-105513.log

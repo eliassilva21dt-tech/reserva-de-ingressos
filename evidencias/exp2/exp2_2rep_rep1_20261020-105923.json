@@ -1,0 +1,21 @@
+{
+  "experimento": "exp2_escalabilidade",
+  "modo": "redis",
+  "replicas": 2,
+  "repeticao": 1,
+  "timestamp": "2026-10-20T10:59:23",
+  "requisicoes": 500,
+  "concorrencia": 50,
+  "tempo_total_s": 5.662,
+  "req_por_s": 88.3,
+  "lat_media_ms": 546.9,
+  "lat_p95_ms": 1466.3,
+  "codigos": {
+    "201": 500
+  },
+  "distribuicao_por_instancia": {
+    "671adae33049": 246,
+    "3f0f17b8b20d": 254
+  },
+  "overbooking": []
+}
