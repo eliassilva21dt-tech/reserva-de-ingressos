@@ -1,0 +1,38 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  teste-de-fumaca:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Subir a stack
+        run: |
+          cp .env.example .env
+          docker compose up -d --build
+
+      - name: Esperar a API
+        run: bash scripts/aguardar_api.sh
+
+      - name: Health através do proxy
+        run: curl -fsS http://localhost:8080/health
+
+      - name: Reserva concorrente no mesmo assento (modo redis => exatamente 1 aceita)
+        run: |
+          for i in $(seq 1 20); do
+            curl -s -o /dev/null -w "%{http_code}\n" -X POST http://localhost:8080/reservas \
+              -H 'Content-Type: application/json' -d "{\"assento_id\": 5, \"cliente\": \"ci$i\"}" &
+          done | sort | uniq -c | tee codigos.txt
+          # codigos.txt tem linhas "<contagem> <código>": deve haver exatamente 1 resposta 201
+          test "$(awk '$2 == 201 {print $1}' codigos.txt)" = "1"
+
+      - name: Sem overbooking
+        run: curl -fsS http://localhost:8080/admin/stats | tee stats.json && grep -q '"overbooking":\[\]' stats.json
+
+      - name: Logs em caso de falha
+        if: failure()
+        run: docker compose logs --no-color
