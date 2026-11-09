@@ -1,12 +1,12 @@
 # Relatório técnico — Reserva de Ingressos com Controle de Concorrência
 
-*Rascunho. Preencher as seções marcadas com TODO após rodar os experimentos (Fase 9).*
+*Rascunho: tabelas e resultados preenchidos; as interpretações precisam de revisão do grupo.*
 
 ## 1. Problema e objetivo
 Vender o mesmo assento duas vezes (overbooking) quando várias réplicas da API recebem pedidos simultâneos. Objetivo: reservar assentos com consistência sob concorrência, pagamento assíncrono, e demonstrar com experimentos o efeito do lock distribuído e das restrições do banco.
 
 ## 2. Arquitetura e componentes
-Ver diagrama em `docs/diagrama.png` (TODO) e a seção 3 do `PROJETO.md`.
+Ver diagrama em `docs/diagrama.png` (fonte editável: `docs/diagrama.svg`) e a seção 3 do `PROJETO.md`.
 `proxy` (nginx) → `api` (FastAPI, N réplicas) → Redis (lock) / Postgres (dados) → RabbitMQ → `pagamento` (consumidor).
 
 ## 3. Comunicação entre componentes
