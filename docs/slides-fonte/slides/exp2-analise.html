@@ -1,0 +1,23 @@
+<section id="exp2-analise" data-transition="fade" style="background:#F6F4EF;color:#3C4650;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#B3460F">Leitura do experimento 2</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.1;color:#12202F">Por que a vazão não cresceu</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px">
+<div style="display:flex;flex-direction:column;gap:16px;background:#FFFFFF;border:1px solid #E3DED3;border-radius:16px;padding:40px">
+<h3 style="font-size:40px;font-weight:700;color:#17695E">O balanceamento funciona</h3>
+<p style="font-size:30px;line-height:1.4;color:#3C4650">As 500 requisições se dividiram quase por igual: 258 e 242 com 2 réplicas.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;background:#FFFFFF;border:1px solid #E3DED3;border-radius:16px;padding:40px">
+<h3 style="font-size:40px;font-weight:700;color:#17695E">A API não é o gargalo</h3>
+<p style="font-size:30px;line-height:1.4;color:#3C4650">A CPU dos contêineres ficou perto de 0,2%. Havia folga de sobra.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;background:#FFFFFF;border:1px solid #E3DED3;border-radius:16px;padding:40px">
+<h3 style="font-size:40px;font-weight:700;color:#B3460F">Causa provável</h3>
+<p style="font-size:30px;line-height:1.4;color:#3C4650">Gerador de carga em Python e rede entre Windows e WSL2, tudo na mesma máquina.</p>
+</div>
+</div>
+<p style="font-size:32px;line-height:1.4;color:#12202F"><b>Hipótese, ainda não medida.</b> Para confirmar, rodaríamos o gerador de carga dentro da rede Docker.</p>
+<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#5B636B">Reserva de Ingressos · Computação Distribuída · UFMS</p>
+<aside>Sugestão de quem fala: Elias. Ser claro sobre o que foi medido e o que é hipótese. Medido: a divisão da carga entre réplicas e o uso de CPU (docker stats) quase ocioso. Hipótese: o gargalo está fora da API, no gerador de carga ou na rede host para WSL2 do Docker Desktop. Não afirmar a causa como certa. Se perguntarem: o teste seguinte seria rodar o gerador dentro da rede Docker.</aside>
+</section>

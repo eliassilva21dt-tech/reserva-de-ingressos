@@ -1,0 +1,28 @@
+<section id="falha" data-transition="fade" style="background:#F6F4EF;color:#3C4650;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#B3460F">Experimento de falha</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.1;color:#12202F">Quando o pagamento cai, nada se perde</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
+<div style="display:flex;flex-direction:column;gap:20px;background:#FFFFFF;border:1px solid #E3DED3;border-radius:16px;padding:40px">
+<h3 style="font-size:40px;font-weight:700;color:#12202F">Pagamento parado</h3>
+<ul style="font-size:30px;line-height:1.4;color:#3C4650">
+<li>20 reservas criadas: todas 201 e PENDENTE</li>
+<li>Fila com 20 mensagens prontas</li>
+<li>Ao religar, a fila zerou em cerca de 40 s</li>
+<li>As 20 viraram CONFIRMADA</li>
+</ul>
+</div>
+<div style="display:flex;flex-direction:column;gap:20px;background:#FFFFFF;border:1px solid #E3DED3;border-radius:16px;padding:40px">
+<h3 style="font-size:40px;font-weight:700;color:#12202F">Morto no meio do processamento</h3>
+<ul style="font-size:30px;line-height:1.4;color:#3C4650">
+<li>Mensagem em curso aparece como unacked = 1</li>
+<li>O contêiner é morto e a mensagem volta para a fila</li>
+<li>É reprocessada com a marca REENTREGA</li>
+<li>Final: 18 CONFIRMADA e 2 RECUSADA, nenhuma perdida</li>
+</ul>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#5B636B">Logs completos: evidencias/falha · bash scripts/falha_pagamento.sh [durante]</p>
+<aside>Sugestão de quem fala: Anna Júlia. O que garante isso: fila durável, mensagens persistentes e ack manual só depois de atualizar o banco. A atualização é idempotente (UPDATE só se o status ainda for PENDENTE), então uma reentrega não gera efeito duplicado. Observação: com o pagamento parado a API continua aceitando reservas, porque o pagamento é assíncrono. Na variante “durante”, o consumidor já tinha processado 2 reservas antes de ser morto.</aside>
+</section>

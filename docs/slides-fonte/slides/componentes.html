@@ -1,0 +1,17 @@
+<section id="componentes" data-transition="fade" style="background:#F6F4EF;color:#3C4650;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#B3460F">Componentes</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.1;color:#12202F">O que cada peça faz</h2>
+</div>
+<table style="font-size:28px;color:#3C4650">
+<tr><th style="width:18%;text-align:left">Peça</th><th style="width:27%;text-align:left">Tecnologia</th><th style="width:55%;text-align:left">Papel</th></tr>
+<tr><td style="width:18%">proxy</td><td style="width:27%">nginx</td><td style="width:55%">Entrada única; reparte as requisições</td></tr>
+<tr><td style="width:18%">api</td><td style="width:27%">Python, FastAPI</td><td style="width:55%">Reservas por REST, sem estado</td></tr>
+<tr><td style="width:18%">pagamento</td><td style="width:27%">Python, aio-pika</td><td style="width:55%">Consome a fila e simula o pagamento</td></tr>
+<tr><td style="width:18%">redis</td><td style="width:27%">Redis 7</td><td style="width:55%">Lock por assento (SET NX EX)</td></tr>
+<tr><td style="width:18%">rabbitmq</td><td style="width:27%">RabbitMQ 3</td><td style="width:55%">Fila durável entre API e pagamento</td></tr>
+<tr><td style="width:18%">db</td><td style="width:27%">Postgres 16</td><td style="width:55%">Dados e índice único contra duplicatas</td></tr>
+</table>
+<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#5B636B">Reserva de Ingressos · Computação Distribuída · UFMS</p>
+<aside>Sugestão de quem fala: Anna Júlia. Para cada linha, responder “por que essa tecnologia?”: FastAPI e asyncpg por serem assíncronos e simples; Redis pelo SET NX com expiração; RabbitMQ pela fila durável com ack manual; Postgres pela restrição única, que é a barreira final contra overbooking. As decisões estão registradas em docs/decisoes.md.</aside>
+</section>

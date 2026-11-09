@@ -1,0 +1,34 @@
+<section id="fluxo" data-transition="fade" style="background:#F6F4EF;color:#3C4650;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#B3460F">Fluxo</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.1;color:#12202F">Uma reserva, passo a passo</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px">
+<div style="display:flex;flex-direction:column;gap:12px;background:#FFFFFF;border:1px solid #E3DED3;border-radius:16px;padding:36px">
+<p style="font-size:44px;font-weight:700;color:#B3460F">1</p>
+<p style="font-size:30px;line-height:1.35;color:#12202F">A API pega o lock do assento no Redis. Se falhar, responde 409.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FFFFFF;border:1px solid #E3DED3;border-radius:16px;padding:36px">
+<p style="font-size:44px;font-weight:700;color:#B3460F">2</p>
+<p style="font-size:30px;line-height:1.35;color:#12202F">Grava a reserva como PENDENTE no Postgres.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FFFFFF;border:1px solid #E3DED3;border-radius:16px;padding:36px">
+<p style="font-size:44px;font-weight:700;color:#B3460F">3</p>
+<p style="font-size:30px;line-height:1.35;color:#12202F">Publica na fila e responde 201 ao cliente.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FFFFFF;border:1px solid #E3DED3;border-radius:16px;padding:36px">
+<p style="font-size:44px;font-weight:700;color:#17695E">4</p>
+<p style="font-size:30px;line-height:1.35;color:#12202F">O pagamento consome a mensagem e simula o pagamento (1 a 3 s).</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FFFFFF;border:1px solid #E3DED3;border-radius:16px;padding:36px">
+<p style="font-size:44px;font-weight:700;color:#17695E">5</p>
+<p style="font-size:30px;line-height:1.35;color:#12202F">Atualiza para CONFIRMADA ou RECUSADA e só então dá o ack.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FFFFFF;border:1px solid #E3DED3;border-radius:16px;padding:36px">
+<p style="font-size:44px;font-weight:700;color:#17695E">6</p>
+<p style="font-size:30px;line-height:1.35;color:#12202F">Se RECUSADA, o assento volta a ficar livre e o lock é apagado.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#5B636B">Passos 1 a 3: caminho síncrono. Passos 4 a 6: assíncrono, via fila.</p>
+<aside>Sugestão de quem fala: Alessandro (passos 1 a 3) e Anna Júlia (passos 4 a 6). Ponto importante: o cliente recebe a resposta 201 antes de o pagamento acontecer. O pagamento é assíncrono, e o ack só é dado depois de gravar no banco: se o serviço cair no meio, a mensagem é reentregue (veremos isso no experimento de falha).</aside>
+</section>

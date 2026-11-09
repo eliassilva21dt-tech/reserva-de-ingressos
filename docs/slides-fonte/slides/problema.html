@@ -1,0 +1,28 @@
+<section id="problema" data-transition="fade" style="background:#F6F4EF;color:#3C4650;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#B3460F">O problema</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.1;color:#12202F">Dois clientes, um mesmo assento</h2>
+</div>
+<div style="display:flex;gap:64px;flex:1">
+<div style="flex:1;display:flex;flex-direction:column;gap:32px;justify-content:center">
+<p style="font-size:40px;line-height:1.3;color:#12202F">Com várias réplicas da API, “se está livre, reserva” <b>não basta</b>.</p>
+<p style="font-size:32px;line-height:1.4">As duas réplicas consultam ao mesmo tempo, as duas veem o assento livre e as duas gravam a reserva.</p>
+<p style="font-size:32px;line-height:1.4"><b><span style="color:#B3460F">Overbooking</span></b>: o mesmo lugar vendido duas vezes.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:28px;justify-content:center;background:#FFFFFF;border:1px solid #E3DED3;border-radius:20px;padding:40px">
+<p style="font-size:28px;font-weight:700;color:#12202F">Réplica 1</p>
+<div style="display:flex;gap:16px">
+<p style="font-size:28px;background:#EAF0F4;color:#12202F;padding:16px 24px;border-radius:12px">1 · assento livre?</p>
+<p style="font-size:28px;background:#EAF0F4;color:#12202F;padding:16px 24px;border-radius:12px">2 · grava reserva</p>
+</div>
+<p style="font-size:28px;font-weight:700;color:#12202F">Réplica 2</p>
+<div style="display:flex;gap:16px">
+<p style="font-size:28px;background:#EAF0F4;color:#12202F;padding:16px 24px;border-radius:12px">1 · assento livre?</p>
+<p style="font-size:28px;background:#EAF0F4;color:#12202F;padding:16px 24px;border-radius:12px">2 · grava reserva</p>
+</div>
+<p style="font-size:28px;line-height:1.3;background:#FBE9E4;color:#8A2E0B;border:1px solid #E8B9A8;padding:20px 24px;border-radius:12px"><b>Resultado:</b> duas reservas ativas no mesmo assento.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#5B636B">Reserva de Ingressos · Computação Distribuída · UFMS</p>
+<aside>Sugestão de quem fala: Alessandro. Explicar a condição de corrida com calma, porque é a base de todo o trabalho: o passo “verificar se está livre” e o passo “gravar” são separados no tempo, e outra réplica pode entrar no meio. É isso que o experimento 1 vai reproduzir.</aside>
+</section>

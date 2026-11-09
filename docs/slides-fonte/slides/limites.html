@@ -1,0 +1,28 @@
+<section id="limites" data-transition="fade" style="background:#F6F4EF;color:#3C4650;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#B3460F">Fechamento</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.1;color:#12202F">Limitações e melhorias</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
+<div style="display:flex;flex-direction:column;gap:20px;background:#FFFFFF;border:1px solid #E3DED3;border-radius:16px;padding:40px">
+<h3 style="font-size:40px;font-weight:700;color:#B3460F">Limitações</h3>
+<ul style="font-size:30px;line-height:1.4;color:#3C4650">
+<li>Redis, RabbitMQ e Postgres sem réplica: pontos únicos de falha</li>
+<li>Lock com TTL de 30 s pode expirar antes do fim da operação</li>
+<li>Pagamento simulado</li>
+<li>Testes em uma única máquina</li>
+</ul>
+</div>
+<div style="display:flex;flex-direction:column;gap:20px;background:#FFFFFF;border:1px solid #E3DED3;border-radius:16px;padding:40px">
+<h3 style="font-size:40px;font-weight:700;color:#17695E">Melhorias possíveis</h3>
+<ul style="font-size:30px;line-height:1.4;color:#3C4650">
+<li>Redis e Postgres replicados</li>
+<li>Redlock, para locks entre várias instâncias do Redis</li>
+<li>Kubernetes para orquestrar as réplicas</li>
+<li>Métricas e tracing distribuído (Prometheus, Grafana)</li>
+</ul>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#5B636B">Mesmo com o lock expirado, o índice único do Postgres continua impedindo o overbooking.</p>
+<aside>Sugestão de quem fala: Anna Júlia ou Alessandro. Ser direto sobre as limitações: mostram que o grupo entende onde o sistema pode falhar. A principal: se o Redis cair, o modo redis passa a devolver 503; o modo db continua protegendo pelo índice único. Cada melhoria responde a uma limitação da coluna ao lado.</aside>
+</section>

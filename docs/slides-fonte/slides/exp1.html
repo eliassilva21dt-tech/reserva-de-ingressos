@@ -1,0 +1,15 @@
+<section id="exp1" data-transition="fade" style="background:#F6F4EF;color:#3C4650;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#B3460F">Experimento 1</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.1;color:#12202F">100 pedidos, um único assento</h2>
+</div>
+<p style="font-size:32px;line-height:1.4">100 requisições simultâneas ao mesmo assento, em cada modo. Média de 3 repetições.</p>
+<table style="font-size:32px;color:#3C4650">
+<tr><th style="width:16%;text-align:left">Modo</th><th style="width:20%;text-align:left">Aceitas (201)</th><th style="width:24%;text-align:left">Rejeitadas (409)</th><th style="width:20%;text-align:left">Latência média</th><th style="width:20%;text-align:left">Overbooking</th></tr>
+<tr><td style="width:16%">none</td><td style="width:20%">18,7</td><td style="width:24%">81,3</td><td style="width:20%">538 ms</td><td style="width:20%">Sim (3 de 3)</td></tr>
+<tr><td style="width:16%">db</td><td style="width:20%">1</td><td style="width:24%">99</td><td style="width:20%">463 ms</td><td style="width:20%">Não</td></tr>
+<tr><td style="width:16%">redis</td><td style="width:20%">1</td><td style="width:24%">99</td><td style="width:20%">314 ms</td><td style="width:20%">Não</td></tr>
+</table>
+<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#5B636B">Dados brutos: evidencias/exp1 · bash scripts/rodar_exp1.sh</p>
+<aside>Sugestão de quem fala: Elias. Explicar o procedimento: para cada modo, reset, 100 requisições largando juntas contra o assento 10, e consulta de overbooking no banco ao final. Repetido 3 vezes. Zero erros em todas as rodadas (só 201 e 409). Deixar a tabela na tela e passar para o próximo slide para a leitura.</aside>
+</section>

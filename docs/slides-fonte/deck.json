@@ -1,0 +1,17 @@
+{
+  "v": 4,
+  "createdOnFiles": {"v": 1, "at": "2026-11-09T17:50:00Z"},
+  "lists": "css",
+  "title": "Reserva de Ingressos — Apresentação",
+  "order": ["cover", "problema", "enunciado", "arquitetura", "componentes", "fluxo", "modos", "exp1", "exp1-resultado", "exp2", "exp2-analise", "falha", "demo", "limites", "fim"],
+  "sections": {
+    "intro": {"description": "Apresenta o problema, a arquitetura e como uma reserva funciona.", "start": "cover"},
+    "experimentos": {"description": "Mostra o que medimos nos experimentos e o que observamos.", "start": "exp1"},
+    "fechamento": {"description": "Demonstra ao vivo e fecha com limitações e melhorias.", "start": "demo"}
+  },
+  "faces": {
+    "dm-sans": {"family": "DM Sans", "href": "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"},
+    "jetbrains-mono": {"family": "JetBrains Mono", "href": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap"}
+  },
+  "designSystems": []
+}

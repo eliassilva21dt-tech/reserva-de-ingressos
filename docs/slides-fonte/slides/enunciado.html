@@ -1,0 +1,17 @@
+<section id="enunciado" data-transition="fade" style="background:#F6F4EF;color:#3C4650;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#B3460F">Requisitos</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.1;color:#12202F">Como atendemos o enunciado</h2>
+</div>
+<table style="font-size:28px;color:#3C4650">
+<tr><th style="width:38%;text-align:left">Requisito</th><th style="width:62%;text-align:left">Como atendemos</th></tr>
+<tr><td style="width:38%">3+ componentes, 2+ serviços</td><td style="width:62%">API, pagamento, Redis, RabbitMQ, Postgres e nginx</td></tr>
+<tr><td style="width:38%">Comunicação entre processos</td><td style="width:62%">REST (cliente e API) e fila RabbitMQ (API e pagamento)</td></tr>
+<tr><td style="width:38%">Contêineres</td><td style="width:62%">Tudo em um docker-compose.yml, sobe com um comando</td></tr>
+<tr><td style="width:38%">Persistência</td><td style="width:62%">Postgres com volume nomeado (pgdata)</td></tr>
+<tr><td style="width:38%">Processamento assíncrono</td><td style="width:62%">Pagamento consumido da fila, fora do caminho da reserva</td></tr>
+<tr><td style="width:38%">Experimentos e falha</td><td style="width:62%">Concorrência, escalabilidade e queda do pagamento</td></tr>
+</table>
+<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#5B636B">Reserva de Ingressos · Computação Distribuída · UFMS</p>
+<aside>Sugestão de quem fala: Elias. Mapear rapidamente cada requisito do PDF da professora para o que foi construído. Não detalhar ainda: cada linha vira um slide ou uma demonstração adiante.</aside>
+</section>

@@ -1,0 +1,25 @@
+<section id="modos" data-transition="fade" style="background:#F6F4EF;color:#3C4650;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#B3460F">Concorrência</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.1;color:#12202F">Três modos de controle</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px">
+<div style="display:flex;flex-direction:column;gap:20px;background:#FFFFFF;border:1px solid #E3DED3;border-radius:16px;padding:40px">
+<h3 style="font-size:44px;font-weight:700;color:#12202F">none</h3>
+<p style="font-size:30px;line-height:1.4;color:#3C4650">Consulta se está livre, espera 50 ms e grava. Sem nenhuma proteção.</p>
+<p style="font-size:28px;font-weight:700;background:#FBE9E4;color:#8A2E0B;padding:16px 20px;border-radius:12px">Overbooking</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:20px;background:#FFFFFF;border:1px solid #E3DED3;border-radius:16px;padding:40px">
+<h3 style="font-size:44px;font-weight:700;color:#12202F">db</h3>
+<p style="font-size:30px;line-height:1.4;color:#3C4650">Grava direto. O índice único do Postgres rejeita a duplicata.</p>
+<p style="font-size:28px;font-weight:700;background:#DDF0EC;color:#0F4A42;padding:16px 20px;border-radius:12px">Só 1 aceita, barrada no banco</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:20px;background:#FFFFFF;border:1px solid #E3DED3;border-radius:16px;padding:40px">
+<h3 style="font-size:44px;font-weight:700;color:#12202F">redis</h3>
+<p style="font-size:30px;line-height:1.4;color:#3C4650">SET NX no Redis antes de gravar. Quem perde recebe 409 sem tocar no banco.</p>
+<p style="font-size:28px;font-weight:700;background:#DDF0EC;color:#0F4A42;padding:16px 20px;border-radius:12px">Só 1 aceita, barrada no Redis</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#5B636B">O atraso de 50 ms no modo none só existe para ampliar a janela da corrida de forma reprodutível.</p>
+<aside>Sugestão de quem fala: Alessandro. O modo é escolhido pela variável MODO_LOCK. No redis, o índice único continua ativo como segunda barreira: se o lock expirar (TTL de 30 s), o banco ainda impede a duplicata. Esse é o coração do experimento 1.</aside>
+</section>

@@ -1,0 +1,16 @@
+<section id="exp2" data-transition="fade" style="background:#F6F4EF;color:#3C4650;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#B3460F">Experimento 2</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.1;color:#12202F">Mais réplicas, mais vazão?</h2>
+</div>
+<p style="font-size:32px;line-height:1.4">500 reservas em assentos diferentes, com 50 conexões simultâneas. Média de 3 repetições.</p>
+<table style="font-size:32px;color:#3C4650">
+<tr><th style="width:16%;text-align:left">Réplicas</th><th style="width:18%;text-align:left">Req/s</th><th style="width:22%;text-align:left">Latência média</th><th style="width:18%;text-align:left">p95</th><th style="width:26%;text-align:left">Divisão da carga</th></tr>
+<tr><td style="width:16%">1</td><td style="width:18%">131,8</td><td style="width:22%">380 ms</td><td style="width:18%">1061 ms</td><td style="width:26%">500</td></tr>
+<tr><td style="width:16%">2</td><td style="width:18%">93,4</td><td style="width:22%">514 ms</td><td style="width:18%">1338 ms</td><td style="width:26%">258 / 242</td></tr>
+<tr><td style="width:16%">3</td><td style="width:18%">92,2</td><td style="width:22%">519 ms</td><td style="width:18%">1414 ms</td><td style="width:26%">155 / 176 / 169</td></tr>
+</table>
+<p style="font-size:36px;font-weight:700;line-height:1.3;background:#FDEBD6;color:#7A3A0A;border:1px solid #E8C79F;padding:24px 32px;border-radius:16px">Nesta máquina, não: a vazão não cresceu com mais réplicas.</p>
+<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#5B636B">Dados brutos: evidencias/exp2 · bash scripts/rodar_exp2.sh</p>
+<aside>Sugestão de quem fala: Elias. Apresentar o resultado sem esconder: com 1 réplica a vazão foi de 132 req/s (variando de 97 a 156 entre rodadas) e com 2 ou 3 ficou em cerca de 92 req/s. A hipótese de ganho de vazão não se confirmou nesta máquina. O PDF da professora prevê esse caso: o importante é analisar e explicar, o que vem no próximo slide.</aside>
+</section>
