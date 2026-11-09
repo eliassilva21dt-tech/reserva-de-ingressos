@@ -1,0 +1,110 @@
+name: ingressos
+
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-app}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-app}
+      POSTGRES_DB: ${POSTGRES_DB:-ingressos}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-app} -d ${POSTGRES_DB:-ingressos}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    networks: [back-net]
+
+  redis:
+    image: redis:7
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    networks: [back-net]
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: unless-stopped
+    ports:
+      - "15672:15672"   # painel de gestão (guest/guest) - só para desenvolvimento/prints
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+      start_period: 20s
+    networks: [back-net]
+
+  api:
+    build: ./api
+    restart: unless-stopped
+    # Sem container_name e sem ports: assim dá para escalar (--scale api=N).
+    # Padrão = 2 réplicas; "--scale api=N" sobrescreve.
+    deploy:
+      replicas: 2
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-postgresql://app:app@db:5432/ingressos}
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
+      RABBITMQ_URL: ${RABBITMQ_URL:-amqp://guest:guest@rabbitmq:5672/}
+      MODO_LOCK: ${MODO_LOCK:-redis}
+      CHECK_INSERT_DELAY_MS: ${CHECK_INSERT_DELAY_MS:-50}
+      LOCK_TTL_SECONDS: ${LOCK_TTL_SECONDS:-30}
+      ENABLE_ADMIN: ${ENABLE_ADMIN:-true}
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2)"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 5s
+    networks: [front-net, back-net]
+
+  pagamento:
+    build: ./pagamento
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-postgresql://app:app@db:5432/ingressos}
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
+      RABBITMQ_URL: ${RABBITMQ_URL:-amqp://guest:guest@rabbitmq:5672/}
+      PAGAMENTO_DELAY_MIN: ${PAGAMENTO_DELAY_MIN:-1}
+      PAGAMENTO_DELAY_MAX: ${PAGAMENTO_DELAY_MAX:-3}
+      PAGAMENTO_TAXA_RECUSA: ${PAGAMENTO_TAXA_RECUSA:-0.1}
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    networks: [back-net]
+
+  proxy:
+    image: nginx:1.27
+    restart: unless-stopped
+    ports:
+      - "8080:80"   # única porta de entrada da aplicação
+    volumes:
+      - ./proxy/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      api:
+        condition: service_healthy
+    networks: [front-net]
+
+volumes:
+  pgdata:
+
+networks:
+  front-net:
+  back-net:
