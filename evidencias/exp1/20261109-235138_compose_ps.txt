@@ -1,0 +1,8 @@
+NAME                    IMAGE                                                                     COMMAND                  SERVICE     CREATED          STATUS                    PORTS
+ingressos-api-1         ingressos-api                                                             "uvicorn app.main:ap…"   api         57 seconds ago   Up 55 seconds (healthy)   8000/tcp
+ingressos-api-2         ingressos-api                                                             "uvicorn app.main:ap…"   api         57 seconds ago   Up 54 seconds (healthy)   8000/tcp
+ingressos-db-1          postgres:16                                                               "docker-entrypoint.s…"   db          2 weeks ago      Up 22 minutes (healthy)   5432/tcp
+ingressos-pagamento-1   sha256:f37db1d581ca468f756a907a729345f30f24caedfe3d1342707c605893bedc6f   "python -m app.main"     pagamento   22 minutes ago   Up 22 minutes             
+ingressos-proxy-1       nginx:1.27                                                                "/docker-entrypoint.…"   proxy       2 weeks ago      Up 22 minutes             0.0.0.0:8080->80/tcp, [::]:8080->80/tcp
+ingressos-rabbitmq-1    rabbitmq:3-management                                                     "docker-entrypoint.s…"   rabbitmq    2 weeks ago      Up 22 minutes (healthy)   0.0.0.0:15672->15672/tcp, [::]:15672->15672/tcp
+ingressos-redis-1       redis:7                                                                   "docker-entrypoint.s…"   redis       2 weeks ago      Up 22 minutes (healthy)   6379/tcp

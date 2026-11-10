@@ -1,0 +1,72 @@
+{
+  "experimento": "exp2_escalabilidade",
+  "modo": "redis",
+  "replicas": 3,
+  "repeticao": 6,
+  "timestamp": "2026-11-09T23:46:26",
+  "requisicoes": 500,
+  "concorrencia": 50,
+  "processos_gerador": 1,
+  "aquecimento": 150,
+  "tempo_total_s": 4.798,
+  "req_por_s": 104.2,
+  "lat_media_ms": 456.7,
+  "lat_p95_ms": 1243.7,
+  "codigos": {
+    "201": 500
+  },
+  "distribuicao_por_instancia": {
+    "8e2ad6fb80e3": 159,
+    "ed9058e320b5": 180,
+    "97496a602af4": 161
+  },
+  "etapas_api_ms": {
+    "controle": 0.9,
+    "banco": 4.4,
+    "fila": 5.6,
+    "total": 11.1
+  },
+  "fora_da_api_ms": 445.6,
+  "cpu_durante_carga_pct": {
+    "api": {
+      "soma_pct": 75.6,
+      "por_container_pct": [
+        26.2,
+        25.5,
+        23.9
+      ]
+    },
+    "db": {
+      "soma_pct": 11.9,
+      "por_container_pct": [
+        11.9
+      ]
+    },
+    "pagamento": {
+      "soma_pct": 1.0,
+      "por_container_pct": [
+        1.0
+      ]
+    },
+    "proxy": {
+      "soma_pct": 7.8,
+      "por_container_pct": [
+        7.8
+      ]
+    },
+    "rabbitmq": {
+      "soma_pct": 12.6,
+      "por_container_pct": [
+        12.6
+      ]
+    },
+    "redis": {
+      "soma_pct": 4.0,
+      "por_container_pct": [
+        4.0
+      ]
+    }
+  },
+  "nucleos_do_docker": 12,
+  "overbooking": []
+}

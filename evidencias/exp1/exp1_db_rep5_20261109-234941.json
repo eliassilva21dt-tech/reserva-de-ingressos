@@ -1,0 +1,28 @@
+{
+  "experimento": "exp1_concorrencia",
+  "modo": "db",
+  "repeticao": 5,
+  "timestamp": "2026-11-09T23:49:41",
+  "requisicoes": 100,
+  "assento_id": 10,
+  "aceitas_201": 1,
+  "conflito_409": 99,
+  "erros": 0,
+  "codigos": {
+    "409": 99,
+    "201": 1
+  },
+  "lat_media_ms": 570.4,
+  "lat_p95_ms": 936.0,
+  "lat_media_201_ms": 186.7,
+  "lat_media_409_ms": 574.3,
+  "api_media_201_ms": 10.0,
+  "api_media_409_ms": 1.7,
+  "aquecimento": 100,
+  "duracao_s": 1.019,
+  "overbooking": [],
+  "houve_overbooking": false,
+  "reservas_por_status": {
+    "PENDENTE": 1
+  }
+}
