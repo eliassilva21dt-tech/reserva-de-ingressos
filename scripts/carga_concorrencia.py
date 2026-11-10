@@ -32,6 +32,7 @@ async def main() -> None:
     ap.add_argument("--reqs", type=int, default=100)
     ap.add_argument("--assento", type=int, default=10)
     ap.add_argument("--rep", type=int, default=1, help="número da repetição")
+    ap.add_argument("--warmup", type=int, default=100, help="reservas de aquecimento (descartadas)")
     ap.add_argument("--out", default="evidencias/exp1")
     args = ap.parse_args()
 
@@ -40,11 +41,22 @@ async def main() -> None:
         (await cli.post("/admin/reset")).raise_for_status()
         modo = (await cli.get("/admin/stats")).json()["modo"]
 
-        # Aquece as conexões para que as N requisições saiam realmente juntas.
+        # Aquecimento (descartado): reservas de verdade em assentos DIFERENTES.
+        # Abre as conexões cliente->nginx->API->Postgres nos três modos, para a
+        # medição não pagar o custo de "primeira requisição" (que no modo redis
+        # quase não aparece, porque só a vencedora chega ao banco).
+        await asyncio.gather(*(
+            cli.post("/reservas", json={"assento_id": 500 + i, "cliente": f"aquec{i}"})
+            for i in range(args.warmup)
+        ))
+        (await cli.post("/admin/reset")).raise_for_status()
+        await asyncio.sleep(1)
+        # Reabre as conexões ociosas para que as N requisições saiam realmente juntas.
         await asyncio.gather(*(cli.get("/health") for _ in range(args.reqs)))
 
         largada = asyncio.Event()
         resultados: list[tuple[int, float, str | None]] = []
+        na_api: dict[int, list[float]] = {201: [], 409: []}  # tempo dentro da API (Server-Timing)
 
         async def disparar(i: int) -> None:
             await largada.wait()
@@ -55,6 +67,9 @@ async def main() -> None:
                 )
                 codigo = r.status_code
                 inst = r.json().get("instancia") if codigo == 201 else None
+                total_api = r.headers.get("server-timing", "").rpartition("total;dur=")[2]
+                if total_api and codigo in na_api:
+                    na_api[codigo].append(float(total_api))
             except httpx.HTTPError:
                 codigo, inst = 0, None
             resultados.append((codigo, (time.perf_counter() - t0) * 1000, inst))
@@ -70,6 +85,8 @@ async def main() -> None:
 
     codigos = Counter(c for c, _, _ in resultados)
     lat = [ms for _, ms, _ in resultados]
+    lat_201 = [ms for c, ms, _ in resultados if c == 201]
+    lat_409 = [ms for c, ms, _ in resultados if c == 409]
     resumo = {
         "experimento": "exp1_concorrencia",
         "modo": modo,
@@ -83,6 +100,13 @@ async def main() -> None:
         "codigos": dict(codigos),
         "lat_media_ms": round(statistics.mean(lat), 1),
         "lat_p95_ms": round(percentil(lat, 95), 1),
+        # Separado por resultado: quem ganhou (201) e quem foi recusado (409).
+        "lat_media_201_ms": round(statistics.mean(lat_201), 1) if lat_201 else None,
+        "lat_media_409_ms": round(statistics.mean(lat_409), 1) if lat_409 else None,
+        # Tempo DENTRO da API (sem proxy, rede e gerador de carga), vindo do Server-Timing.
+        "api_media_201_ms": round(statistics.mean(na_api[201]), 1) if na_api[201] else None,
+        "api_media_409_ms": round(statistics.mean(na_api[409]), 1) if na_api[409] else None,
+        "aquecimento": args.warmup,
         "duracao_s": round(duracao, 3),
         "overbooking": stats["overbooking"],
         "houve_overbooking": bool(stats["overbooking"]),
