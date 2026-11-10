@@ -1,8 +1,8 @@
 <section id="exp1-resultado" data-transition="fade" style="background:#12202F;color:#E9EEF2;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;justify-content:center;gap:32px">
 <p style="font-size:28px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#F08A4B">Leitura do experimento 1</p>
-<h1 style="font-size:240px;line-height:1;font-weight:700;color:#F08A4B">18,7</h1>
+<h1 style="font-size:240px;line-height:1;font-weight:700;color:#F08A4B">9,7</h1>
 <p style="font-size:48px;line-height:1.25;color:#F6F4EF">pessoas, em média, ficaram com o mesmo assento quando não havia controle.</p>
-<p style="font-size:36px;line-height:1.35;color:#A9B6C2">Com o índice do banco ou com o lock no Redis: exatamente 1. O Redis ainda foi mais rápido, 314 ms contra 463 ms, porque barra os perdedores antes de chegar ao banco.</p>
-<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#A9B6C2">3 repetições, uma única máquina.</p>
-<aside>Sugestão de quem fala: Elias. A hipótese se confirmou: sem controle há overbooking nas 3 rodadas, e com db ou redis só uma reserva é aceita. Comparar db e redis: nos dois o resultado é correto, mas no redis os 99 perdedores nem chegam ao Postgres, o que reduz a carga no banco e a latência. Ressalva honesta: 3 repetições em uma máquina só.</aside>
+<p style="font-size:36px;line-height:1.35;color:#A9B6C2">Com o índice do banco ou com o lock no Redis: exatamente 1, nas 6 rodadas. Os dois recusam um pedido em 1 a 2 ms; a diferença é que no Redis os perdedores nem chegam ao banco.</p>
+<p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#A9B6C2">6 repetições por modo, uma única máquina.</p>
+<aside>Sugestão de quem fala: Elias. A hipótese se confirmou: sem controle houve overbooking nas 6 rodadas (de 4 a 17 reservas para o mesmo assento), e com db ou redis só uma reserva é aceita. Comparar db e redis: nos dois o resultado é correto e a velocidade é praticamente a mesma (recusar leva 1,7 ms no db e 1,0 ms no redis). A vantagem do redis é poupar o banco: os 99 perdedores nem chegam ao Postgres. Não dizer que o redis é mais rápido para o cliente: isso não foi o que medimos. Ressalva honesta: 6 repetições em uma máquina só.</aside>
 </section>

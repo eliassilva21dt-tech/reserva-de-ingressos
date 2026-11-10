@@ -3,14 +3,14 @@
 <p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#B3460F">Experimento 2</p>
 <h2 style="font-size:64px;font-weight:700;line-height:1.1;color:#12202F">Mais réplicas, mais vazão?</h2>
 </div>
-<p style="font-size:32px;line-height:1.4">500 reservas em assentos diferentes, com 50 conexões simultâneas. Média de 3 repetições.</p>
+<p style="font-size:32px;line-height:1.4">1000 reservas em assentos diferentes, 96 conexões, 8 processos gerando carga. Média de 6 repetições.</p>
 <table style="font-size:32px;color:#3C4650">
-<tr><th style="width:16%;text-align:left">Réplicas</th><th style="width:18%;text-align:left">Req/s</th><th style="width:22%;text-align:left">Latência média</th><th style="width:18%;text-align:left">p95</th><th style="width:26%;text-align:left">Divisão da carga</th></tr>
-<tr><td style="width:16%">1</td><td style="width:18%">131,8</td><td style="width:22%">380 ms</td><td style="width:18%">1061 ms</td><td style="width:26%">500</td></tr>
-<tr><td style="width:16%">2</td><td style="width:18%">93,4</td><td style="width:22%">514 ms</td><td style="width:18%">1338 ms</td><td style="width:26%">258 / 242</td></tr>
-<tr><td style="width:16%">3</td><td style="width:18%">92,2</td><td style="width:22%">519 ms</td><td style="width:18%">1414 ms</td><td style="width:26%">155 / 176 / 169</td></tr>
+<tr><th style="width:14%;text-align:left">Réplicas</th><th style="width:20%;text-align:left">Req/s</th><th style="width:14%;text-align:left">Ganho</th><th style="width:26%;text-align:left">CPU da API por réplica</th><th style="width:26%;text-align:left">Divisão da carga</th></tr>
+<tr><td style="width:14%">1</td><td style="width:20%">259 ± 49</td><td style="width:14%">—</td><td style="width:26%">98%</td><td style="width:26%">1000</td></tr>
+<tr><td style="width:14%">2</td><td style="width:20%">351 ± 61</td><td style="width:14%">+35%</td><td style="width:26%">95%</td><td style="width:26%">520 / 480</td></tr>
+<tr><td style="width:14%">3</td><td style="width:20%">415 ± 14</td><td style="width:14%">+60%</td><td style="width:26%">93%</td><td style="width:26%">361 / 320 / 319</td></tr>
 </table>
-<p style="font-size:36px;font-weight:700;line-height:1.3;background:#FDEBD6;color:#7A3A0A;border:1px solid #E8C79F;padding:24px 32px;border-radius:16px">Nesta máquina, não: a vazão não cresceu com mais réplicas.</p>
+<p style="font-size:36px;font-weight:700;line-height:1.3;background:#FDEBD6;color:#7A3A0A;border:1px solid #E8C79F;padding:24px 32px;border-radius:16px">Sim, mas menos que o ideal: 3 réplicas renderam 1,6 vez, e não 3 vezes.</p>
 <p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#5B636B">Dados brutos: evidencias/exp2 · bash scripts/rodar_exp2.sh</p>
-<aside>Sugestão de quem fala: Elias. Apresentar o resultado sem esconder: com 1 réplica a vazão foi de 132 req/s (variando de 97 a 156 entre rodadas) e com 2 ou 3 ficou em cerca de 92 req/s. A hipótese de ganho de vazão não se confirmou nesta máquina. O PDF da professora prevê esse caso: o importante é analisar e explicar, o que vem no próximo slide.</aside>
+<aside>Sugestão de quem fala: Elias. Com carga suficiente, cada réplica da API usa quase um núcleo inteiro (100% = um núcleo) e a vazão sobe: 259 req/s com 1 réplica, 351 com 2 (+35%) e 415 com 3 (+60%). O número depois do ± é o desvio padrão entre as 6 rodadas; com 1 e 2 réplicas a variação foi grande (houve uma rodada de 169 e outra de 237 req/s). A ordem das configurações foi alternada para nenhuma rodar sempre primeiro. O ganho não é linear; o motivo provável vem no próximo slide. Esta é a carga forte: a carga do enunciado (500 reservas, 50 conexões, 1 processo) não chegou a ocupar a API, o que também vem no próximo slide.</aside>
 </section>

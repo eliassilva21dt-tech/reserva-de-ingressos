@@ -243,8 +243,8 @@ Nos comandos abaixo, `PYTHON=.venv/Scripts/python` diz aos scripts `.sh` qual Py
 
 | Experimento | Comando | Duração | Resultado |
 |---|---|---|---|
-| **1. Concorrência** (3 modos × 3 rodadas) | `PYTHON=.venv/Scripts/python bash scripts/rodar_exp1.sh` | ~2 min | Tabela no final; JSON em `evidencias/exp1/` |
-| **2. Escalabilidade** (1, 2 e 3 réplicas × 3) | `PYTHON=.venv/Scripts/python bash scripts/rodar_exp2.sh` | ~2 min | Tabela no final; JSON em `evidencias/exp2/` |
+| **1. Concorrência** (3 modos × 6 rodadas) | `PYTHON=.venv/Scripts/python bash scripts/rodar_exp1.sh` | ~5 min | Tabela no final; JSON em `evidencias/exp1/` |
+| **2. Escalabilidade** (1, 2 e 3 réplicas × 6, cargas leve e forte) | `PYTHON=.venv/Scripts/python bash scripts/rodar_exp2.sh` | ~11 min | Tabela no final; JSON em `evidencias/exp2/` |
 | **Falha: pagamento parado** | `bash scripts/falha_pagamento.sh` | ~1 min | Log em `evidencias/falha/` |
 | **Falha: pagamento morto no meio** | `bash scripts/falha_pagamento.sh durante` | ~1 min | Log com `(REENTREGA)` |
 | Recarregar a tabela sem rodar de novo | `.venv/Scripts/python scripts/resumir.py exp1` (ou `exp2`) | instantâneo | Tabela em Markdown |
@@ -256,24 +256,33 @@ Os experimentos **apagam as reservas** (usam `/admin/reset`). O `rodar_exp1.sh` 
 ```bash
 .venv/Scripts/python scripts/carga_concorrencia.py --rep 1 --reqs 100 --assento 10
 ```
-Opções: `--reqs` (nº de requisições), `--assento` (qual assento), `--rep` (nº da repetição, vai no nome do arquivo), `--out` (pasta de saída).
+Opções: `--reqs` (nº de requisições), `--assento` (qual assento), `--rep` (nº da repetição, vai no nome do arquivo), `--warmup` (reservas de aquecimento, descartadas), `--out` (pasta de saída).
 
 **Um disparo avulso do Experimento 2:**
 ```bash
-.venv/Scripts/python scripts/carga_escala.py --replicas 2 --rep 1 --reqs 500 --conc 50
+.venv/Scripts/python scripts/carga_escala.py --replicas 2 --rep 1 --reqs 500 --conc 50                      # carga leve
+.venv/Scripts/python scripts/carga_escala.py --replicas 2 --rep 1 --reqs 1000 --conc 96 --processos 8       # carga forte
 ```
+`--replicas` precisa ser o número de réplicas que está no ar: o script confere no aquecimento e para se não bater. `--processos` divide a carga entre vários processos; com 1 só, o próprio script vira o gargalo (~100 req/s). O JSON traz também `cpu_durante_carga_pct` (CPU de cada serviço durante a carga, 100 = um núcleo) e `etapas_api_ms` (tempo de cada etapa dentro da API). Para a CPU ser medida, o comando `docker` precisa estar no `PATH` do terminal.
 
 ### Resultados que já temos
 
-**Experimento 1** (100 pedidos simultâneos, mesmo assento, média de 3 rodadas):
+**Experimento 1** (100 pedidos simultâneos, mesmo assento, 6 rodadas por modo):
 
-| Modo | Aceitas | Overbooking | Latência média |
+| Modo | Aceitas | Overbooking | Tempo na API para recusar |
 |---|---|---|---|
-| none | 18,7 | sim (3/3) | 538 ms |
-| db | 1 | não | 463 ms |
-| redis | 1 | não | 314 ms |
+| none | 9,7 (de 4 a 17) | sim (6/6) | 1,9 ms |
+| db | 1 | não | 1,7 ms |
+| redis | 1 | não | 1,0 ms |
 
-**Experimento 2:** 132 req/s com 1 réplica contra ~92 req/s com 2 e 3. Mais réplicas não ajudaram nesta máquina, e o balanceamento funciona. A discussão está em [`docs/relatorio.md`](docs/relatorio.md).
+**Experimento 2** (6 rodadas por configuração):
+
+| Carga | 1 réplica | 2 réplicas | 3 réplicas |
+|---|---|---|---|
+| Leve (1 processo gerando carga) | 102 req/s | 99 req/s | 100 req/s |
+| Forte (8 processos gerando carga) | 259 req/s | 351 req/s (+35%) | 415 req/s (+60%) |
+
+Na carga leve o gargalo é o gerador de carga, e não a API. Na forte, cada réplica usa quase um núcleo inteiro e mais réplicas aumentam a vazão. A discussão está em [`docs/relatorio.md`](docs/relatorio.md).
 
 ---
 

@@ -144,10 +144,10 @@ Healthchecks, `depends_on` com `condition: service_healthy`, `restart: unless-st
 > **Descoberta importante:** `docker kill` **não** reinicia o contêiner, porque o Docker o trata como parada manual. A política só vale para queda real (o processo morrendo sozinho). Testamos com `redis-cli shutdown` e com `SIGINT` no processo do pagamento.
 
 ### Fase 8 — Scripts de experimento
-`carga_concorrencia.py`, `carga_escala.py`, `falha_pagamento.sh` e `coletar_evidencias.sh`, mais os `rodar_exp1.sh` e `rodar_exp2.sh` que repetem tudo 3 vezes.
+`carga_concorrencia.py`, `carga_escala.py`, `falha_pagamento.sh` e `coletar_evidencias.sh`, mais os `rodar_exp1.sh` e `rodar_exp2.sh` que repetem tudo várias vezes.
 
 ### Fase 9 — Rodar os experimentos
-Executamos os três experimentos, 3 repetições cada, e guardamos tudo em `evidencias/`.
+Executamos os três experimentos e guardamos tudo em `evidencias/`. Os Experimentos 1 e 2 foram refeitos depois, com 6 repetições e medições melhores (a primeira bateria ficou em `evidencias/exp1/v1` e `evidencias/exp2/v1`; a seção 8 explica o que mudou).
 
 ### Fase 10 — Documentação
 README, guia, relatório, diagrama e slides.
@@ -227,11 +227,12 @@ Para cada mensagem recebida:
 Se der erro no meio, devolve a mensagem para a fila (`nack` com `requeue`). Se o processo morrer, o RabbitMQ a entrega de novo (no log aparece `REENTREGA`).
 
 ### 5.10 `scripts/`
-- `carga_concorrencia.py` (Experimento 1): faz `reset`, "aquece" 100 conexões, faz todas as 100 requisições largarem **ao mesmo tempo** (um `asyncio.Event` funciona como a "largada") e mede cada resposta e a latência. No final consulta `/admin/stats` para saber se houve overbooking e salva um JSON.
-- `carga_escala.py` (Experimento 2): 500 reservas em **assentos diferentes**, com 50 conexões simultâneas, medindo req/s, latência e **qual instância respondeu** cada uma.
+- `carga_concorrencia.py` (Experimento 1): faz um aquecimento descartado (100 reservas em assentos diferentes), `reset`, e então faz as 100 requisições largarem **ao mesmo tempo** (um `asyncio.Event` funciona como a "largada"). Mede cada resposta, a latência e o tempo gasto dentro da API (cabeçalho `Server-Timing`). No final consulta `/admin/stats` para saber se houve overbooking e salva um JSON.
+- `carga_escala.py` (Experimento 2): reservas em **assentos diferentes**, medindo req/s, latência, **qual instância respondeu** cada uma, o tempo de cada etapa dentro da API e a CPU de cada contêiner durante a carga. A opção `--processos` divide a carga entre vários processos, porque um processo Python sozinho não consegue ocupar a API.
+- `medir_cpu.py`: lê o contador de CPU de cada contêiner antes e depois da carga. A diferença, dividida pela duração, dá o uso médio **durante** a carga.
 - `falha_pagamento.sh`: para o pagamento, cria 20 reservas, mostra a fila cheia, religa e acompanha até zerar. A variante `durante` mata o pagamento enquanto ele processa uma mensagem.
-- `rodar_exp1.sh` / `rodar_exp2.sh`: repetem os experimentos nos três modos, ou com 1, 2 e 3 réplicas, 3 vezes cada.
-- `resumir.py`: calcula as médias e imprime as tabelas.
+- `rodar_exp1.sh` / `rodar_exp2.sh`: repetem os experimentos nos três modos, ou com 1, 2 e 3 réplicas, 6 vezes cada, trocando a ordem a cada bloco para nenhuma configuração rodar sempre primeiro.
+- `resumir.py`: calcula média e desvio padrão e imprime as tabelas.
 - `coletar_evidencias.sh`: guarda o estado da stack (`compose ps`, logs, filas, overbooking).
 
 ---
@@ -297,22 +298,32 @@ A coluna "Verificado?" separa o que foi **testado de verdade** do que apenas **e
 
 ### Experimento 1 — Concorrência
 - **Pergunta:** o que acontece quando 100 pedidos disputam o mesmo assento?
-- **Como:** para cada modo, `reset`, 100 requisições simultâneas, contagem de `201`/`409`, latência e consulta de overbooking. Repetido 3 vezes.
+- **Como:** para cada modo, aquecimento descartado, `reset`, 100 requisições simultâneas, contagem de `201`/`409` e consulta de overbooking. 6 repetições por modo, com a ordem dos modos trocada a cada bloco.
 - **Resultado:**
 
-| Modo | Aceitas | Overbooking | Latência média |
+| Modo | Aceitas | Overbooking | Tempo na API para recusar |
 |---|---|---|---|
-| none | 18,7 | sim (3 de 3) | 538 ms |
-| db | 1 | não | 463 ms |
-| redis | 1 | não | 314 ms |
+| none | 9,7 (de 4 a 17) | sim (6 de 6) | 1,9 ms |
+| db | 1 | não | 1,7 ms |
+| redis | 1 | não | 1,0 ms |
 
-- **Como explicar:** sem controle, quase 19 pessoas "compraram" o mesmo lugar. Banco e Redis resolvem. O Redis é mais rápido porque os perdedores nem chegam ao banco.
+- **Como explicar:** sem controle, de 4 a 17 pessoas "compraram" o mesmo lugar. Banco e Redis resolvem: sempre 1 reserva aceita.
+- **Cuidado ao falar de velocidade:** os dois modos corretos recusam um pedido em 1 a 2 ms. **Não diga que o Redis é "mais rápido para o cliente":** a latência que o cliente vê variou de ~270 a ~1100 ms entre rodadas do mesmo modo, porque quem domina esse número é o script que dispara 100 pedidos de uma vez. A vantagem do Redis é poupar o banco: os 99 perdedores nem chegam ao Postgres.
 
 ### Experimento 2 — Escalabilidade
 - **Pergunta:** mais réplicas da API aumentam a vazão?
-- **Como:** 500 reservas em assentos diferentes, 50 conexões simultâneas, com 1, 2 e 3 réplicas.
-- **Resultado:** 132 req/s com 1 réplica; cerca de 92 req/s com 2 e com 3. **Não houve ganho.**
-- **Como explicar (com honestidade):** o balanceamento funciona (a carga se dividiu quase igual) e a CPU dos contêineres ficou perto de 0,2%, então a API não era o gargalo. **A causa provável** é o gerador de carga em Python e a rede entre o Windows e o WSL2, tudo na mesma máquina. **Isso é uma hipótese, não foi medida.** Para confirmar, rodaríamos o gerador dentro da rede Docker.
+- **Como:** reservas em assentos diferentes, com 1, 2 e 3 réplicas, 6 repetições cada, em ordem alternada. Em cada rodada medimos também a CPU dos contêineres **durante** a carga e o tempo gasto **dentro** da API.
+- **Resultado, em duas partes:**
+
+| Carga | 1 réplica | 2 réplicas | 3 réplicas | CPU da API por réplica |
+|---|---|---|---|---|
+| Leve (500 reservas, 50 conexões, 1 processo gerando) | 102 req/s | 99 req/s | 100 req/s | 48%, 30%, 24% |
+| Forte (1000 reservas, 96 conexões, 8 processos gerando) | 259 req/s | 351 req/s (+35%) | 415 req/s (+60%) | 98%, 95%, 93% |
+
+- **Como explicar a carga leve:** a vazão não muda com mais réplicas, mas isso não é limite da API. A API gasta só 13 a 27 ms por pedido e usa menos de meio núcleo; o cliente espera ~470 ms. O gargalo é o **gerador de carga**: um processo Python sozinho não envia pedidos rápido o bastante.
+- **Como explicar a carga forte:** com 8 processos gerando carga, cada réplica usa quase um núcleo inteiro. Aí a API vira o gargalo e réplicas extras ajudam: +35% com 2 e +60% com 3.
+- **Por que não triplicou:** **hipótese, não medida.** Tudo roda na mesma máquina, então gerador, réplicas, banco e fila disputam os mesmos 12 núcleos.
+- **A lição:** antes de concluir algo de um teste de carga, confira se o teste está medindo o sistema e não a ferramenta. Nossa primeira bateria (guardada em `evidencias/exp2/v1`) concluiu que "a API estava ociosa" com base num `docker stats` tirado depois do fim da carga. Estava errado, e só percebemos ao medir durante a carga.
 
 ### Experimento de falha — queda do pagamento
 - **Pergunta:** reservas se perdem se o pagamento cair?
@@ -323,7 +334,7 @@ A coluna "Verificado?" separa o que foi **testado de verdade** do que apenas **e
 ## 9. Perguntas que podem fazer na apresentação
 
 **Por que usar Redis se o banco já impede o overbooking?**
-Porque o banco recebe todos os pedidos e rejeita o excesso, o que custa. O Redis barra os perdedores antes, aliviando o banco, e foi mais rápido no experimento. O índice do banco continua como segunda barreira.
+Porque no modo `db` todos os pedidos chegam ao banco e ele precisa rejeitar o excesso. O Redis barra os perdedores antes, aliviando o banco. Em velocidade os dois empataram no nosso teste: recusar um pedido leva de 1 a 2 ms na API em qualquer modo. O índice do banco continua como segunda barreira.
 
 **Se o Redis cair, o sistema vende o mesmo assento duas vezes?**
 Não. O modo `redis` responde `503`, e mesmo que o lock falhasse o índice único do Postgres impediria a duplicata. O ponto fraco é a **disponibilidade**, e não a consistência.
@@ -340,8 +351,14 @@ Fila durável, mensagens persistentes e ack manual só depois de gravar no banco
 **O que é idempotência e por que importa aqui?**
 É poder repetir uma operação sem efeito extra. Como o RabbitMQ pode entregar a mesma mensagem duas vezes, o `UPDATE` só age se a reserva ainda estiver `PENDENTE`.
 
-**Por que mais réplicas não aumentaram a vazão?**
-Medimos que a CPU da API ficou ociosa e que o balanceamento funcionou, então o gargalo estava fora da API. A causa provável é o gerador de carga e a rede do Docker Desktop no Windows, mas não confirmamos.
+**Mais réplicas aumentaram a vazão?**
+Sim, quando a carga é suficiente para ocupar a API: +35% com 2 réplicas e +60% com 3. Na primeira tentativa não vimos ganho nenhum, e a medição mostrou o motivo: o gerador de carga era o gargalo (a API usava menos de meio núcleo e mais de 90% da latência ficava fora dela).
+
+**Por que 3 réplicas não renderam 3 vezes mais?**
+Não medimos a causa. A hipótese é a máquina única: gerador de carga, réplicas, banco e fila disputam os mesmos núcleos. Para confirmar, a carga teria de vir de outra máquina.
+
+**Como vocês sabem que o gargalo era o gerador de carga?**
+A API informa, no cabeçalho `Server-Timing`, quanto tempo gastou em cada pedido: 13 a 27 ms, enquanto o cliente esperava ~470 ms. E a CPU da API, medida durante a carga, ficou abaixo de 50% de um núcleo.
 
 **Para que serve o atraso de 50 ms no modo `none`?**
 Para ampliar a janela da condição de corrida e tornar o overbooking reproduzível. Sem ele, o erro aconteceria com menos frequência, mas ainda aconteceria.

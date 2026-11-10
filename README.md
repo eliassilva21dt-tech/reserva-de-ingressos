@@ -35,13 +35,14 @@ pip install -r scripts/requirements.txt
 ## Experimentos (saídas em `evidencias/`)
 | Experimento | Comando | Saída |
 |---|---|---|
-| 1 — Concorrência (3 modos × 3 rep.) | `bash scripts/rodar_exp1.sh` | `evidencias/exp1/*.json` + tabela |
-| 2 — Escalabilidade (1/2/3 réplicas × 3 rep.) | `bash scripts/rodar_exp2.sh` | `evidencias/exp2/*.json` + tabela |
+| 1 — Concorrência (3 modos × 6 rep., ~5 min) | `bash scripts/rodar_exp1.sh` | `evidencias/exp1/*.json` + tabela |
+| 2 — Escalabilidade (1/2/3 réplicas × 6 rep., cargas leve e forte, ~11 min) | `bash scripts/rodar_exp2.sh` | `evidencias/exp2/*.json` + tabela |
 | Falha — queda do pagamento | `bash scripts/falha_pagamento.sh` | `evidencias/falha/*.log` |
 | Falha — queda durante o processamento (reentrega) | `bash scripts/falha_pagamento.sh durante` | `evidencias/falha/*.log` |
 | Coletar logs/estado da stack | `bash scripts/coletar_evidencias.sh exp1` | `evidencias/exp1/` |
 
-Tabelas resumidas a qualquer momento: `python scripts/resumir.py exp1` / `exp2`.
+Tabelas resumidas (média ± desvio padrão) a qualquer momento: `python scripts/resumir.py exp1` / `exp2`.
+O Experimento 2 mede a CPU dos contêineres durante a carga; para isso o comando `docker` precisa estar no `PATH` do terminal.
 Tire também prints do painel do RabbitMQ e guarde em `evidencias/`.
 
 Trocar o modo de controle manualmente: `MODO_LOCK=none docker compose up -d --force-recreate api`
