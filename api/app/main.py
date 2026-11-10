@@ -1,5 +1,6 @@
 import asyncio
 import logging
+import time
 import uuid
 from contextlib import asynccontextmanager
 
@@ -50,12 +51,27 @@ class NovaReserva(BaseModel):
     cliente: str = Field(min_length=1)
 
 
-def indisponivel() -> JSONResponse:
-    return JSONResponse({"erro": "assento indisponível"}, status_code=409)
+def indisponivel(t_ini: float) -> JSONResponse:
+    # Server-Timing: quanto tempo a API levou para recusar (usado no Experimento 1).
+    return JSONResponse(
+        {"erro": "assento indisponível"},
+        status_code=409,
+        headers={"Server-Timing": _server_timing({}, _ms(t_ini))},
+    )
 
 
 def servico_fora(motivo: str) -> JSONResponse:
     return JSONResponse({"erro": f"dependência indisponível: {motivo}"}, status_code=503)
+
+
+def _ms(desde: float) -> float:
+    return (time.perf_counter() - desde) * 1000
+
+
+def _server_timing(tempos: dict[str, float], total: float) -> str:
+    """Cabeçalho HTTP padrão Server-Timing: 'controle;dur=1.2, banco;dur=3.4, ...'."""
+    partes = [f"{nome};dur={ms:.1f}" for nome, ms in tempos.items()]
+    return ", ".join(partes + [f"total;dur={total:.1f}"])
 
 
 # ----------------------------------------------------------------------------
@@ -94,6 +110,9 @@ async def criar_reserva(corpo: NovaReserva):
     assento_id, cliente = corpo.assento_id, corpo.cliente
     modo = config.MODO_LOCK
     token = None
+    # Tempo gasto em cada etapa (ms); vai no cabeçalho Server-Timing do 201.
+    tempos: dict[str, float] = {}
+    t_ini = t_etapa = time.perf_counter()
 
     try:
         # ---- 1. Controle de concorrência, conforme o modo ----------------
@@ -105,7 +124,7 @@ async def criar_reserva(corpo: NovaReserva):
                 ocupado = await db.assento_ocupado(c, assento_id)
             if ocupado:
                 log.info("assento ocupado assento=%s cliente=%s", assento_id, cliente)
-                return indisponivel()
+                return indisponivel(t_ini)
             # Amplia a janela da condição de corrida (só para o experimento).
             await asyncio.sleep(config.CHECK_INSERT_DELAY_MS / 1000)
 
@@ -113,17 +132,19 @@ async def criar_reserva(corpo: NovaReserva):
             token = uuid.uuid4().hex
             if not await locks.adquirir(estado.redis, assento_id, token):
                 log.info("lock negado assento=%s cliente=%s", assento_id, cliente)
-                return indisponivel()
+                return indisponivel(t_ini)
+        tempos["controle"], t_etapa = _ms(t_etapa), time.perf_counter()
 
         # ---- 2. Grava a reserva como PENDENTE -----------------------------
         try:
             reserva_id = await db.inserir_reserva(estado.pool, assento_id, cliente)
+            tempos["banco"], t_etapa = _ms(t_etapa), time.perf_counter()
         except asyncpg.UniqueViolationError:
             # modo db (barreira única) ou redis (segunda barreira)
             log.info("violação do índice único assento=%s cliente=%s", assento_id, cliente)
             if token:
                 await locks.liberar(estado.redis, assento_id, token)
-            return indisponivel()
+            return indisponivel(t_ini)
         except asyncpg.ForeignKeyViolationError:
             if token:
                 await locks.liberar(estado.redis, assento_id, token)
@@ -136,6 +157,7 @@ async def criar_reserva(corpo: NovaReserva):
         # ---- 3. Publica na fila para o pagamento --------------------------
         try:
             await estado.fila.publicar(reserva_id, assento_id)
+            tempos["fila"] = _ms(t_etapa)
         except Exception as e:
             # Sem fila, ninguém vai processar o pagamento: desfaz a reserva.
             log.error("falha ao publicar reserva=%s: %s (reserva desfeita)", reserva_id, e)
@@ -164,6 +186,7 @@ async def criar_reserva(corpo: NovaReserva):
             "instancia": config.HOSTNAME,
         },
         status_code=201,
+        headers={"Server-Timing": _server_timing(tempos, _ms(t_ini))},
     )
 
 
