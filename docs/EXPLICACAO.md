@@ -233,6 +233,9 @@ Se der erro no meio, devolve a mensagem para a fila (`nack` com `requeue`). Se o
 - `falha_pagamento.sh`: para o pagamento, cria 20 reservas, mostra a fila cheia, religa e acompanha até zerar. A variante `durante` mata o pagamento enquanto ele processa uma mensagem.
 - `rodar_exp1.sh` / `rodar_exp2.sh`: repetem os experimentos nos três modos, ou com 1, 2 e 3 réplicas, 6 vezes cada, trocando a ordem a cada bloco para nenhuma configuração rodar sempre primeiro.
 - `resumir.py`: calcula média e desvio padrão e imprime as tabelas.
+- `falha_reinicio.sh`: derruba e sobe a stack inteira com 20 mensagens na fila e confere se alguma se perdeu.
+- `falha_api.py`: envia 25 reservas por segundo, derruba uma réplica da API no meio e mede erros e latência.
+- `escala_pagamento.py` / `rodar_escala_pagamento.sh`: medem em quanto tempo 1, 2 e 4 consumidores processam 40 pagamentos.
 - `coletar_evidencias.sh`: guarda o estado da stack (`compose ps`, logs, filas, overbooking).
 
 ---
@@ -287,7 +290,9 @@ A coluna "Verificado?" separa o que foi **testado de verdade** do que apenas **e
 | **Contêiner cai de verdade** | `restart: unless-stopped` o reinicia. `docker kill` não reinicia (conta como parada manual). | **Sim** (Redis e pagamento) |
 | **RabbitMQ cai** | A API não consegue publicar: desfaz a reserva e responde `503`; `connect_robust` reconecta quando ele volta. | Só previsto no código |
 | **Postgres cai** | A API deve responder `503`; os dados estão no volume. | Só previsto no código (persistência em `down`/`up` foi verificada) |
-| **Uma réplica da API cai** | O nginx tenta outra réplica (`proxy_next_upstream`). | **Não testado** (o cenário extra opcional não foi feito) |
+| **Uma réplica da API cai** | O nginx tenta outra réplica (`proxy_next_upstream`). Nos ~5 s seguintes algumas respostas demoram ~2 s; depois volta ao normal. | **Sim** (`falha_api.py`): 0 erros em 900 com `docker stop`, 1 erro em 900 com `docker kill` |
+| **A stack inteira reinicia com mensagens na fila** | O RabbitMQ guarda as mensagens no volume `rabbitmq_data`; ao voltar, o pagamento processa todas. | **Sim** (`falha_reinicio.sh`). Antes do volume, as 20 mensagens se perdiam |
+| **A API morre entre gravar a reserva e publicar na fila** | Nada: a reserva fica `PENDENTE` para sempre e o assento fica preso. | Limitação conhecida, não tratada |
 | **O cadeado expira antes do fim** | O índice único do Postgres ainda protege. | Só previsto (o índice único foi exercitado nos modos `db` e `redis`) |
 | **Mensagem entregue duas vezes** | O `UPDATE ... WHERE status='PENDENTE'` ignora a segunda. | Previsto; a reentrega ocorreu, mas a reserva ainda estava `PENDENTE` |
 | **Pagamento recusado** | A reserva vira `RECUSADA`, o assento volta a ficar livre e o cadeado é apagado. | Parcial: houve recusas, mas não conferimos a liberação do assento |
@@ -359,6 +364,15 @@ Não medimos a causa. A hipótese é a máquina única: gerador de carga, répli
 
 **Como vocês sabem que o gargalo era o gerador de carga?**
 A API informa, no cabeçalho `Server-Timing`, quanto tempo gastou em cada pedido: 13 a 27 ms, enquanto o cliente esperava ~470 ms. E a CPU da API, medida durante a carga, ficou abaixo de 50% de um núcleo.
+
+**O que acontece se uma réplica da API cair no meio do uso?**
+Testamos com 25 reservas por segundo. A outra réplica assume toda a carga. Nos ~5 segundos seguintes, 6 de 900 requisições demoraram cerca de 2 s, porque o nginx ainda tentava a réplica morta até atualizar o DNS. Com encerramento normal não houve erro; com morte abrupta, 1 erro em 900.
+
+**E se o computador (ou o Docker) reiniciar com pagamentos na fila?**
+Nada se perde: o RabbitMQ grava as mensagens num volume. Descobrimos num teste que, sem esse volume, as mensagens sumiam e as reservas ficavam `PENDENTE` para sempre; por isso o adicionamos.
+
+**Qual é o ponto mais fraco do sistema hoje?**
+Uma reserva `PENDENTE` não expira. Se a API morrer exatamente entre gravar a reserva e publicar a mensagem, o assento fica preso. A correção seria um job de expiração ou o padrão outbox.
 
 **Para que serve o atraso de 50 ms no modo `none`?**
 Para ampliar a janela da condição de corrida e tornar o overbooking reproduzível. Sem ele, o erro aconteceria com menos frequência, mas ainda aconteceria.

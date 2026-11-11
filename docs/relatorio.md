@@ -40,7 +40,7 @@ Os comandos de cada experimento, como trocar o modo de controle e como parar e l
 
 ## 5. Persistência
 
-O Postgres guarda eventos, assentos e reservas em um volume nomeado (`pgdata`). O Redis guarda apenas locks temporários (TTL de 30 s) e o RabbitMQ usa fila durável com mensagens persistentes. Verificado: após `docker compose down` e `up` (sem `-v`) os 1000 assentos e as reservas continuam no banco. `docker compose down -v` apaga o volume.
+O Postgres guarda eventos, assentos e reservas em um volume nomeado (`pgdata`). O Redis guarda apenas locks temporários (TTL de 30 s). O RabbitMQ usa fila durável com mensagens persistentes e também tem volume nomeado (`rabbitmq_data`) e hostname fixo, para que as mensagens na fila sobrevivam a um reinício da stack. Verificado: após `docker compose down` e `up` (sem `-v`) os 1000 assentos e as reservas continuam no banco, e as mensagens pendentes continuam na fila (seção 8.1). `docker compose down -v` apaga os volumes.
 
 ## 6. Experimento 1 — Concorrência no mesmo assento
 Hipótese, procedimento e comandos: `PROJETO.md` §10. Executar `bash scripts/rodar_exp1.sh`.
@@ -104,6 +104,22 @@ Executar `bash scripts/falha_pagamento.sh` e `bash scripts/falha_pagamento.sh du
 
 Prints do painel do RabbitMQ para o cenário "pagamento parado" (em `evidencias/falha/`, descritos em `PRINTS_RABBITMQ.md`): fila vazia; 20 mensagens prontas com 0 consumidores; drenagem com 1 `unacked`; fila zerada, com o gráfico descendo de 20 para 0. Nessa execução as 20 reservas terminaram em 19 `CONFIRMADA` e 1 `RECUSADA`, nenhuma perdida.
 
+### 8.1 Reinício da stack inteira com a fila cheia
+Executar `bash scripts/falha_reinicio.sh`. O script para o pagamento, cria 20 reservas, faz `docker compose down` e `up`, e confere se as reservas são processadas.
+
+- *Antes da correção (RabbitMQ sem volume):* as 20 mensagens **se perderam** no reinício. As 20 reservas ficaram `PENDENTE` para sempre e os assentos ficaram presos (`reinicio_sem_volume_*.log`). A fila era durável e as mensagens persistentes, mas os dados do RabbitMQ ficavam dentro do contêiner, que o `down` apaga.
+- *Depois da correção (volume `rabbitmq_data` + hostname fixo):* nenhuma perda; as 20 reservas terminaram em 18 `CONFIRMADA` e 2 `RECUSADA` (`reinicio_com_volume_*.log`). Observação: nesse log, a leitura da fila feita logo após o RabbitMQ subir (passo 7) não retornou a fila; a prova de que as mensagens sobreviveram é o processamento das 20 reservas no passo 9.
+
+### 8.2 Queda de uma réplica da API com carga contínua (cenário extra)
+Executar `python scripts/falha_api.py --modo stop` e `--modo kill`, com 2 réplicas no ar. O script envia 25 reservas por segundo durante 36 s (900 no total), derruba uma réplica aos 12 s e a religa aos 24 s. Uma execução de cada modo (`falha_api_*.json`).
+
+| Como a réplica caiu | Erros | Requisições lentas (> 500 ms) | Maior latência | Latência normal (p95) | Volta a atender após religar |
+|---|---|---|---|---|---|
+| `docker stop` (encerra com aviso) | 0 de 900 | 6, nos ~5 s após a queda | 2,09 s | ~60 ms | 6,2 s |
+| `docker kill` (morte abrupta) | 1 de 900 (um `502`) | 6, nos ~5 s após a queda | 2,07 s | ~58 ms | 5,9 s |
+
+**Interpretação:** o sistema continuou atendendo pela outra réplica, que recebeu toda a carga enquanto a primeira estava fora. Nos ~5 s seguintes à queda, algumas requisições demoraram ~2 s: o nginx ainda tinha o endereço da réplica morta (ele re-resolve o DNS a cada 5 s), esperou o tempo limite de conexão de 2 s (`proxy_connect_timeout`) e então tentou a outra réplica (`proxy_next_upstream`). Com `docker stop` a API termina as requisições em andamento antes de sair, e não houve erro. Com `docker kill` a requisição que estava em andamento na réplica morta recebeu `502`; mesmo assim essa reserva foi gravada (900 reservas no banco para 899 respostas `201`), ou seja, o cliente viu erro numa reserva que existe. Em nenhum caso houve overbooking. Depois de religada, a réplica voltou a receber tráfego em ~6 s.
+
 ## 9. Evidências
 
 Tudo fica na pasta `evidencias/`, versionada junto com o código.
@@ -112,7 +128,8 @@ Tudo fica na pasta `evidencias/`, versionada junto com o código.
 |---|---|
 | `evidencias/exp1/` | JSON de cada rodada do Experimento 1 (3 modos × 6 repetições) e o estado da stack coletado (`compose ps`, logs da API, do pagamento e do proxy, `rabbitmqctl`, overbooking). Em `v1/`, a primeira bateria (substituída). |
 | `evidencias/exp2/` | JSON de cada rodada do Experimento 2 (1, 2 e 3 réplicas × 6 repetições × 2 cargas: arquivos `leve` e `forte`), com CPU por serviço e tempo por etapa, e o estado coletado. Em `v1/`, a primeira bateria (substituída). |
-| `evidencias/falha/` | Logs completos das duas variantes do experimento de falha (`falha_normal_*.log` e `falha_durante_*.log`, com a marca `REENTREGA`), o estado coletado e 4 prints do painel do RabbitMQ. |
+| `evidencias/falha/` | Logs completos das duas variantes do experimento de falha (`falha_normal_*.log` e `falha_durante_*.log`, com a marca `REENTREGA`), o estado coletado e 4 prints do painel do RabbitMQ. Também: reinício da stack com a fila cheia, antes e depois da correção (`reinicio_*.log`), e queda de uma réplica da API (`falha_api_*.json`). |
+| `evidencias/escala_pagamento/` | JSON de cada rodada do experimento extra de escala do pagamento (1, 2 e 4 consumidores × 3 repetições). |
 
 As tabelas deste relatório são geradas por `python scripts/resumir.py exp1` e `exp2` a partir desses JSON (média ± desvio padrão). O CI do GitHub Actions roda um teste de fumaça (sobe a stack e confirma que 20 pedidos ao mesmo assento resultam em exatamente 1 reserva).
 
@@ -121,6 +138,10 @@ As tabelas deste relatório são geradas por `python scripts/resumir.py exp1` e 
 - Lock com TTL pode expirar antes do fim da operação (o índice único do Postgres continua protegendo).
 - O pagamento apaga o lock com `DEL` simples, sem conferir o token (o contrato da mensagem só leva `reserva_id` e `assento_id`).
 - Pagamento é simulado.
+- Uma reserva `PENDENTE` nunca expira. Se a API morrer entre gravar no banco e publicar na fila, o assento fica preso até alguém intervir. O mesmo vale se a fila for apagada (`docker compose down -v`). Melhoria: um job que expira reservas `PENDENTE` antigas, ou o padrão *outbox*.
+- Não há fila de erros (DLQ): uma mensagem que sempre falha no pagamento volta para a fila indefinidamente.
+- Numa queda abrupta de uma réplica, a requisição em andamento recebe `502` mesmo que a reserva tenha sido gravada (visto 1 vez em 900, seção 8.2). O cliente precisaria consultar antes de tentar de novo.
+- `/admin/reset` e `/admin/stats` ficam abertos por padrão (`ENABLE_ADMIN=true`) e o RabbitMQ usa `guest/guest`: aceitável em desenvolvimento, não em produção.
 - Testes em uma única máquina (Windows com Docker Desktop/WSL2): gerador de carga e sistema disputam a mesma CPU, então o resultado de escalabilidade não é generalizável.
 - O gerador de carga em Python é lento: com 1 processo ele limita o teste em ~100 req/s. Por isso a carga forte usa 8 processos.
 - A latência vista pelo cliente no Experimento 1 mede principalmente o gerador de carga; para comparar os modos usamos o tempo medido dentro da API.
@@ -131,6 +152,6 @@ As tabelas deste relatório são geradas por `python scripts/resumir.py exp1` e 
 
 O projeto mostra, com dados, que a verificação "está livre? então reserva" não é segura quando há várias réplicas: sem controle, o Experimento 1 aceitou em média 9,7 reservas para o mesmo assento (de 4 a 17), com overbooking nas 6 rodadas. O índice único do Postgres e o lock no Redis resolveram o problema (exatamente 1 reserva aceita em todas as rodadas). Os dois recusam um pedido em 1 a 2 ms; a diferença é que o Redis barra os perdedores antes de chegar ao banco. Manter os dois juntos dá defesa em camadas: o lock reduz a carga e o índice garante a consistência mesmo se o lock expirar.
 
-O pagamento assíncrono por fila durável com ack manual e atualização idempotente funcionou como esperado: com o serviço parado, a API continuou aceitando reservas, a fila acumulou as mensagens e, ao religar, todas foram processadas, sem perda e com reentrega quando o consumidor foi morto no meio do trabalho.
+O pagamento assíncrono por fila durável com ack manual e atualização idempotente funcionou como esperado: com o serviço parado, a API continuou aceitando reservas, a fila acumulou as mensagens e, ao religar, todas foram processadas, sem perda e com reentrega quando o consumidor foi morto no meio do trabalho. Os testes extras de falha encontraram um defeito real (as mensagens da fila se perdiam num reinício da stack, corrigido com um volume para o RabbitMQ) e mostraram que a queda de uma réplica da API não derruba o serviço: a outra réplica assume, com alguns segundos de respostas lentas.
 
 O Experimento 2 mostrou duas coisas. Primeiro, que é preciso conferir se o teste está medindo o sistema: com a carga do enunciado, o limite era o gerador de carga, e a vazão ficou em ~100 req/s com qualquer número de réplicas. Segundo, que com carga suficiente a API sem estado escala: a vazão subiu 35% com 2 réplicas e 60% com 3, com cada réplica usando quase um núcleo inteiro. O ganho não é linear, provavelmente porque tudo roda na mesma máquina; confirmar isso exige gerar a carga a partir de outra máquina.

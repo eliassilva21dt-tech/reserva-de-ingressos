@@ -9,8 +9,8 @@
 <ul style="font-size:30px;line-height:1.4;color:#3C4650">
 <li>Redis, RabbitMQ e Postgres sem réplica: pontos únicos de falha</li>
 <li>Lock com TTL de 30 s pode expirar antes do fim da operação</li>
-<li>Pagamento simulado</li>
-<li>Testes em uma única máquina</li>
+<li>Reserva PENDENTE não expira: o assento pode ficar preso</li>
+<li>Pagamento simulado e testes em uma única máquina</li>
 </ul>
 </div>
 <div style="display:flex;flex-direction:column;gap:20px;background:#FFFFFF;border:1px solid #E3DED3;border-radius:16px;padding:40px">
@@ -18,11 +18,11 @@
 <ul style="font-size:30px;line-height:1.4;color:#3C4650">
 <li>Redis e Postgres replicados</li>
 <li>Redlock, para locks entre várias instâncias do Redis</li>
-<li>Kubernetes para orquestrar as réplicas</li>
-<li>Métricas e tracing distribuído (Prometheus, Grafana)</li>
+<li>Expirar reservas PENDENTE antigas e fila de erros</li>
+<li>Kubernetes, métricas e tracing (Prometheus, Grafana)</li>
 </ul>
 </div>
 </div>
 <p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#5B636B">Mesmo com o lock expirado, o índice único do Postgres continua impedindo o overbooking.</p>
-<aside>Sugestão de quem fala: Anna Júlia ou Alessandro. Ser direto sobre as limitações: mostram que o grupo entende onde o sistema pode falhar. A principal: se o Redis cair, o modo redis passa a devolver 503; o modo db continua protegendo pelo índice único. Cada melhoria responde a uma limitação da coluna ao lado.</aside>
+<aside>Sugestão de quem fala: Anna Júlia ou Alessandro. Ser direto sobre as limitações: mostram que o grupo entende onde o sistema pode falhar. A principal para a disponibilidade: se o Redis cair, o modo redis passa a devolver 503; o modo db continua protegendo pelo índice único. A principal para a consistência do negócio: se a API morrer exatamente entre gravar a reserva e publicar a mensagem, a reserva fica PENDENTE para sempre, porque nada a expira; a correção seria um job de expiração ou o padrão outbox. Também não há fila de erros: uma mensagem que sempre falha volta para a fila sem limite. Cada melhoria responde a uma limitação da coluna ao lado.</aside>
 </section>

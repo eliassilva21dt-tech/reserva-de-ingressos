@@ -416,14 +416,14 @@ Cada fase termina com um **teste de aceitação**. Só avance quando passar.
 
 ### Fase 7 — Robustez
 - Healthchecks, `depends_on` com `service_healthy`, `restart: unless-stopped`, logs padronizados.
-- ✅ **Aceite:** `docker compose down && docker compose up -d` sobe tudo sozinho e ordenado; `docker kill` em um contêiner e ele volta.
+- ✅ **Aceite:** `docker compose down && docker compose up -d` sobe tudo sozinho e ordenado; uma queda real de um contêiner (o processo morrendo sozinho) faz ele voltar. *(Ajustado: `docker kill`/`docker stop` contam como parada manual e não disparam o `restart: unless-stopped`; ver `docs/decisoes.md`.)*
 
 ### Fase 8 — Scripts de experimento
 - `carga_concorrencia.py`, `carga_escala.py`, `falha_pagamento.sh`, `coletar_evidencias.sh`.
 - ✅ **Aceite:** cada script roda de ponta a ponta e salva a saída em `evidencias/`.
 
 ### Fase 9 — Rodar os experimentos
-- Executar os 3 experimentos, 3 repetições cada, preencher as tabelas, tirar prints.
+- Executar os 3 experimentos, 3 repetições cada, preencher as tabelas, tirar prints. *(Os Experimentos 1 e 2 foram refeitos depois com 6 repetições e ordem alternada; ver `docs/relatorio.md`.)*
 - ✅ **Aceite:** pasta `evidencias/` completa e tabelas preenchidas no rascunho do relatório.
 
 ### Fase 10 — Relatório, README e apresentação

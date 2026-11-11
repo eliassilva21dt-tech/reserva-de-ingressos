@@ -247,7 +247,10 @@ Nos comandos abaixo, `PYTHON=.venv/Scripts/python` diz aos scripts `.sh` qual Py
 | **2. Escalabilidade** (1, 2 e 3 réplicas × 6, cargas leve e forte) | `PYTHON=.venv/Scripts/python bash scripts/rodar_exp2.sh` | ~11 min | Tabela no final; JSON em `evidencias/exp2/` |
 | **Falha: pagamento parado** | `bash scripts/falha_pagamento.sh` | ~1 min | Log em `evidencias/falha/` |
 | **Falha: pagamento morto no meio** | `bash scripts/falha_pagamento.sh durante` | ~1 min | Log com `(REENTREGA)` |
-| Recarregar a tabela sem rodar de novo | `.venv/Scripts/python scripts/resumir.py exp1` (ou `exp2`) | instantâneo | Tabela em Markdown |
+| **Falha: reinício da stack com a fila cheia** | `bash scripts/falha_reinicio.sh` | ~2 min | Log em `evidencias/falha/` |
+| **Falha: queda de uma réplica da API** (2 réplicas no ar) | `.venv/Scripts/python scripts/falha_api.py --modo stop` (ou `kill`) | ~1 min | JSON em `evidencias/falha/` |
+| **Extra: escala do pagamento** (1, 2 e 4 consumidores × 3) | `PYTHON=.venv/Scripts/python bash scripts/rodar_escala_pagamento.sh` | ~9 min | Tabela no final; JSON em `evidencias/escala_pagamento/` |
+| Recarregar a tabela sem rodar de novo | `.venv/Scripts/python scripts/resumir.py exp1` (ou `exp2`, `pagamento`) | instantâneo | Tabela em Markdown |
 | Guardar logs e estado da stack | `bash scripts/coletar_evidencias.sh exp1` | segundos | Arquivos em `evidencias/exp1/` |
 
 Os experimentos **apagam as reservas** (usam `/admin/reset`). O `rodar_exp1.sh` deixa a stack no modo `redis` no final.
