@@ -31,6 +31,11 @@ services:
   rabbitmq:
     image: rabbitmq:3-management
     restart: unless-stopped
+    # Hostname fixo + volume: o RabbitMQ guarda os dados numa pasta com o nome do
+    # nó (rabbit@<hostname>). Sem isso, um "down"/"up" apagava as mensagens da fila.
+    hostname: rabbitmq
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
     ports:
       - "15672:15672"   # painel de gestão (guest/guest) - só para desenvolvimento/prints
     healthcheck:
@@ -104,6 +109,7 @@ services:
 
 volumes:
   pgdata:
+  rabbitmq_data:
 
 networks:
   front-net:

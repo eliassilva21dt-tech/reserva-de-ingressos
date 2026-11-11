@@ -1,0 +1,140 @@
+
+### 22:42:35 1. reset
+{"status":"ok","locks_removidos":0,"modo":"redis"}
+
+### 22:42:40 2. parando o pagamento-service (para as mensagens ficarem na fila)
+ Container ingressos-pagamento-1 Stopping 
+ Container ingressos-pagamento-1 Stopped 
+
+### 22:42:44 3. criando 20 reservas (assentos 1..20)
+201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 201 
+
+### 22:42:46 4. antes do reinício: fila (prontas / unacked) e reservas por status
+reservas.pagamento	20	0
+PENDENTE=20 
+
+### 22:42:49 5. docker compose down (sem -v: os volumes nomeados são mantidos)
+ Container ingressos-pagamento-1 Stopping 
+ Container ingressos-proxy-1 Stopping 
+ Container ingressos-pagamento-1 Stopped 
+ Container ingressos-pagamento-1 Removing 
+ Container ingressos-pagamento-1 Removed 
+ Container ingressos-proxy-1 Stopped 
+ Container ingressos-proxy-1 Removing 
+ Container ingressos-proxy-1 Removed 
+ Container ingressos-api-2 Stopping 
+ Container ingressos-api-1 Stopping 
+ Container ingressos-api-2 Stopped 
+ Container ingressos-api-2 Removing 
+ Container ingressos-api-2 Removed 
+ Container ingressos-api-1 Stopped 
+ Container ingressos-api-1 Removing 
+ Container ingressos-api-1 Removed 
+ Container ingressos-redis-1 Stopping 
+ Container ingressos-db-1 Stopping 
+ Container ingressos-rabbitmq-1 Stopping 
+ Container ingressos-redis-1 Stopped 
+ Container ingressos-redis-1 Removing 
+ Container ingressos-redis-1 Removed 
+ Container ingressos-db-1 Stopped 
+ Container ingressos-db-1 Removing 
+ Container ingressos-db-1 Removed 
+ Container ingressos-rabbitmq-1 Stopped 
+ Container ingressos-rabbitmq-1 Removing 
+ Container ingressos-rabbitmq-1 Removed 
+ Network ingressos_front-net Removing 
+ Network ingressos_back-net Removing 
+ Network ingressos_back-net Removed 
+ Network ingressos_front-net Removed 
+
+### 22:42:53 6. subindo só db, redis e rabbitmq (sem API e sem pagamento, para ninguém mexer na fila)
+ Network ingressos_back-net Creating 
+ Network ingressos_back-net Creating 
+ Network ingressos_back-net Created 
+ Network ingressos_back-net Created 
+ Container ingressos-redis-1 Creating 
+ Container ingressos-db-1 Creating 
+ Container ingressos-rabbitmq-1 Creating 
+ Container ingressos-rabbitmq-1 Created 
+ Container ingressos-redis-1 Created 
+ Container ingressos-db-1 Created 
+ Container ingressos-redis-1 Starting 
+ Container ingressos-db-1 Starting 
+ Container ingressos-rabbitmq-1 Starting 
+ Container ingressos-redis-1 Started 
+ Container ingressos-db-1 Started 
+ Container ingressos-rabbitmq-1 Started 
+ Container ingressos-redis-1 Waiting 
+ Container ingressos-rabbitmq-1 Waiting 
+ Container ingressos-db-1 Waiting 
+ Container ingressos-redis-1 Healthy 
+ Container ingressos-db-1 Healthy 
+ Container ingressos-rabbitmq-1 Healthy 
+
+### 22:43:01 7. depois do reinício: fila e reservas por status (esperado: 20 mensagens prontas e 20 PENDENTE)
+(a fila reservas.pagamento não existe ou está inacessível)
+PENDENTE=20 
+
+### 22:43:03 8. subindo o resto da stack (API, pagamento, proxy)
+ Container ingressos-rabbitmq-1 Running 
+ Container ingressos-db-1 Running 
+ Container ingressos-redis-1 Running 
+ Network ingressos_front-net Creating 
+ Container ingressos-pagamento-1 Creating 
+ Network ingressos_front-net Creating 
+ Network ingressos_front-net Created 
+ Network ingressos_front-net Created 
+ Container ingressos-api-1 Creating 
+ Container ingressos-api-2 Creating 
+ Container ingressos-pagamento-1 Created 
+ Container ingressos-api-2 Created 
+ Container ingressos-proxy-1 Creating 
+ Container ingressos-api-1 Created 
+ Container ingressos-proxy-1 Created 
+ Container ingressos-redis-1 Waiting 
+ Container ingressos-rabbitmq-1 Waiting 
+ Container ingressos-db-1 Waiting 
+ Container ingressos-db-1 Waiting 
+ Container ingressos-redis-1 Waiting 
+ Container ingressos-rabbitmq-1 Waiting 
+ Container ingressos-rabbitmq-1 Healthy 
+ Container ingressos-db-1 Healthy 
+ Container ingressos-db-1 Healthy 
+ Container ingressos-redis-1 Healthy 
+ Container ingressos-redis-1 Healthy 
+ Container ingressos-rabbitmq-1 Healthy 
+ Container ingressos-pagamento-1 Starting 
+ Container ingressos-api-1 Starting 
+ Container ingressos-pagamento-1 Started 
+ Container ingressos-api-1 Started 
+ Container ingressos-api-2 Starting 
+ Container ingressos-api-2 Started 
+ Container ingressos-api-1 Waiting 
+ Container ingressos-api-2 Waiting 
+ Container ingressos-api-1 Healthy 
+ Container ingressos-api-2 Healthy 
+ Container ingressos-proxy-1 Starting 
+ Container ingressos-proxy-1 Started 
+ Container ingressos-pagamento-1 Waiting 
+ Container ingressos-proxy-1 Waiting 
+ Container ingressos-db-1 Waiting 
+ Container ingressos-redis-1 Waiting 
+ Container ingressos-rabbitmq-1 Waiting 
+ Container ingressos-api-1 Waiting 
+ Container ingressos-api-2 Waiting 
+ Container ingressos-rabbitmq-1 Healthy 
+ Container ingressos-proxy-1 Healthy 
+ Container ingressos-db-1 Healthy 
+ Container ingressos-redis-1 Healthy 
+ Container ingressos-pagamento-1 Healthy 
+ Container ingressos-api-1 Healthy 
+ Container ingressos-api-2 Healthy 
+API respondendo.
+
+### 22:43:12 9. aguardando o pagamento processar as reservas (até 90 s)
+reservas.pagamento	0	0
+CONFIRMADA=18 RECUSADA=2 
+
+### 22:43:53 10. resultado
+RESULTADO: nenhuma reserva perdida. As 20 mensagens sobreviveram ao reinício e foram processadas.
+log salvo em evidencias/falha/reinicio_com_volume_20261110-224235.log
