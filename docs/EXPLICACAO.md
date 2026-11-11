@@ -330,6 +330,12 @@ A coluna "Verificado?" separa o que foi **testado de verdade** do que apenas **e
 - **Por que não triplicou:** **hipótese, não medida.** Tudo roda na mesma máquina, então gerador, réplicas, banco e fila disputam os mesmos 12 núcleos.
 - **A lição:** antes de concluir algo de um teste de carga, confira se o teste está medindo o sistema e não a ferramenta. Nossa primeira bateria (guardada em `evidencias/exp2/v1`) concluiu que "a API estava ociosa" com base num `docker stats` tirado depois do fim da carga. Estava errado, e só percebemos ao medir durante a carga.
 
+### Experimento extra — escalar o pagamento
+- **Pergunta:** mais consumidores processam a fila mais rápido?
+- **Como:** 40 reservas de uma vez, com 1, 2 e 4 contêineres do pagamento; medimos o tempo até nenhuma estar `PENDENTE`. 3 repetições.
+- **Resultado:** 80 s com 1 consumidor, 39 s com 2 (2,05 vezes) e 21 s com 4 (3,74 vezes).
+- **Como explicar:** cada pagamento é quase só espera (1 a 3 s), então o limite é quantos consumidores existem, e não a CPU. Por isso o ganho é quase linear, ao contrário do Experimento 2.
+
 ### Experimento de falha — queda do pagamento
 - **Pergunta:** reservas se perdem se o pagamento cair?
 - **Resultado:** não. Com o serviço parado, 20 reservas ficaram `PENDENTE` e a fila acumulou 20 mensagens; ao religar, todas foram processadas. Na variante em que o serviço é morto no meio, a mensagem voltou à fila e foi reprocessada. Os prints do RabbitMQ estão em `evidencias/falha/`.

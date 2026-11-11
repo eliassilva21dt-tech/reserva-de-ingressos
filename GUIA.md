@@ -285,6 +285,10 @@ Opções: `--reqs` (nº de requisições), `--assento` (qual assento), `--rep` (
 | Leve (1 processo gerando carga) | 102 req/s | 99 req/s | 100 req/s |
 | Forte (8 processos gerando carga) | 259 req/s | 351 req/s (+35%) | 415 req/s (+60%) |
 
+**Extra, escala do pagamento** (40 pagamentos, 3 rodadas): 80 s com 1 consumidor, 39 s com 2 e 21 s com 4.
+
+**Falhas extras:** queda de uma réplica da API com 25 reservas/s: 0 erros em 900 (`docker stop`) e 1 em 900 (`docker kill`); reinício da stack com 20 mensagens na fila: nenhuma perdida depois do volume no RabbitMQ.
+
 Na carga leve o gargalo é o gerador de carga, e não a API. Na forte, cada réplica usa quase um núcleo inteiro e mais réplicas aumentam a vazão. A discussão está em [`docs/relatorio.md`](docs/relatorio.md).
 
 ---

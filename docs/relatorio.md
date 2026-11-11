@@ -96,6 +96,17 @@ O ganho fica longe do ideal (3 réplicas renderam 1,6 vez, e não 3 vezes). A ca
 
 *Medição anterior:* a primeira bateria (3 repetições, ordem fixa, só a carga leve) está em `evidencias/exp2/v1/`. Ela levou a duas afirmações que foram retiradas: "a CPU ficou quase ociosa, então a API não é o gargalo" (o `docker stats` tinha sido tirado depois do fim da carga) e "com 1 réplica a vazão foi maior" (diferença dentro da variação entre rodadas).
 
+### 7.3 Experimento extra — escalar o pagamento-service
+Executar `bash scripts/rodar_escala_pagamento.sh`. Com 1, 2 e 4 consumidores (`--scale pagamento=N`), criamos 40 reservas de uma vez e medimos o tempo até todas saírem de `PENDENTE`. 3 repetições por configuração, com a ordem trocada a cada bloco; o script confere no RabbitMQ se o número de consumidores é o esperado. Dados brutos: `evidencias/escala_pagamento/`.
+
+| Consumidores | Tempo para processar 40 pagamentos (s) | Pagamentos/s | Ganho |
+|---|---|---|---|
+| 1 | 80,0 ± 2,8 | 0,5 | — |
+| 2 | 39,0 ± 0,7 | 1,0 | 2,05 vezes |
+| 4 | 21,4 ± 0,6 | 1,9 | 3,74 vezes |
+
+**Interpretação:** aqui o ganho é quase linear. Cada pagamento passa de 1 a 3 s esperando o "gateway" simulado (média de 2 s), então o limite é o número de consumidores, e não a CPU: 40 pagamentos × 2 s ≈ 80 s com 1 consumidor, metade com 2, um quarto com 4. Como a fila entrega cada mensagem a um único consumidor e a atualização é idempotente, basta subir mais contêineres, sem mudar o código. Com 4 o ganho fica um pouco abaixo de 4 vezes porque os últimos pagamentos terminam em momentos diferentes. É o contraponto ao Experimento 2: quando o trabalho é espera (E/S), escalar na mesma máquina funciona bem; quando é CPU, a máquina única limita. Ressalva: o atraso é simulado; um gateway real teria seus próprios limites.
+
 ## 8. Experimento de falha — queda do pagamento-service
 Executar `bash scripts/falha_pagamento.sh` e `bash scripts/falha_pagamento.sh durante`.
 **Comportamento observado** (logs em `evidencias/falha/`):
@@ -131,7 +142,7 @@ Tudo fica na pasta `evidencias/`, versionada junto com o código.
 | `evidencias/falha/` | Logs completos das duas variantes do experimento de falha (`falha_normal_*.log` e `falha_durante_*.log`, com a marca `REENTREGA`), o estado coletado e 4 prints do painel do RabbitMQ. Também: reinício da stack com a fila cheia, antes e depois da correção (`reinicio_*.log`), e queda de uma réplica da API (`falha_api_*.json`). |
 | `evidencias/escala_pagamento/` | JSON de cada rodada do experimento extra de escala do pagamento (1, 2 e 4 consumidores × 3 repetições). |
 
-As tabelas deste relatório são geradas por `python scripts/resumir.py exp1` e `exp2` a partir desses JSON (média ± desvio padrão). O CI do GitHub Actions roda um teste de fumaça (sobe a stack e confirma que 20 pedidos ao mesmo assento resultam em exatamente 1 reserva).
+As tabelas deste relatório são geradas por `python scripts/resumir.py exp1`, `exp2` e `pagamento` a partir desses JSON (média ± desvio padrão). O CI do GitHub Actions roda um teste de fumaça (sobe a stack e confirma que 20 pedidos ao mesmo assento resultam em exatamente 1 reserva).
 
 ## 10. Limitações e melhorias
 - Redis é ponto único de falha; RabbitMQ e Postgres sem réplica. Com o Redis fora, o modo `redis` devolve `503`.
@@ -154,4 +165,4 @@ O projeto mostra, com dados, que a verificação "está livre? então reserva" n
 
 O pagamento assíncrono por fila durável com ack manual e atualização idempotente funcionou como esperado: com o serviço parado, a API continuou aceitando reservas, a fila acumulou as mensagens e, ao religar, todas foram processadas, sem perda e com reentrega quando o consumidor foi morto no meio do trabalho. Os testes extras de falha encontraram um defeito real (as mensagens da fila se perdiam num reinício da stack, corrigido com um volume para o RabbitMQ) e mostraram que a queda de uma réplica da API não derruba o serviço: a outra réplica assume, com alguns segundos de respostas lentas.
 
-O Experimento 2 mostrou duas coisas. Primeiro, que é preciso conferir se o teste está medindo o sistema: com a carga do enunciado, o limite era o gerador de carga, e a vazão ficou em ~100 req/s com qualquer número de réplicas. Segundo, que com carga suficiente a API sem estado escala: a vazão subiu 35% com 2 réplicas e 60% com 3, com cada réplica usando quase um núcleo inteiro. O ganho não é linear, provavelmente porque tudo roda na mesma máquina; confirmar isso exige gerar a carga a partir de outra máquina.
+O Experimento 2 mostrou duas coisas. Primeiro, que é preciso conferir se o teste está medindo o sistema: com a carga do enunciado, o limite era o gerador de carga, e a vazão ficou em ~100 req/s com qualquer número de réplicas. Segundo, que com carga suficiente a API sem estado escala: a vazão subiu 35% com 2 réplicas e 60% com 3, com cada réplica usando quase um núcleo inteiro. O ganho não é linear, provavelmente porque tudo roda na mesma máquina; confirmar isso exige gerar a carga a partir de outra máquina. Já o pagamento-service, cujo trabalho é espera e não CPU, escalou quase linearmente: 2,05 vezes com 2 consumidores e 3,74 vezes com 4.

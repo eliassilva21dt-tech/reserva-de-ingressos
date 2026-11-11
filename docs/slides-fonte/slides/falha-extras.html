@@ -1,6 +1,6 @@
 <section id="falha-extras" data-transition="fade" style="background:#F6F4EF;color:#3C4650;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
 <div style="display:flex;flex-direction:column;gap:16px">
-<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#B3460F">Testes extras de falha</p>
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#B3460F">Testes extras</p>
 <h2 style="font-size:64px;font-weight:700;line-height:1.1;color:#12202F">Duas quedas a mais, e um defeito encontrado</h2>
 </div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
@@ -23,6 +23,7 @@
 </ul>
 </div>
 </div>
+<p style="font-size:32px;line-height:1.4;color:#12202F"><b>Extra de escala:</b> 40 pagamentos levam 80 s com 1 consumidor, 39 s com 2 e 21 s com 4.</p>
 <p style="position:absolute;left:128px;bottom:64px;font-size:24px;color:#5B636B">Evidências: evidencias/falha · scripts/falha_api.py · scripts/falha_reinicio.sh</p>
-<aside>Sugestão de quem fala: Anna Júlia ou Elias. Primeiro teste: com 2 réplicas e carga contínua, derrubamos uma réplica aos 12 s e religamos aos 24 s. A outra réplica assumiu toda a carga. As 6 respostas lentas acontecem porque o nginx ainda tenta a réplica morta até atualizar o DNS (a cada 5 s): espera o tempo limite de conexão de 2 s e passa para a outra. Com docker stop a API termina o que está fazendo antes de sair; com docker kill a requisição em andamento recebeu 502, mas a reserva dela foi gravada (o cliente viu erro numa reserva que existe). Depois de religada, a réplica voltou a atender em cerca de 6 s. Uma execução de cada modo. Segundo teste: a fila era durável e as mensagens persistentes, mas os dados do RabbitMQ ficavam dentro do contêiner, que o docker compose down apaga. O teste mostrou a perda; corrigimos com um volume nomeado e hostname fixo, e o mesmo teste passou (18 confirmadas e 2 recusadas).</aside>
+<aside>Sugestão de quem fala: Anna Júlia ou Elias. Primeiro teste: com 2 réplicas e carga contínua, derrubamos uma réplica aos 12 s e religamos aos 24 s. A outra réplica assumiu toda a carga. As 6 respostas lentas acontecem porque o nginx ainda tenta a réplica morta até atualizar o DNS (a cada 5 s): espera o tempo limite de conexão de 2 s e passa para a outra. Com docker stop a API termina o que está fazendo antes de sair; com docker kill a requisição em andamento recebeu 502, mas a reserva dela foi gravada (o cliente viu erro numa reserva que existe). Depois de religada, a réplica voltou a atender em cerca de 6 s. Uma execução de cada modo. Segundo teste: a fila era durável e as mensagens persistentes, mas os dados do RabbitMQ ficavam dentro do contêiner, que o docker compose down apaga. O teste mostrou a perda; corrigimos com um volume nomeado e hostname fixo, e o mesmo teste passou (18 confirmadas e 2 recusadas). Extra de escala (frase abaixo dos cartões): também escalamos o pagamento-service. Como cada pagamento leva de 1 a 3 s de espera, o limite é o número de consumidores e o ganho foi quase linear: 2,05 vezes com 2 consumidores e 3,74 vezes com 4 (3 repetições cada). É o contraponto ao Experimento 2, em que o limite era a CPU da máquina.</aside>
 </section>
