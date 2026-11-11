@@ -1,0 +1,70 @@
+{
+  "experimento": "falha_replica_api",
+  "modo_da_queda": "docker kill",
+  "timestamp": "2026-11-10T22:45:34",
+  "taxa_req_por_s": 25.0,
+  "duracao_s": 36.0,
+  "requisicoes": 900,
+  "replica_derrubada": {
+    "container": "ingressos-api-1",
+    "instancia": "e36cdd1d9f3d"
+  },
+  "eventos_s": {
+    "derrubar_inicio_s": 12.01,
+    "derrubar_fim_s": 12.54,
+    "religar_inicio_s": 24.01,
+    "religar_fim_s": 24.45
+  },
+  "codigos": {
+    "201": 899,
+    "502": 1
+  },
+  "erros_total": 1,
+  "lat_media_ms": 66.8,
+  "lat_p95_ms": 58.5,
+  "lat_max_ms": 2069.7,
+  "requisicoes_acima_de_500ms": 6,
+  "janela_lenta_s": [
+    12.28,
+    16.65
+  ],
+  "fases": {
+    "antes": {
+      "requisicoes": 301,
+      "erros": 0,
+      "lat_media_ms": 53.7,
+      "lat_p95_ms": 57.8,
+      "lat_max_ms": 62.2,
+      "por_instancia": {
+        "e36cdd1d9f3d": 141,
+        "3b29106adffa": 160
+      }
+    },
+    "replica_fora": {
+      "requisicoes": 300,
+      "erros": 1,
+      "lat_media_ms": 93.2,
+      "lat_p95_ms": 59.1,
+      "lat_max_ms": 2069.7,
+      "por_instancia": {
+        "3b29106adffa": 299
+      }
+    },
+    "depois_de_religar": {
+      "requisicoes": 299,
+      "erros": 0,
+      "lat_media_ms": 53.6,
+      "lat_p95_ms": 58.4,
+      "lat_max_ms": 60.2,
+      "por_instancia": {
+        "3b29106adffa": 232,
+        "e36cdd1d9f3d": 67
+      }
+    }
+  },
+  "ultima_resposta_da_replica_antes_de_religar_s": 12.0,
+  "primeira_resposta_da_replica_religada_s": 29.94,
+  "tempo_ate_voltar_a_atender_s": 5.93,
+  "overbooking": [],
+  "reservas_no_banco": 900
+}
