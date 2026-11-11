@@ -3,6 +3,7 @@
 Uso:
     python scripts/resumir.py exp1
     python scripts/resumir.py exp2
+    python scripts/resumir.py pagamento
 
 Lê só os arquivos da pasta principal (evidencias/exp1, evidencias/exp2); as
 medições antigas guardadas em subpastas (ex.: v1/) ficam de fora.
@@ -115,5 +116,29 @@ def tabelas_exp2(grupos: dict[int, list[dict]]) -> None:
         print(f"| {n} | {por_replica} | " + " | ".join(cols) + " |")
 
 
+def pagamento() -> None:
+    grupos = defaultdict(list)
+    for p in sorted(Path("evidencias", "escala_pagamento").glob("escala_pagamento_*.json")):
+        d = json.loads(p.read_text(encoding="utf-8"))
+        grupos[d["consumidores"]].append(d)
+    if not grupos:
+        print("sem dados em evidencias/escala_pagamento")
+        return
+    base = statistics.mean(d["tempo_para_processar_s"] for d in grupos[min(grupos)])
+    print("| Consumidores | Reps | Tempo para processar (s) | Pagamentos/s | Ganho |")
+    print("|---|---|---|---|---|")
+    for n in sorted(grupos):
+        ds = sorted(grupos[n], key=lambda d: d["timestamp"])
+        tempos = [d["tempo_para_processar_s"] for d in ds]
+        print(
+            f"| {n} | {len(ds)} | {mdp(tempos)} | {mdp([d['pagamentos_por_s'] for d in ds])} | "
+            f"{base / statistics.mean(tempos):.2f}x |"
+        )
+    print()
+    print("Tempo por rodada (s), na ordem em que rodaram:")
+    for n in sorted(grupos):
+        print(f"  {n} consumidor(es): " + ", ".join(f"{d['tempo_para_processar_s']:g}" for d in sorted(grupos[n], key=lambda d: d["timestamp"])))
+
+
 if __name__ == "__main__":
-    {"exp1": exp1, "exp2": exp2}.get(sys.argv[1] if len(sys.argv) > 1 else "", lambda: print(__doc__))()
+    {"exp1": exp1, "exp2": exp2, "pagamento": pagamento}.get(sys.argv[1] if len(sys.argv) > 1 else "", lambda: print(__doc__))()

@@ -1,0 +1,15 @@
+{
+  "experimento": "escala_pagamento",
+  "consumidores": 2,
+  "consumidores_vistos_pelo_rabbitmq": 2,
+  "repeticao": 1,
+  "timestamp": "2026-11-10T22:48:23",
+  "reservas": 40,
+  "aceitas_201": 40,
+  "tempo_para_processar_s": 38.3,
+  "pagamentos_por_s": 1.04,
+  "reservas_por_status": {
+    "RECUSADA": 2,
+    "CONFIRMADA": 38
+  }
+}
