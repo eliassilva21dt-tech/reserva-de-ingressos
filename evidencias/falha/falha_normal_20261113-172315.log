@@ -1,0 +1,129 @@
+
+### 17:23:15 1. reset
+{"status":"ok","locks_removidos":0,"modo":"redis"}
+
+### 17:23:16 2. parando o pagamento-service
+ Container ingressos-pagamento-1 Stopping 
+ Container ingressos-pagamento-1 Stopped 
+
+### 17:23:19 3. criando 20 reservas (assentos 1..20)
+{"id":1,"assento_id":1,"cliente":"falha1","status":"PENDENTE","instancia":"e36cdd1d9f3d"}
+{"id":2,"assento_id":2,"cliente":"falha2","status":"PENDENTE","instancia":"e36cdd1d9f3d"}
+{"id":3,"assento_id":3,"cliente":"falha3","status":"PENDENTE","instancia":"e36cdd1d9f3d"}
+{"id":4,"assento_id":4,"cliente":"falha4","status":"PENDENTE","instancia":"3b29106adffa"}
+{"id":5,"assento_id":5,"cliente":"falha5","status":"PENDENTE","instancia":"e36cdd1d9f3d"}
+{"id":6,"assento_id":6,"cliente":"falha6","status":"PENDENTE","instancia":"e36cdd1d9f3d"}
+{"id":7,"assento_id":7,"cliente":"falha7","status":"PENDENTE","instancia":"e36cdd1d9f3d"}
+{"id":8,"assento_id":8,"cliente":"falha8","status":"PENDENTE","instancia":"e36cdd1d9f3d"}
+{"id":9,"assento_id":9,"cliente":"falha9","status":"PENDENTE","instancia":"3b29106adffa"}
+{"id":10,"assento_id":10,"cliente":"falha10","status":"PENDENTE","instancia":"e36cdd1d9f3d"}
+{"id":11,"assento_id":11,"cliente":"falha11","status":"PENDENTE","instancia":"3b29106adffa"}
+{"id":12,"assento_id":12,"cliente":"falha12","status":"PENDENTE","instancia":"e36cdd1d9f3d"}
+{"id":13,"assento_id":13,"cliente":"falha13","status":"PENDENTE","instancia":"3b29106adffa"}
+{"id":14,"assento_id":14,"cliente":"falha14","status":"PENDENTE","instancia":"e36cdd1d9f3d"}
+{"id":15,"assento_id":15,"cliente":"falha15","status":"PENDENTE","instancia":"e36cdd1d9f3d"}
+{"id":16,"assento_id":16,"cliente":"falha16","status":"PENDENTE","instancia":"3b29106adffa"}
+{"id":17,"assento_id":17,"cliente":"falha17","status":"PENDENTE","instancia":"3b29106adffa"}
+{"id":18,"assento_id":18,"cliente":"falha18","status":"PENDENTE","instancia":"e36cdd1d9f3d"}
+{"id":19,"assento_id":19,"cliente":"falha19","status":"PENDENTE","instancia":"e36cdd1d9f3d"}
+{"id":20,"assento_id":20,"cliente":"falha20","status":"PENDENTE","instancia":"e36cdd1d9f3d"}
+
+### 17:23:22 4. estado da fila (normal: ~20 prontas, 0 unacked; durante: restantes prontas, 0 unacked = a mensagem em curso voltou para a fila)
+name	messages_ready	messages_unacknowledged
+reservas.pagamento	20	0
+
+### 17:23:24 5. status das reservas (normal: todas PENDENTE; durante: algumas já CONFIRMADA antes da queda)
+     20 "status":"PENDENTE"
+
+### 17:23:25 6. subindo o pagamento-service
+ Container ingressos-db-1 Waiting 
+ Container ingressos-redis-1 Waiting 
+ Container ingressos-rabbitmq-1 Waiting 
+ Container ingressos-rabbitmq-1 Healthy 
+ Container ingressos-redis-1 Healthy 
+ Container ingressos-db-1 Healthy 
+ Container ingressos-pagamento-1 Starting 
+ Container ingressos-pagamento-1 Started 
+
+### 17:23:26 7. aguardando a fila esvaziar (timeout 300 s)
+17:23:28 prontas=19 unacked=1
+17:23:32 prontas=18 unacked=1
+17:23:35 prontas=16 unacked=1
+17:23:39 prontas=14 unacked=1
+17:23:42 prontas=13 unacked=1
+17:23:46 prontas=12 unacked=1
+17:23:50 prontas=10 unacked=1
+17:23:53 prontas=9 unacked=1
+17:23:57 prontas=6 unacked=1
+17:24:00 prontas=5 unacked=1
+17:24:04 prontas=3 unacked=1
+17:24:08 prontas=2 unacked=1
+17:24:11 prontas=0 unacked=1
+17:24:15 prontas=0 unacked=0
+
+### 17:24:15 8. status final das reservas (esperado: CONFIRMADA/RECUSADA, nenhuma perdida)
+     20 "status":"CONFIRMADA"
+
+### 17:24:16 9. logs do pagamento (note REENTREGA na variante 'durante')
+2026-11-13 21:12:12,133 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=11 assento=11
+2026-11-13 21:12:12,134 INFO [b1a01784657c] pagamento: processando reserva=12 assento=12
+2026-11-13 21:12:13,826 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=12 assento=12
+2026-11-13 21:12:13,827 INFO [b1a01784657c] pagamento: processando reserva=13 assento=13
+2026-11-13 21:12:16,162 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=13 assento=13
+2026-11-13 21:12:16,163 INFO [b1a01784657c] pagamento: processando reserva=14 assento=14
+2026-11-13 21:12:19,034 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=14 assento=14
+2026-11-13 21:12:19,035 INFO [b1a01784657c] pagamento: processando reserva=15 assento=15
+2026-11-13 21:12:20,222 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=15 assento=15
+2026-11-13 21:12:20,223 INFO [b1a01784657c] pagamento: processando reserva=16 assento=16
+2026-11-13 21:12:22,370 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=16 assento=16
+2026-11-13 21:12:22,371 INFO [b1a01784657c] pagamento: processando reserva=17 assento=17
+2026-11-13 21:12:23,945 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=17 assento=17
+2026-11-13 21:12:23,946 INFO [b1a01784657c] pagamento: processando reserva=18 assento=18
+2026-11-13 21:12:26,008 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=18 assento=18
+2026-11-13 21:12:26,009 INFO [b1a01784657c] pagamento: processando reserva=19 assento=19
+2026-11-13 21:12:27,976 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=19 assento=19
+2026-11-13 21:12:27,978 INFO [b1a01784657c] pagamento: processando reserva=20 assento=20
+2026-11-13 21:12:29,004 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=20 assento=20
+2026-11-13 21:23:27,562 INFO [b1a01784657c] pagamento: aguardando mensagens em reservas.pagamento
+2026-11-13 21:23:27,562 INFO [b1a01784657c] pagamento: processando reserva=1 assento=1
+2026-11-13 21:23:29,521 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=1 assento=1
+2026-11-13 21:23:29,523 INFO [b1a01784657c] pagamento: processando reserva=2 assento=2
+2026-11-13 21:23:31,831 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=2 assento=2
+2026-11-13 21:23:31,832 INFO [b1a01784657c] pagamento: processando reserva=3 assento=3
+2026-11-13 21:23:33,391 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=3 assento=3
+2026-11-13 21:23:33,393 INFO [b1a01784657c] pagamento: processando reserva=4 assento=4
+2026-11-13 21:23:36,114 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=4 assento=4
+2026-11-13 21:23:36,115 INFO [b1a01784657c] pagamento: processando reserva=5 assento=5
+2026-11-13 21:23:38,633 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=5 assento=5
+2026-11-13 21:23:38,634 INFO [b1a01784657c] pagamento: processando reserva=6 assento=6
+2026-11-13 21:23:41,348 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=6 assento=6
+2026-11-13 21:23:41,349 INFO [b1a01784657c] pagamento: processando reserva=7 assento=7
+2026-11-13 21:23:44,061 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=7 assento=7
+2026-11-13 21:23:44,062 INFO [b1a01784657c] pagamento: processando reserva=8 assento=8
+2026-11-13 21:23:46,829 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=8 assento=8
+2026-11-13 21:23:46,831 INFO [b1a01784657c] pagamento: processando reserva=9 assento=9
+2026-11-13 21:23:48,604 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=9 assento=9
+2026-11-13 21:23:48,605 INFO [b1a01784657c] pagamento: processando reserva=10 assento=10
+2026-11-13 21:23:51,296 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=10 assento=10
+2026-11-13 21:23:51,297 INFO [b1a01784657c] pagamento: processando reserva=11 assento=11
+2026-11-13 21:23:53,717 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=11 assento=11
+2026-11-13 21:23:53,718 INFO [b1a01784657c] pagamento: processando reserva=12 assento=12
+2026-11-13 21:23:55,555 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=12 assento=12
+2026-11-13 21:23:55,556 INFO [b1a01784657c] pagamento: processando reserva=13 assento=13
+2026-11-13 21:23:56,834 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=13 assento=13
+2026-11-13 21:23:56,835 INFO [b1a01784657c] pagamento: processando reserva=14 assento=14
+2026-11-13 21:23:58,703 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=14 assento=14
+2026-11-13 21:23:58,704 INFO [b1a01784657c] pagamento: processando reserva=15 assento=15
+2026-11-13 21:24:01,421 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=15 assento=15
+2026-11-13 21:24:01,422 INFO [b1a01784657c] pagamento: processando reserva=16 assento=16
+2026-11-13 21:24:03,856 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=16 assento=16
+2026-11-13 21:24:03,857 INFO [b1a01784657c] pagamento: processando reserva=17 assento=17
+2026-11-13 21:24:06,798 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=17 assento=17
+2026-11-13 21:24:06,800 INFO [b1a01784657c] pagamento: processando reserva=18 assento=18
+2026-11-13 21:24:09,464 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=18 assento=18
+2026-11-13 21:24:09,465 INFO [b1a01784657c] pagamento: processando reserva=19 assento=19
+2026-11-13 21:24:11,313 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=19 assento=19
+2026-11-13 21:24:11,314 INFO [b1a01784657c] pagamento: processando reserva=20 assento=20
+2026-11-13 21:24:13,241 INFO [b1a01784657c] pagamento: pagamento confirmada reserva=20 assento=20
+
+log salvo em evidencias/falha/falha_normal_20261113-172315.log
