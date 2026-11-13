@@ -1,7 +1,5 @@
 # Relatório técnico — Reserva de Ingressos com Controle de Concorrência
 
-*Rascunho completo: todas as seções, tabelas e evidências estão preenchidas; o grupo deve revisar as interpretações e reescrever com as próprias palavras.*
-
 ## 1. Problema e objetivo
 Vender o mesmo assento duas vezes (overbooking) quando várias réplicas da API recebem pedidos simultâneos. Objetivo: reservar assentos com consistência sob concorrência, pagamento assíncrono, e demonstrar com experimentos o efeito do lock distribuído e das restrições do banco.
 
@@ -55,7 +53,7 @@ Hipótese, procedimento e comandos: `PROJETO.md` §10. Executar `bash scripts/ro
 
 "Tempo na API" é medido dentro da própria API e devolvido no cabeçalho HTTP `Server-Timing`; não inclui proxy, rede nem o gerador de carga.
 
-**Interpretação (rascunho — o grupo deve revisar):** sem controle (`none`), várias requisições passam na verificação "assento livre?" antes de qualquer INSERT e gravam a mesma vaga: houve overbooking nas 6 rodadas, com 4 a 17 reservas aceitas para o mesmo assento. Com `db` e com `redis` foi aceita exatamente 1 reserva em todas as rodadas.
+**Interpretação:** sem controle (`none`), várias requisições passam na verificação "assento livre?" antes de qualquer INSERT e gravam a mesma vaga: houve overbooking nas 6 rodadas, com 4 a 17 reservas aceitas para o mesmo assento. Com `db` e com `redis` foi aceita exatamente 1 reserva em todas as rodadas.
 
 **Sobre velocidade:** não dá para dizer que um modo é mais rápido que o outro para o cliente. A latência vista pelo cliente variou de ~270 ms a ~1100 ms entre rodadas do mesmo modo (redis: 640 ± 398 ms; db: 669 ± 223 ms; none: 766 ± 305 ms), porque quem domina esse número é o gerador de carga disparando 100 pedidos de uma vez, e não o modo. Dentro da API, recusar um pedido custa de 1 a 2 ms nos três modos; o `redis` recusa em 1,0 ms e o `db` em 1,7 ms, uma diferença pequena. A vantagem do `redis` é outra: os 99 pedidos perdedores são barrados antes de chegar ao Postgres, enquanto no `db` cada um vira um INSERT que o banco precisa rejeitar. No modo `none`, aceitar leva ~62 ms por causa do atraso proposital de 50 ms.
 
@@ -90,7 +88,7 @@ Rodamos duas cargas, porque a primeira não chegou a ocupar a API.
 
 Req/s por rodada: 1 réplica: 269, 263, 312, 285, 169, 258 · 2 réplicas: 369, 388, 237, 406, 334, 375 · 3 réplicas: 424, 432, 403, 399, 424, 408.
 
-**Interpretação (rascunho — o grupo deve revisar):** com carga suficiente, cada réplica da API passa a usar quase um núcleo inteiro (93% a 98%) e a latência passa a ser gasta dentro da API (186 a 341 ms de um total de 220 a 374 ms). Agora a API é o gargalo, e **mais réplicas aumentam a vazão**: +35% com 2 réplicas e +60% com 3. O balanceamento divide a carga quase por igual.
+**Interpretação:** com carga suficiente, cada réplica da API passa a usar quase um núcleo inteiro (93% a 98%) e a latência passa a ser gasta dentro da API (186 a 341 ms de um total de 220 a 374 ms). Agora a API é o gargalo, e **mais réplicas aumentam a vazão**: +35% com 2 réplicas e +60% com 3. O balanceamento divide a carga quase por igual.
 
 O ganho fica longe do ideal (3 réplicas renderam 1,6 vez, e não 3 vezes). A causa não foi medida. A hipótese mais provável é a máquina única: os 8 processos do gerador, as réplicas da API, o Postgres e o RabbitMQ disputam os mesmos 12 núcleos lógicos. Reforça essa hipótese o fato de o custo de CPU por reserva na API subir de ~3,8 ms (1 réplica) para ~6,7 ms (3 réplicas). Com 1 e 2 réplicas a variação entre rodadas também foi grande (uma rodada de 169 e outra de 237 req/s). São 6 repetições em uma máquina só; os números valem para esta máquina.
 

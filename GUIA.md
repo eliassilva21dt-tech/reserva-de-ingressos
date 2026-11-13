@@ -356,5 +356,5 @@ Se mudar o **código** (`api/` ou `pagamento/`), use `docker compose up -d --bui
 | `db/init.sql` | Tabelas e os 1000 assentos |
 | `scripts/` | Cargas, experimentos e coleta de evidências |
 | `evidencias/` | Saídas dos experimentos (JSON, logs) |
-| `docs/decisoes.md`, `docs/relatorio.md` | Decisões e rascunho do relatório |
+| `docs/decisoes.md`, `docs/relatorio.md` | Decisões e relatório |
 | `README.md` | Passo a passo curto de reprodução |
